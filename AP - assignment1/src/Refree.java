@@ -1,9 +1,12 @@
 
-public class Refree {
+public class Refree extends Participant{
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public Refree(String ID, String name, int age, String state) {
+		super(ID, name, age, state);
+		// TODO Auto-generated constructor stub
 	}
-
+	
+	public int summaries(Game g){
+		return 0 ;
+	}
 }
