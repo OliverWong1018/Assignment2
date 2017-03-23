@@ -49,10 +49,39 @@ public class Menu
 	}
 		public void subMenu1()
 		{
+			int choice1 = 0;
+			System.out.println("1. Swimming");
+			System.out.println("2. Cycling");
+			System.out.println("3. Running");
+			System.out.println(" ");
+			System.out.println("Please choose:  ");
+			choice1 = sc.nextInt();
+			System.out.println(" ");
 			
+			if(choice1 >3 || choice1<0)
+			{
+				System.out.println("Error Number!!! Please choose 1 to 3.");
+			}else 
+				{
+				switch (choice1){
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+					}	
+				}	
 		}
-		public void subMenu2(){}
-		public void subMenu3(){}
+		
+		public void subMenu2()
+		{
+			System.out.println("22333");
+		}
+		public void subMenu3()
+		{
+			System.out.println("5566");
+		}
 		
 		
-}
+		}
