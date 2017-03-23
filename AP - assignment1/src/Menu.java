@@ -45,11 +45,13 @@ public class Menu
 			}
 		}while(choice != 6);
 		System.out.println("Thank you");
-	
 	}
-		public void subMenu1()
+		
+	
+	public void subMenu1()
 		{
 			int choice1 = 0;
+		 do{
 			System.out.println("1. Swimming");
 			System.out.println("2. Cycling");
 			System.out.println("3. Running");
@@ -61,6 +63,7 @@ public class Menu
 			if(choice1 >3 || choice1<0)
 			{
 				System.out.println("Error Number!!! Please choose 1 to 3.");
+				System.out.println("");
 			}else 
 				{
 				switch (choice1){
@@ -71,14 +74,17 @@ public class Menu
 				case 3:
 					break;
 					}	
-				}	
+				}
+			}while (choice1 != 1 || choice1 != 2 || choice1 != 3);
 		}
 		
-		public void subMenu2()
+		
+	public void subMenu2()
 		{
 			System.out.println("22333");
 		}
-		public void subMenu3()
+		
+	public void subMenu3()
 		{
 			System.out.println("5566");
 		}
