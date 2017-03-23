@@ -34,13 +34,12 @@ public class Menu {
 						break;						
 								  }
 					}
-			     }catch(InputMismatchException i)
+			     }catch(InputMismatchException i )
 			      {
-			    	 
+			    	 System.out.println("Error!! please try again!");	 
 			      }
-			
-			
-	}
+		}while (choice != 6);
+			      System.out.println("Thank you");
 
 		//print main menu of the game
 		private void mainMenu(){
