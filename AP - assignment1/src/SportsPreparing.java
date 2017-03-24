@@ -4,7 +4,7 @@ public class SportsPreparing {
 		Referee rf = new Referee("R1", "Wayne", 31, "VIC");
 		return rf;
 	} 
-	public static Athlete[] creatAthletes(int amount){
+	public static void creatAthletes(){
 		Athlete ath1 = new Athlete("A1", "Tim", 31, "TAS", "Swimming");
 		Athlete ath2 = new Athlete("A2", "Oliver", 28, "WA", "Swimming" );
 		Athlete ath3 = new Athlete("A3", "Tony", 28, "QLD", "Swimming");
@@ -29,8 +29,7 @@ public class SportsPreparing {
 		Athlete ath22 = new Athlete("A22", "Patto", 25, "NSW", "superAthlete");
 		Athlete ath23 = new Athlete("A23", "Jerry", 26, "VIC", "superAthlete");
 		Athlete ath24 = new Athlete("A24", "Rooney", 30, "TAS", "superAthlete");
-		
-		return null;		
+				
 	}
 	
 }
