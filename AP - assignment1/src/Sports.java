@@ -1,9 +1,10 @@
 
-public class Sports {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+public abstract class Sports {
+	private String sportsID;
+	private Referee refree;
+	private Athlete[] athletes;
+	
+	public Sports(String sportsID, Referee refree, Athlete[] athletes){
+		
 	}
-
 }
