@@ -68,10 +68,13 @@ public class Menu
 				{
 				switch (choice1){
 				case 1:
+					//
 					break;
 				case 2:
+					//
 					break;
 				case 3:
+					//
 					break;
 					}	
 				}
@@ -81,13 +84,20 @@ public class Menu
 		
 	public void subMenu2()
 		{
-			System.out.println("22333");
+			//game.althlete.getName();
 		}
 		
 	public void subMenu3()
 		{
-			System.out.println("5566");
+			// run game
 		}
-		
-		
+	public void subMenu4()
+		{
+		//displayResults();
 		}
+	public void subMenu5()
+		{
+		//displayPoints();
+		}
+	
+	}
