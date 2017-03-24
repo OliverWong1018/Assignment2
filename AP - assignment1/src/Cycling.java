@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class Swimming extends Sports {
+public class Cycling extends Sports {
 
-	public Swimming(String sportsID, Referee referee, Athlete[] athletes) {
+	public Cycling(String sportsID, Referee referee, Athlete[] athletes) {
 		super(sportsID, referee, athletes);
 		// TODO Auto-generated constructor stub
 	}
@@ -12,10 +12,10 @@ public class Swimming extends Sports {
 		
 		Random r = new Random();
 		
-		return r.nextInt(301)+500;
+		return r.nextInt(101)+100;
+		
 	}
 
-	
 	
 
 }
