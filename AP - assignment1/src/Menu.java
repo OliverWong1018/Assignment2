@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
-public class Menu
-{
+public class Menu{
+	private  Swimming swimming;
+	
+	
 	Scanner sc = new Scanner(System.in);
 	public void mainMenu(){
 		int choice = 0;
@@ -36,10 +38,10 @@ public class Menu
 				subMenu3();
 				break;
 			case 4:
-				//get 比赛结果信息
+				//get 
 				break;
 			case 5:
-				//get 运动员得分
+				//get 
 				break;						
 						  }
 			}
@@ -68,7 +70,7 @@ public class Menu
 				{
 				switch (choice1){
 				case 1:
-					//
+					Swimming swimming = SportsPreparing.creatSwimming();
 					break;
 				case 2:
 					//
