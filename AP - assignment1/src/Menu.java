@@ -77,7 +77,7 @@ public class Menu{
 					ArrayList<Athlete> athletes = SportsPreparing.creatAthletes("Swimming");
 					ArrayList<CompeteResult> competeform = SportsPreparing.prepareCompeteForm(athletes);
 					Swimming swimming = SportsPreparing.creatSwimming(competeform);
-					
+					System.out.println("1111");
 					break;
 				case 2:
 					//
