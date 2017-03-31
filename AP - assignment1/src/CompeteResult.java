@@ -3,9 +3,9 @@ public class CompeteResult {
 	private int rank;
 	private int time;
 	private Athlete athlete;
-	public CompeteResult(int rank, int time, Athlete athlete){
-		this.rank = rank;
-		this.time = time;
+	public CompeteResult(Athlete athlete){
+		this.rank = 0;
+		this.time = 0;
 		this.athlete = athlete;
 	}
 	public int getRank() {

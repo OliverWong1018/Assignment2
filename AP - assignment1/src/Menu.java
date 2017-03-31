@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu{
@@ -32,19 +33,19 @@ public class Menu{
 			{
 			switch(choice){
 			case 1:
-				subMenu1();
+				selectGame();
 				break;
 			case 2:
-				subMenu2();
+				predictWinner();
 				break;
 			case 3:
-				subMenu3();
+				startGame();
 				break;
 			case 4:
-				//get 
+				displayResults();
 				break;
 			case 5:
-				//get 
+				displayPoints(); 
 				break;						
 						  }
 			}
@@ -53,7 +54,7 @@ public class Menu{
 	}
 		
 	// Create menu for selecting game
-	public void subMenu1()
+	public void selectGame()
 		{
 			int choice1 = 0;
 		 do{
@@ -73,6 +74,9 @@ public class Menu{
 				{
 				switch (choice1){
 				case 1:
+					ArrayList<Athlete> athletes = SportsPreparing.creatAthletes("Swimming");
+					ArrayList<CompeteResult> competeform = SportsPreparing.prepareCompeteForm(athletes);
+					Swimming swimming = SportsPreparing.creatSwimming(competeform);
 					
 					break;
 				case 2:
@@ -87,7 +91,7 @@ public class Menu{
 		}
 		
 	// Create a menu for predicting the winner	
-	public void subMenu2()
+	public void predictWinner()
 		{
 			//game.althlete.getName();
 		}
@@ -95,15 +99,15 @@ public class Menu{
 	
 	
 	
-	public void subMenu3()
+	public void startGame()
 		{
 			// run game
 		}
-	public void subMenu4()
+	public void displayResults()
 		{
 		//displayResults();
 		}
-	public void subMenu5()
+	public void displayPoints()
 		{
 		//displayPoints();
 		}

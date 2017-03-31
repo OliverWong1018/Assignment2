@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class SportsPreparing {
@@ -59,10 +60,14 @@ public class SportsPreparing {
 				
 	}
 	
-	public ArrayList<CompeteResult> presentCompeteForm(ArrayList<Athlete> athletes){
+	public static ArrayList<CompeteResult> prepareCompeteForm(ArrayList<Athlete> athletes){
+		Iterator<Athlete> i = athletes.iterator();
+		ArrayList<CompeteResult> competeForm = new ArrayList<CompeteResult>();
+		do{
+			competeForm.add(new CompeteResult(i.next()));
+		}while(i.hasNext());
 		
-		
-		return null;
+		return competeForm;
 		
 	}
 	
