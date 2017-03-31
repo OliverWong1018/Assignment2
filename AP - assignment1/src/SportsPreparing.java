@@ -47,9 +47,10 @@ public class SportsPreparing {
 		int athletesAmount = r.nextInt(5)+4;
 		ArrayList<Athlete> swimmer = new ArrayList<Athlete>();	
 		for(int i = 0;i<athletesAmount;i++){
-			int athleteNum = r.nextInt(25);
+			int athleteNum = r.nextInt(allAthletes.size());
 			if(allAthletes.get(athleteNum).getType().equals(type)||allAthletes.get(athleteNum).getType().equals("SuperAthlete")){
 				swimmer.add(allAthletes.get(athleteNum));
+				allAthletes.remove(athleteNum);
 			}else{
 				continue;
 			}
@@ -70,5 +71,17 @@ public class SportsPreparing {
 		return swimming;
 		
 	}
-	
+	public ArrayList<CompeteResult> presentCompeteForm(Sports sport){
+		
+		
+		return null;
+		
+	}
+	public  ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
+		
+		int time = sport.getTime();
+		
+		return null;
+		
+	}
 }
