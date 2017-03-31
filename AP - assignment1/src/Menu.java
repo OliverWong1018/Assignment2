@@ -73,8 +73,7 @@ public class Menu{
 				{
 				switch (choice1){
 				case 1:
-					Swimming swimming = SportsPreparing.creatSwimming();
-					swimming.setCompeteResults();
+					
 					break;
 				case 2:
 					//

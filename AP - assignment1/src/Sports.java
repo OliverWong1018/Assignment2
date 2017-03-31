@@ -5,10 +5,10 @@ public abstract class Sports {
 	private Referee referee;
 	private ArrayList<CompeteResult> competeResults;
 	
-	public Sports(String sportsID, Referee referee, ArrayList<Athlete> athletes){
+	public Sports(String sportsID, Referee referee, ArrayList<CompeteResult> competeResults){
 		this.setSportsID(sportsID);
 		this.setReferee(referee);
-		this.setCompeteResults(
+		this.setCompeteResults(competeResults);
 	}
 	
 	/*

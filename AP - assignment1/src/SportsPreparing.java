@@ -45,43 +45,45 @@ public class SportsPreparing {
 		ArrayList<Athlete> allAthletes = creatAllAthletes();
 		Random r = new Random();
 		int athletesAmount = r.nextInt(5)+4;
-		ArrayList<Athlete> swimmer = new ArrayList<Athlete>();	
+		ArrayList<Athlete> athletes = new ArrayList<Athlete>();	
 		for(int i = 0;i<athletesAmount;i++){
 			int athleteNum = r.nextInt(allAthletes.size());
 			if(allAthletes.get(athleteNum).getType().equals(type)||allAthletes.get(athleteNum).getType().equals("SuperAthlete")){
-				swimmer.add(allAthletes.get(athleteNum));
+				athletes.add(allAthletes.get(athleteNum));
 				allAthletes.remove(athleteNum);
 			}else{
 				continue;
 			}
 		}
-		return swimmer;
+		return athletes;
 				
 	}
-	public static Swimming creatSwimming(){
+	
+	public ArrayList<CompeteResult> presentCompeteForm(ArrayList<Athlete> athletes){
+		
+		
+		return null;
+		
+	}
+	
+	public static Swimming creatSwimming(ArrayList<CompeteResult> competeform ){
 		String swimmingID;
 		if(swmimmingAmount<10){
 		 	swimmingID ="S0" + swmimmingAmount;
 		}else{
 			swimmingID = "S"+swmimmingAmount;
 			}
-		Swimming swimming  = new Swimming(swimmingID, creatReferee(), creatAthletes("Swimming"));
+		Swimming swimming  = new Swimming(swimmingID, creatReferee(), competeform);
 		
 		swmimmingAmount++;
 		return swimming;
 		
 	}
-	public ArrayList<CompeteResult> presentCompeteForm(Sports sport){
+		public  ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
 		
+			int time = sport.getTime();
 		
-		return null;
-		
-	}
-	public  ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
-		
-		int time = sport.getTime();
-		
-		return null;
+			return null;
 		
 	}
 }

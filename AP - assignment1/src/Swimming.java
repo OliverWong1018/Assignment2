@@ -3,11 +3,16 @@ import java.util.Random;
 
 public class Swimming extends Sports {
 
-	public Swimming(String sportsID, Referee referee, ArrayList<Athlete> athletes) {
-		super(sportsID, referee, athletes);
+	
 
+	
+
+	public Swimming(String sportsID, Referee referee, ArrayList<CompeteResult> competeResults) {
+		super(sportsID, referee, competeResults);
+		// TODO Auto-generated constructor stub
 	}
-/*
+
+	/*
  * generate a random time for swimming game from 100 to 200sec.
  */
 	@Override
