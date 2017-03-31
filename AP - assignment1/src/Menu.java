@@ -10,47 +10,56 @@ public class Menu{
 	 * Generate a menu for Ozlymic Game
 	 */
 	public void mainMenu(){
-		int choice = 0;
+		int choice=0;
 		
 		do{
-		System.out.println("             Ozlympic Game");
-		System.out.println("===========================================");
-		System.out.println("1. Select a game to run");
-		System.out.println("2. Predict the winner of the game");
-		System.out.println("3. Start the game");
-		System.out.println("4. Display the final results of all games");
-		System.out.println("5. Display the points of all athletes");
-		System.out.println("6. Exit");
-		System.out.println("");
-		System.out.println("Enter an option: ");
-		choice = sc.nextInt();
-		System.out.println(" ");
-		
-		if (choice > 6 || choice < 0)
-		{
-			System.out.println("Error Number!!! Please choose 1 to 6.");
-		}else
-			{
-			switch(choice){
-			case 1:
-				selectGame();
-				break;
-			case 2:
-				predictWinner();
-				break;
-			case 3:
-				startGame();
-				break;
-			case 4:
-				displayResults();
-				break;
-			case 5:
-				displayPoints(); 
-				break;						
-						  }
+			try{
+			System.out.println("             Ozlympic Game");
+			System.out.println("===========================================");
+			System.out.println("1. Select a game to run");
+			System.out.println("2. Predict the winner of the game");
+			System.out.println("3. Start the game");
+			System.out.println("4. Display the final results of all games");
+			System.out.println("5. Display the points of all athletes");
+			System.out.println("6. Exit");
+			System.out.println("");
+			System.out.println("Enter an option: ");
+			choice = sc.nextInt();
+			
+			System.out.println(" ");
+			
+			if (choice > 6 || choice < 0)
+				{
+					System.out.println("Error Number!!! Please choose 1 to 6.");
+			}else
+				{
+				switch(choice){
+				case 1:
+					selectGame();
+					break;
+				case 2:
+					predictWinner();
+					break;
+				case 3:
+					startGame();
+					break;
+				case 4:
+					displayResults();
+					break;
+				case 5:
+					displayPoints(); 
+					break;
+							  }
+				}
 			}
-		}while(choice != 6);
-		System.out.println("Thank you");
+		catch(Exception e){
+			
+			System.out.println("you need input a valid option");
+			String tempt = sc.nextLine();
+			
+		}}while(choice!=6);
+	
+		System.out.println("Game over");
 	}
 		
 	// Create menu for selecting game
@@ -78,6 +87,7 @@ public class Menu{
 					ArrayList<CompeteResult> competeform = SportsPreparing.prepareCompeteForm(athletes);
 					Swimming swimming = SportsPreparing.creatSwimming(competeform);
 					System.out.println("1111");
+					mainMenu();
 					break;
 				case 2:
 					//
