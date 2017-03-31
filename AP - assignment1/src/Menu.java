@@ -5,6 +5,9 @@ public class Menu{
 	
 	
 	Scanner sc = new Scanner(System.in);
+	/*
+	 * Generate a menu for Ozlymic Game
+	 */
 	public void mainMenu(){
 		int choice = 0;
 		
@@ -49,7 +52,7 @@ public class Menu{
 		System.out.println("Thank you");
 	}
 		
-	
+	// Create menu for selecting game
 	public void subMenu1()
 		{
 			int choice1 = 0;
@@ -83,12 +86,15 @@ public class Menu{
 			}while (choice1 != 1 || choice1 != 2 || choice1 != 3);
 		}
 		
-		
+	// Create a menu for predicting the winner	
 	public void subMenu2()
 		{
 			//game.althlete.getName();
 		}
-		
+	
+	
+	
+	
 	public void subMenu3()
 		{
 			// run game

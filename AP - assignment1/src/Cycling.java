@@ -7,15 +7,17 @@ public class Cycling extends Sports {
 
 	public Cycling(String sportsID, Referee referee, ArrayList<Athlete> athletes) {
 		super(sportsID, referee, athletes);
-		// TODO Auto-generated constructor stub
 	}
-
+/*
+ * generate a random time for Cycling from 500 to 800sec.
+ * @return
+ */
 	@Override
 	public int compete() {
 		
 		Random r = new Random();
 		
-		return r.nextInt(101)+100;
+		return r.nextInt(301)+500;
 		
 	}
 
