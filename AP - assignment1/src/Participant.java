@@ -12,28 +12,36 @@ public abstract class Participant {
 		this.setAge(age);
 		this.setState(state);
 	}
-
+	
+	// get participant ID
 	public String getID() {
 		return ID;
 	}
+	//set participant ID
 	public void setID(String ID) {
 		this.ID = ID;
 	}
+	//get participant name
 	public String getName() {
 		return name;
 	}
+	//set participant name
 	public void setName(String name) {
 		this.name = name;
 	}
+	//get participant age
 	public int getAge() {
 		return age;
 	}
+	//set participant age
 	public void setAge(int age) {
 		this.age = age;
 	}
+	//get participant state
 	public String getState() {
 		return state;
 	}
+	//set participant state
 	public void setState(String state) {
 		this.state = state;
 	}
