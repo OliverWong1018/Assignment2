@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class SportsPreparing {
@@ -6,7 +7,7 @@ public class SportsPreparing {
 		Referee rf = new Referee("R1", "Wayne", 31, "VIC");
 		return rf;
 	}
-	public static Athlete[] creatAllAthletes(){
+	public static ArrayList<Athlete> creatAllAthletes(){
 		Athlete ath1 = new Athlete("A1", "Tim", 31, "TAS", "Swimming");
 		Athlete ath2 = new Athlete("A2", "Oliver", 28, "WA", "Swimming" );
 		Athlete ath3 = new Athlete("A3", "Tony", 28, "QLD", "Swimming");
@@ -31,19 +32,24 @@ public class SportsPreparing {
 		Athlete ath22 = new Athlete("A22", "Patto", 25, "NSW", "SuperAthlete");
 		Athlete ath23 = new Athlete("A23", "Jerry", 26, "VIC", "SuperAthlete");
 		Athlete ath24 = new Athlete("A24", "Rooney", 30, "TAS", "SuperAthlete");
-		Athlete[] allAthetes = {ath1,ath2,ath3,ath4,ath5,ath6,ath7,ath8,ath9,ath10,ath11,ath12,ath13,ath14,ath15,ath16,ath17,ath18,ath19,ath20,ath21,ath22,ath23,ath24};
+		ArrayList<Athlete> allAthetes = new ArrayList<Athlete>();
+		allAthetes.add(ath1);allAthetes.add(ath2);allAthetes.add(ath3);allAthetes.add(ath4);allAthetes.add(ath5);allAthetes.add(ath6);
+		allAthetes.add(ath7);allAthetes.add(ath8);allAthetes.add(ath9);allAthetes.add(ath10);allAthetes.add(ath11);allAthetes.add(ath12);
+		allAthetes.add(ath13);allAthetes.add(ath14);allAthetes.add(ath15);allAthetes.add(ath16);allAthetes.add(ath17);allAthetes.add(ath18);
+		allAthetes.add(ath19);allAthetes.add(ath20);allAthetes.add(ath21);allAthetes.add(ath22);allAthetes.add(ath23);allAthetes.add(ath24);
 		return allAthetes;
 	}
-	public static Athlete[] creatAthletes(String type){
+	
+	public static ArrayList<Athlete> creatAthletes(String type){
 		
-		Athlete[] allAthletes = creatAllAthletes();
+		ArrayList<Athlete> allAthletes = creatAllAthletes();
 		Random r = new Random();
 		int athletesAmount = r.nextInt(5)+4;
-		Athlete[] swimmer = new Athlete[athletesAmount-1];
+		ArrayList<Athlete> swimmer = new ArrayList<Athlete>();	
 		for(int i = 0;i<athletesAmount;i++){
 			int athleteNum = r.nextInt(25);
-			if(allAthletes[athleteNum].getType()==type||allAthletes[athleteNum].getType()=="SuperAthlete"){
-				swimmer[i] = allAthletes[athleteNum];
+			if(allAthletes.get(athleteNum).getType().equals(type)||allAthletes.get(athleteNum).getType().equals("SuperAthlete")){
+				swimmer.add(allAthletes.get(athleteNum));
 			}else{
 				continue;
 			}
@@ -58,10 +64,10 @@ public class SportsPreparing {
 		}else{
 			swimmingID = "S"+swmimmingAmount;
 			}
-		Swimming swimmingGame  = new Swimming(swimmingID, creatReferee(), creatAthletes("Swimming"));
+		Swimming swimming  = new Swimming(swimmingID, creatReferee(), creatAthletes("Swimming"));
 		
 		swmimmingAmount++;
-		return swimmingGame;
+		return swimming;
 		
 	}
 	

@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 
 public abstract class Sports {
 	private String sportsID;
 	private Referee referee;
-	private Athlete[] athletes;
+	private ArrayList<Athlete> athletes;
 	
-	public Sports(String sportsID, Referee referee, Athlete[] athletes){
+	public Sports(String sportsID, Referee referee, ArrayList<Athlete> athletes){
 		this.setSportsID(sportsID);
 		this.setReferee(referee);
 		this.setAthletes(athletes);
@@ -26,12 +27,14 @@ public abstract class Sports {
 		this.referee = referee;
 	}
 
-	public Athlete[] getAthletes() {
+	
+	public abstract int compete();
+
+	public ArrayList<Athlete> getAthletes() {
 		return athletes;
 	}
 
-	public void setAthletes(Athlete[] athletes) {
+	public void setAthletes(ArrayList<Athlete> athletes) {
 		this.athletes = athletes;
 	}
-	public abstract int compete();
 }

@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Cycling extends Sports {
 
-	public Cycling(String sportsID, Referee referee, Athlete[] athletes) {
+	
+
+	public Cycling(String sportsID, Referee referee, ArrayList<Athlete> athletes) {
 		super(sportsID, referee, athletes);
 		// TODO Auto-generated constructor stub
 	}
