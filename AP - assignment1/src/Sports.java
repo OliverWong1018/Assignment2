@@ -4,6 +4,7 @@ public abstract class Sports {
 	private String sportsID;
 	private Referee referee;
 	private ArrayList<Athlete> athletes;
+	private ArrayList<CompeteResult> competeResults;
 	
 	public Sports(String sportsID, Referee referee, ArrayList<Athlete> athletes){
 		this.setSportsID(sportsID);
@@ -41,8 +42,6 @@ public abstract class Sports {
 		this.referee = referee;
 	}
 
-	
-	public abstract int compete();
 	// get athletes for each game
 	public ArrayList<Athlete> getAthletes() {
 		return athletes;
@@ -54,4 +53,20 @@ public abstract class Sports {
 	public void setAthletes(ArrayList<Athlete> athletes){
 		this.athletes = athletes;
 	}	
+	
+	
+
+	public ArrayList<CompeteResult> getCompeteResults() {
+		return competeResults;
+	}
+
+
+	public abstract int getTime();
+	
+	public  ArrayList<CompeteResult> setCompeteResults(){	
+		int time = this.getTime();
+		
+		return null;
+		
+	}
 }

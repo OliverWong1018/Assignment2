@@ -11,14 +11,11 @@ public class Swimming extends Sports {
  * generate a random time for swimming game from 100 to 200sec.
  */
 	@Override
-	public int compete() {
-		
+	public int getTime() {		
 		Random r = new Random();
 		
 		return r.nextInt(101)+100;
-	}
 
-	
-	
+	}
 
 }

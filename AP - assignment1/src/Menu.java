@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Menu{
-	private  Swimming swimming;
+	
 	
 	
 	Scanner sc = new Scanner(System.in);
@@ -74,6 +74,7 @@ public class Menu{
 				switch (choice1){
 				case 1:
 					Sports swimming = SportsPreparing.creatSwimming();
+					swimming.competeResult();
 					break;
 				case 2:
 					//
