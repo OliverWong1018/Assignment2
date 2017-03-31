@@ -4,6 +4,7 @@ public abstract class Sports {
 	private String sportsID;
 	private Referee referee;
 	private ArrayList<CompeteResult> competeResults;
+	private Athlete predictedWinner;
 	
 	public Sports(String sportsID, Referee referee, ArrayList<CompeteResult> competeResults){
 		this.setSportsID(sportsID);
@@ -50,6 +51,14 @@ public abstract class Sports {
 
 	public void setCompeteResults(ArrayList<CompeteResult> competeResults) {
 		this.competeResults = competeResults;
+	}
+
+	public Athlete getPredictedWinner() {
+		return predictedWinner;
+	}
+
+	public void setPredictedWinner(Athlete predictedWinner) {
+		this.predictedWinner = predictedWinner;
 	}
 	
 	
