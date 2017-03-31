@@ -6,7 +6,9 @@ public class Running extends Sports {
 		super(sportsID, referee, athletes);
 		// TODO Auto-generated constructor stub
 	}
-
+/*
+ * generate a random time for Running from 10 to 20sec.
+ */
 	@Override
 	public int compete() {
 		
