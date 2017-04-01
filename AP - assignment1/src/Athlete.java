@@ -1,6 +1,6 @@
 
 public class Athlete extends Participant{
-	private int points;
+	private int points = 0;
 	private String type; 
 	public Athlete(String ID, String name, int age, String state, String type) {
 		super(ID, name, age, state);
@@ -16,8 +16,14 @@ public class Athlete extends Participant{
 	/*
 	 * set the game points
 	 */
-	public void setPoints(int points) {
-		this.points = points;
+	public void set5Points() {
+		this.points +=5;
+	}
+	public void set2Points() {
+		this.points +=2;
+	}
+	public void set1Points() {
+		this.points +=1;
 	}
 	/*
 	 * get the type of the participants

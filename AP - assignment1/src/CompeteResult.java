@@ -1,6 +1,6 @@
 
 public class CompeteResult {
-	
+	private int rank;
 	private int time;
 	private Athlete athlete;
 	public CompeteResult(Athlete athlete){
@@ -20,5 +20,16 @@ public class CompeteResult {
 	}
 	public void setAthlete(Athlete athlete) {
 		this.athlete = athlete;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank() {
+		this.rank -=1;
+	}
+	public void setRank(int rank) {
+		this.rank =rank;
 	}
 }

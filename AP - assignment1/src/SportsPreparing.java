@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class SportsPreparing {
 	public static int swmimmingAmount = 1;
+	public static int cyclingAmount = 1;
+	public static int runningAmount = 1;
 	public static Referee creatReferee(){
 		Referee rf = new Referee("R1", "Wayne", 31, "VIC");
 		return rf;
@@ -19,7 +21,7 @@ public class SportsPreparing {
 		Athlete ath8 = new Athlete("A08", "Allen    ", 24, "TAS", "Running");
 		Athlete ath9 = new Athlete("A09", "Dylan    ", 27, "QLD", "Running");
 		Athlete ath10 = new Athlete("A10", "Chris    ", 23, "WA ", "Running");
-		Athlete ath11 = new Athlete("A11", "Jack    ", 27, "NT ", "Running");
+		Athlete ath11 = new Athlete("A11", "Jack     ", 27, "NT ", "Running");
 		Athlete ath12 = new Athlete("A12", "Lon      ", 29, "VIC", "Running");
 		Athlete ath13 = new Athlete("A13", "Miya     ", 27, "QLD", "Cycling");
 		Athlete ath14 = new Athlete("A14", "Toby     ", 22, "TAS", "Cycling");
@@ -46,7 +48,6 @@ public class SportsPreparing {
 		ArrayList<Athlete> allAthletes = creatAllAthletes();
 		Random r = new Random();
 		int athletesAmount = r.nextInt(5)+4;
-		
 		ArrayList<Athlete> athletes = new ArrayList<Athlete>();	
 		while(athletes.size()<athletesAmount){
 			int athleteNum = r.nextInt(allAthletes.size());
@@ -85,6 +86,32 @@ public class SportsPreparing {
 		return swimming;
 		
 	}
+	public static Cycling creatCycling(ArrayList<CompeteResult> competeform ){
+		String cyclingID;
+		if(cyclingAmount<10){
+		 	cyclingID ="C0" + cyclingAmount;
+		}else{
+			cyclingID = "C"+cyclingAmount;
+			}
+		Cycling cycling  = new Cycling(cyclingID, creatReferee(), competeform);
+		
+		cyclingAmount++;
+		return cycling;
+		
+	}
+	public static Running creatRunning(ArrayList<CompeteResult> competeform ){
+		String runningID;
+		if(runningAmount<10){
+		 	runningID ="R0" + runningAmount;
+		}else{
+			runningID = "R"+runningAmount;
+			}
+		Running running  = new Running(runningID, creatReferee(), competeform);
+		
+		runningAmount++;
+		return running;
+		
+	}
 		public static ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
 			Iterator<CompeteResult> iter = sport.getCompeteResults().iterator();
 			do{
@@ -93,12 +120,47 @@ public class SportsPreparing {
 			
 			sport.getCompeteResults().sort(new SortByTime());
 			
-			/*for(int i = 1; i<=sport.getCompeteResults().size();i++){
+			for(int i = 1; i<=sport.getCompeteResults().size();i++){
 				sport.getCompeteResults().get(i-1).setRank(i);
-			}*/
+			}
 			
+			
+			int temp =1;
+			do{	
+				
+				if(sport.getCompeteResults().get(temp-1).getTime()==sport.getCompeteResults().get(temp).getTime()){
+					//for(int i = temp;i<sport.getCompeteResults().size();i++){
+						sport.getCompeteResults().get(temp).setRank();
+					//}
+				}
+				temp++;
+			}while(temp<sport.getCompeteResults().size());
 			
 			return sport.getCompeteResults();
-		
+			
 	}
+		public static ArrayList<Athlete> savePoints(ArrayList<Athlete> allAthlete, ArrayList<CompeteResult> competeResults){
+			ArrayList<String> rankFirstIDs = new ArrayList<String>();
+			ArrayList<String> rankSecondIDs = new ArrayList<String>();
+			ArrayList<String> rankThirdIDs = new ArrayList<String>();
+			for(int i = 0; i<competeResults.size();i++){
+				if(competeResults.get(i).getRank()==1)
+					rankFirstIDs.add(competeResults.get(i).getAthlete().getID());				
+				if(competeResults.get(i).getRank()==2)
+					rankSecondIDs.add(competeResults.get(i).getAthlete().getID());	
+				if(competeResults.get(i).getRank()==3)
+					rankThirdIDs.add(competeResults.get(i).getAthlete().getID());		
+			}
+			
+			for(int i = 0; i<allAthlete.size();i++){
+				if(rankFirstIDs.contains(allAthlete.get(i).getID()))
+					allAthlete.get(i).set5Points();			
+				if(rankSecondIDs.contains(allAthlete.get(i).getID()))
+					allAthlete.get(i).set2Points();	
+				if(rankThirdIDs.contains(allAthlete.get(i).getID()))
+					allAthlete.get(i).set1Points();	
+				
+			}
+			return allAthlete;
+		}
 }
