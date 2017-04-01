@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -125,7 +126,33 @@ public class Menu {
 	}
 
 	public void startGame() {
-		// run game
+		ArrayList<CompeteResult> competeResults = SportsPreparing.presentCompeteResults(allGames.get(allGames.size()-1));
+		Iterator<CompeteResult> iter = competeResults.iterator();
+		CompeteResult competeResult;
+		do{
+			competeResult = iter.next();
+			System.out.println("Time: "+competeResult.getTime()+" | ID: "+competeResult.getAthlete().getID()+" | Name: "+competeResult.getAthlete().getName()+" | Type: "+competeResult.getAthlete().getType());
+		}while(iter.hasNext());
+		System.out.println("Your prediction winner is: ");
+		System.out.println("ID: "+allGames.get(allGames.size()-1).getPredictedWinner().getID()+" | Name :"+allGames.get(allGames.size()-1).getPredictedWinner().getName());
+		if(competeResults.get(0).getAthlete().getID().equals(allGames.get(allGames.size()-1).getPredictedWinner().getID())){
+			System.out.println("Congratulations!!!");
+		}
+		String backward;
+		do{
+			System.out.println();
+			System.out.println("opertating option: ");
+			System.out.println("1.Back to main menu  ");
+			System.out.println();
+			backward = sc.next();
+			if(backward.equals("1")){
+				mainMenu();
+			}else{
+				System.out.println("Please choose valid option");
+			}
+			
+		
+		}while(!backward.equals("1"));
 	}
 
 	public void displayResults() {

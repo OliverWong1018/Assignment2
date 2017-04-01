@@ -85,11 +85,20 @@ public class SportsPreparing {
 		return swimming;
 		
 	}
-		public  ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
-		
-			int time = sport.getTime();
-		
-			return null;
+		public static ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
+			Iterator<CompeteResult> iter = sport.getCompeteResults().iterator();
+			do{
+				iter.next().setTime(sport.getTime());
+			}while(iter.hasNext());
+			
+			sport.getCompeteResults().sort(new SortByTime());
+			
+			/*for(int i = 1; i<=sport.getCompeteResults().size();i++){
+				sport.getCompeteResults().get(i-1).setRank(i);
+			}*/
+			
+			
+			return sport.getCompeteResults();
 		
 	}
 }
