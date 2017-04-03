@@ -145,10 +145,8 @@ public class Game {
 		}
 		String backward;
 		do{
-			System.out.println();
-			System.out.println("opertating option: ");
-			System.out.println("1.Back to main menu  ");
-			System.out.println();
+			Menu.backward();
+			
 			backward = sc.next();
 			if(backward.equals("1")){
 				begin();
@@ -179,10 +177,7 @@ public class Game {
 		
 		String backward;
 		do{
-			System.out.println();
-			System.out.println("opertating option: ");
-			System.out.println("1.Back to main menu  ");
-			System.out.println();
+			Menu.backward();
 			backward = sc.next();
 			if(backward.equals("1")){
 				begin();
@@ -204,10 +199,7 @@ public class Game {
 		
 		String backward;
 		do{
-			System.out.println();
-			System.out.println("opertating option: ");
-			System.out.println("1.Back to main menu  ");
-			System.out.println();
+			Menu.backward();
 			backward = sc.next();
 			if(backward.equals("1")){
 				begin();

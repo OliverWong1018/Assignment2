@@ -21,6 +21,14 @@ public class Menu {
 		System.out.println("Please choose:  ");
 		
 	}
+
+	public static void backward() {
+		System.out.println();
+		System.out.println("opertating option: ");
+		System.out.println("1.Back to main menu  ");
+		System.out.println();
+		
+	}
 	
 	
 }
