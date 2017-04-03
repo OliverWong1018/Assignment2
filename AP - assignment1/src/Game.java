@@ -23,17 +23,8 @@ public class Game {
 		String choice ;
 		
 		do {
-			//try {
-				System.out.println("             Ozlympic Game");
-				System.out.println("===========================================");
-				System.out.println("1. Select a game to run");
-				System.out.println("2. Predict the winner of the game");
-				System.out.println("3. Start the game");
-				System.out.println("4. Display the final results of all games");
-				System.out.println("5. Display the points of all athletes");
-				System.out.println("6. Exit");
-				System.out.println("");
-				System.out.println("Enter an option: ");
+				Menu.mainMenu();
+				
 				choice = sc.next();
 				
 				if(choice.equals("1")){
@@ -63,12 +54,8 @@ public class Game {
 	public void selectGame() {
 		String choice1 ;
 		do {
-			//try {
-				System.out.println("1. Swimming");
-				System.out.println("2. Cycling");
-				System.out.println("3. Running");
-				System.out.println(" ");
-				System.out.println("Please choose:  ");
+				Menu.secondMenu();
+				
 				choice1 = sc.next();
 				if(allGames.size()>0){
 					if(allGames.get(allGames.size()-1).getTime()==0){
