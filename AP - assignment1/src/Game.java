@@ -12,9 +12,6 @@ public class Game {
 	boolean flag = false;
 	  //Generate a menu for Ozlymic Game
 		
-	public void setAllAthletes() {
-		allAthletes.addAll(SportsPreparing.creatAllAthletes());
-	}
 
 	public void begin() {
 		String choice ;
