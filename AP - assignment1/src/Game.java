@@ -178,6 +178,7 @@ public class Game {
 		do{
 			Sports sport = iterator.next();
 			System.out.println("SportID: "+sport.getSportsID());
+			System.out.println("Referee: "+sport.getReferee().getName());
 			CompeteResult competeResult;
 			Iterator<CompeteResult> iter = sport.getCompeteResults().iterator();
 			do{
