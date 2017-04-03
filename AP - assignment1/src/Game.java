@@ -11,10 +11,7 @@ public class Game {
 	private ArrayList<Athlete> allAthletes = new ArrayList<Athlete>();
 	boolean flag = false;
 	  //Generate a menu for Ozlymic Game
-	 
-	public Game(){
-		setAllAthletes();
-	}
+		
 	public void setAllAthletes() {
 		allAthletes.addAll(SportsPreparing.creatAllAthletes());
 	}
