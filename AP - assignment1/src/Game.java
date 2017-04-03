@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 
-public class Menu {
+public class Game {
 
 	private Scanner sc = new Scanner(System.in);
 	private ArrayList<Sports> allGames = new ArrayList<Sports>();
@@ -12,14 +12,14 @@ public class Menu {
 	boolean flag = false;
 	  //Generate a menu for Ozlymic Game
 	 
-	public Menu(){
+	public Game(){
 		setAllAthletes();
 	}
 	public void setAllAthletes() {
 		allAthletes.addAll(SportsPreparing.creatAllAthletes());
 	}
 
-	public void mainMenu() {
+	public void begin() {
 		String choice ;
 		
 		do {
@@ -70,47 +70,37 @@ public class Menu {
 				System.out.println(" ");
 				System.out.println("Please choose:  ");
 				choice1 = sc.next();
-				
-				if(choice1.equals("1")){
-
-					if(allGames.size()>0){
-						if(allGames.get(allGames.size()-1).getTime()==0){
-							allGames.remove(allGames.size()-1);
-						}
+				if(allGames.size()>0){
+					if(allGames.get(allGames.size()-1).getTime()==0){
+						allGames.remove(allGames.size()-1);
 					}
+				}
+				if(choice1.equals("1")){
 					
 					ArrayList<Athlete> athletes = SportsPreparing.creatAthletes("Swimming");
 					ArrayList<CompeteResult> competeform = SportsPreparing.prepareCompeteForm(athletes);
 					allGames.add(SportsPreparing.creatSwimming(competeform));
 					
-					mainMenu();
+					begin();
 				}
 				if(choice1.equals("2")){
-					if(allGames.size()>0){
-						if(allGames.get(allGames.size()-1).getTime()==0){
-							allGames.remove(allGames.size()-1);
-						}
-					}
+					
 					
 					ArrayList<Athlete> athletes2 = SportsPreparing.creatAthletes("Cycling");
 					ArrayList<CompeteResult> competeform2 = SportsPreparing.prepareCompeteForm(athletes2);
 					allGames.add(SportsPreparing.creatCycling(competeform2));
 					
-					mainMenu();
+					begin();
 				}	
 				if(choice1.equals("3")){
 
-					if(allGames.size()>0){
-						if(allGames.get(allGames.size()-1).getTime()==0){
-							allGames.remove(allGames.size()-1);
-						}
-					}
+					
 					
 					ArrayList<Athlete> athletes3 = SportsPreparing.creatAthletes("Running");
 					ArrayList<CompeteResult> competeform3 = SportsPreparing.prepareCompeteForm(athletes3);
 					allGames.add(SportsPreparing.creatRunning(competeform3));
 					
-					mainMenu();	
+					begin();	
 				}else{
 					System.out.println("Notice: Please choose valid option!!!");
 				}
@@ -139,7 +129,7 @@ public class Menu {
 				 Integer inte = new Integer(prediction);
 					predictionNum = inte.intValue();
 					allGames.get(allGames.size()-1).setPredictedWinner(allGames.get(allGames.size()-1).getCompeteResults().get(predictionNum-1).getAthlete());
-					mainMenu();
+					begin();
 			 }else{
 				 System.out.println("Notice: Please choose valid option!!!");
 			 }
@@ -174,7 +164,7 @@ public class Menu {
 			System.out.println();
 			backward = sc.next();
 			if(backward.equals("1")){
-				mainMenu();
+				begin();
 			}else{
 				System.out.println("Please choose valid option");
 			}
@@ -207,7 +197,7 @@ public class Menu {
 			System.out.println();
 			backward = sc.next();
 			if(backward.equals("1")){
-				mainMenu();
+				begin();
 			}else{
 				System.out.println("Please choose valid option");
 			}
@@ -232,7 +222,7 @@ public class Menu {
 			System.out.println();
 			backward = sc.next();
 			if(backward.equals("1")){
-				mainMenu();
+				begin();
 			}else{
 				System.out.println("Please choose valid option");
 			}
