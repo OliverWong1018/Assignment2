@@ -112,6 +112,11 @@ public class SportsPreparing {
 		return running;
 		
 	}
+	public static void runGame(String sportType, ArrayList<Sports> allGames){
+		ArrayList<Athlete> athletes = SportsPreparing.creatAthletes(sportType);
+		ArrayList<CompeteResult> competeform = SportsPreparing.prepareCompeteForm(athletes);
+		allGames.add(SportsPreparing.creatSwimming(competeform));
+	}
 		public static ArrayList<CompeteResult> presentCompeteResults(Sports sport){	
 			Iterator<CompeteResult> iter = sport.getCompeteResults().iterator();
 			do{

@@ -57,31 +57,16 @@ public class Game {
 					}
 				}
 				if(choice1.equals("1")){
-					
-					ArrayList<Athlete> athletes = SportsPreparing.creatAthletes("Swimming");
-					ArrayList<CompeteResult> competeform = SportsPreparing.prepareCompeteForm(athletes);
-					allGames.add(SportsPreparing.creatSwimming(competeform));
-					
+					SportsPreparing.runGame("Swimming", allGames);
 					begin();
 				}
 				if(choice1.equals("2")){
-					
-					
-					ArrayList<Athlete> athletes2 = SportsPreparing.creatAthletes("Cycling");
-					ArrayList<CompeteResult> competeform2 = SportsPreparing.prepareCompeteForm(athletes2);
-					allGames.add(SportsPreparing.creatCycling(competeform2));
-					
+					SportsPreparing.runGame("Cycling", allGames);
 					begin();
 				}	
 				if(choice1.equals("3")){
-
-					
-					
-					ArrayList<Athlete> athletes3 = SportsPreparing.creatAthletes("Running");
-					ArrayList<CompeteResult> competeform3 = SportsPreparing.prepareCompeteForm(athletes3);
-					allGames.add(SportsPreparing.creatRunning(competeform3));
-					
-					begin();	
+					SportsPreparing.runGame("Running", allGames);
+					begin();
 				}else{
 					System.out.println("Notice: Please choose valid option!!!");
 				}
