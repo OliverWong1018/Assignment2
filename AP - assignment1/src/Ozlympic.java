@@ -1,4 +1,5 @@
-
+//Author name: Jinze Wang
+//This class is for main method for the project
 public class Ozlympic {
 
 

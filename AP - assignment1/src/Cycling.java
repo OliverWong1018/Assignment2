@@ -1,3 +1,5 @@
+//Author is Wen Zhang
+//this class for cycling with override method from superclass Sports.class.
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,7 +18,7 @@ public Cycling(String sportsID, Referee referee, ArrayList<CompeteResult> compet
  * @return
  */
 	@Override
-	public int getTime() {
+	public int computeTime() {
 		
 		Random r = new Random();
 		

@@ -1,3 +1,6 @@
+//Author is Wen Zhang
+//this class for swimming with override method from superclass Sports.class
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,7 +19,7 @@ public class Swimming extends Sports {
  * generate a random time for swimming game from 100 to 200sec.
  */
 	@Override
-	public int getTime() {		
+	public int computeTime() {		
 		Random r = new Random();
 		
 		return r.nextInt(101)+100;

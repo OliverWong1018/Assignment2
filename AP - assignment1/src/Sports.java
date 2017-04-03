@@ -1,3 +1,5 @@
+//Author is Wen Zhang
+//this class is abstract superclass for Running, Swimming and Cycling, with abstract method for compute time for game.
 import java.util.ArrayList;
 
 public abstract class Sports {
@@ -43,7 +45,7 @@ public abstract class Sports {
 	}
 	
 	
-	public abstract int getTime();
+	public abstract int computeTime();
 
 	public ArrayList<CompeteResult> getCompeteResults() {
 		return competeResults;

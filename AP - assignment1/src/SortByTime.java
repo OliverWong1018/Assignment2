@@ -1,3 +1,5 @@
+//Author is Wen Zhang
+//This class for comparing the time of each athlete.
 import java.util.Comparator;
 
 public class SortByTime implements Comparator {

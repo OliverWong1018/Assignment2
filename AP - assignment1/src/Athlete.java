@@ -1,4 +1,5 @@
-
+//Author is Jinze Wang
+//This class is for Athlete which extends from Participant.class, with the type for identifying different sports.
 public class Athlete extends Participant{
 	private int points = 0;
 	private String type; 

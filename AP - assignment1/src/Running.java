@@ -1,3 +1,5 @@
+//Author is Wen Zhang
+//this class for running with override method from superclass Sports.class
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,7 +16,7 @@ public Running(String sportsID, Referee referee, ArrayList<CompeteResult> compet
  * generate a random time for Running from 10 to 20sec.
  */
 	@Override
-	public int getTime() {
+	public int computeTime() {
 		
 		Random r = new Random();
 		

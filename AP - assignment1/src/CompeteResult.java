@@ -1,4 +1,5 @@
-
+//Author is Wen Zhang
+//A class for compete result fo each game.
 public class CompeteResult {
 	private int rank;
 	private int time;

@@ -1,4 +1,5 @@
-
+//Author is Jinze Wang
+//This class is a superclass for Athlete and Referee.
 public abstract class Participant {
 
 	private String ID;
