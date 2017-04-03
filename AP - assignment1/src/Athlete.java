@@ -2,7 +2,7 @@
 public class Athlete extends Participant{
 	private int points = 0;
 	private String type; 
-	public Athlete(String ID, String name, int age, String state, String type) {
+	protected Athlete(String ID, String name, int age, String state, String type) {
 		super(ID, name, age, state);
 		this.type = type;
 	}

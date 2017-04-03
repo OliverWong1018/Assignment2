@@ -10,9 +10,15 @@ public class Game {
 	private ArrayList<Sports> allGames = new ArrayList<Sports>();
 	private ArrayList<Athlete> allAthletes = new ArrayList<Athlete>();
 	boolean flag = false;
+	boolean flag2 = true;
+	
 	  //Generate a menu for Ozlymic Game
-		
-
+	public Game(){
+		setAllAthletes(); 
+	}
+	public void setAllAthletes(){
+		this.allAthletes.addAll(SportsPreparing.creatAllAthletes());
+	}
 	public void begin() {
 		String choice ;
 		
@@ -23,23 +29,43 @@ public class Game {
 				
 				if(choice.equals("1")){
 					flag = true;
+					flag2 = true;
+					System.out.println(flag);
+					System.out.println(flag2);
+					System.out.println(choice.equals("2"));
 					selectGame();
+					
+					
 				}
-				if(choice.equals("2")&flag)
+				if(choice.equals("2")&flag&flag2){
+					
 					predictWinner();
-				if(choice.equals("3")&flag)
-					startGame();		
-				if(choice.equals("4")&flag)
+				}
+				if(choice.equals("3")&flag&flag2){
+					flag2 = false;
+					startGame();
+					
+				}
+				if(choice.equals("4")&flag){
+					
 					displayResults();
-				if(choice.equals("5")&flag)
-					displayPoints();		
+				}
+				if(choice.equals("5")&flag){
+					
+					displayPoints();
+				}
 				if(choice.equals("6"))
 					System.out.println("GameOver! See you next time!");		
 				else
-				System.out.println("Notice: Please choose valid option!!!");
-						
 				
-		} while (!(choice.equals("1")||choice.equals("2")&flag||choice.equals("3")&flag||choice.equals("4")&flag||choice.equals("5")&flag||choice.equals("6")&flag));
+					if(choice.equals("2")&!flag||choice.equals("3")&!flag||choice.equals("4")&!flag||choice.equals("5")&!flag){
+					System.out.println("Please select a game to run firstly!!!");
+					}else if(choice.equals("2")&!flag2||choice.equals("3")&!flag2){
+						System.out.println("this game is over, please select a new game to run");
+					}else{
+						System.out.println("Notice: Please choose valid option!!!");
+					}
+		} while (!(choice.equals("1")||choice.equals("2")&flag&flag2||choice.equals("3")&flag&flag2||choice.equals("4")&flag||choice.equals("5")&flag||choice.equals("6")));
 
 		
 	}
@@ -57,14 +83,17 @@ public class Game {
 					}
 				}
 				if(choice1.equals("1")){
+					
 					SportsPreparing.runGame("Swimming", allGames);
 					begin();
 				}
 				if(choice1.equals("2")){
+					
 					SportsPreparing.runGame("Cycling", allGames);
 					begin();
 				}	
 				if(choice1.equals("3")){
+					
 					SportsPreparing.runGame("Running", allGames);
 					begin();
 				}else{
@@ -117,11 +146,17 @@ public class Game {
 			competeResult = iter.next();
 			System.out.println("Rank: "+competeResult.getRank()+" | Time: "+competeResult.getTime()+" | ID: "+competeResult.getAthlete().getID()+" | Name: "+competeResult.getAthlete().getName()+" | Type: "+competeResult.getAthlete().getType());
 		}while(iter.hasNext());
-		System.out.println("Your prediction winner is: ");
-		System.out.println("ID: "+allGames.get(allGames.size()-1).getPredictedWinner().getID()+" | Name :"+allGames.get(allGames.size()-1).getPredictedWinner().getName());
-		if(competeResults.get(0).getAthlete().getID().equals(allGames.get(allGames.size()-1).getPredictedWinner().getID())){
-			System.out.println("Congratulations!!!");
+		if(allGames.get(allGames.size()-1).getPredictedWinner()==null){
+			System.out.println("You haven't predict the winner!");
 		}
+		else{
+			System.out.println("Your prediction winner is: ");
+			System.out.println("ID: "+allGames.get(allGames.size()-1).getPredictedWinner().getID()+" | Name :"+allGames.get(allGames.size()-1).getPredictedWinner().getName());
+			if(competeResults.get(0).getAthlete().getID().equals(allGames.get(allGames.size()-1).getPredictedWinner().getID())){
+				System.out.println("Congratulations!!!");
+			}
+		}
+	
 		String backward;
 		do{
 			Menu.backward();
@@ -149,9 +184,9 @@ public class Game {
 				competeResult = iter.next();
 				System.out.println("Rank: "+competeResult.getRank()+" | Time: "+competeResult.getTime()+" | ID: "+competeResult.getAthlete().getID()+" | Name: "+competeResult.getAthlete().getName()+" | Type: "+competeResult.getAthlete().getType());				
 			}while(iter.hasNext());
-			System.out.println("Your prediction winner is: ");
-			System.out.println("ID :"+sport.getPredictedWinner().getID()+" | Name: "+sport.getPredictedWinner().getName());
-			System.out.println();
+			//System.out.println("Your prediction winner is: ");
+			//System.out.println("ID :"+sport.getPredictedWinner().getID()+" | Name: "+sport.getPredictedWinner().getName());
+			//System.out.println();
 		}while(iterator.hasNext());
 		
 		String backward;
