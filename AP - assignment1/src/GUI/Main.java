@@ -10,13 +10,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	private Stage primaryStage;
+	private static Stage primaryStage;
 	private static BorderPane mainLayout;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Ozlympic");
+		this.primaryStage.setTitle("Welcome");
 		showWelcomeView();
 
 	}
@@ -33,8 +33,11 @@ public class Main extends Application {
 	public static void showMainPageScene() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/MainPage.fxml"));
-		BorderPane mainPage = loader.load();
-	    mainLayout.setCenter(mainPage);
+		mainLayout = loader.load();
+		Scene scene = new Scene(mainLayout);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.setTitle("Ozlympic");
 	}
 
 	public static void main(String[] args) {
