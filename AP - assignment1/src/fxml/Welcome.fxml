@@ -6,7 +6,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="278.0" fitWidth="372.0" layoutX="164.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -15,6 +14,6 @@
          </image>
       </ImageView>
       <Button layoutX="275.0" layoutY="339.0" mnemonicParsing="false" text="Entry" />
-      <Label layoutX="210.0" layoutY="308.0" text="Welcome to  Ozlympic Game!" />
+      <Label layoutX="210.0" layoutY="305.0" text="Welcome to  Ozlympic Game!" />
    </children>
 </AnchorPane>
