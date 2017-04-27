@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -21,7 +22,7 @@ public class Main extends Application {
 
 	}
 
-	private void showWelcomeView() throws IOException{
+	private void showWelcomeView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/Welcome.fxml"));
 		mainLayout = loader.load();
@@ -29,8 +30,8 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
-	public static void showMainPageScene() throws IOException{
+
+	public static void showMainPageScene() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/MainPage.fxml"));
 		mainLayout = loader.load();
