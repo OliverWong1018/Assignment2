@@ -1,33 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <bottom>
-      <Label prefHeight="17.0" prefWidth="193.0" text="Label" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets right="380.0" />
-         </BorderPane.margin>
-      </Label>
-   </bottom>
    <right>
-      <AnchorPane prefHeight="240.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="301.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
    </right>
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuButton layoutX="29.0" layoutY="44.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" text="MenuButton">
+            <MenuButton layoutX="14.0" layoutY="39.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" text="Game Type">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" text="Swimming" />
+                <MenuItem mnemonicParsing="false" text="Cycling" />
+                  <MenuItem mnemonicParsing="false" text="Running" />
               </items>
             </MenuButton>
+            <MenuButton layoutX="14.0" layoutY="76.0" mnemonicParsing="false" text="Officers">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Wayne" />
+                <MenuItem mnemonicParsing="false" text="Oliver" />
+                  <MenuItem mnemonicParsing="false" text="Danny" />
+                  <MenuItem mnemonicParsing="false" text="Tim" />
+              </items>
+            </MenuButton>
+            <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" text="Let's begin" />
+            <Button layoutX="14.0" layoutY="151.0" mnemonicParsing="false" text="All Results" />
          </children>
       </AnchorPane>
    </left>
+   <bottom>
+      <AnchorPane prefHeight="64.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="24.0" prefHeight="17.0" prefWidth="150.0" text="Label" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <AnchorPane prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ProgressBar layoutX="46.0" layoutY="8.0" prefHeight="20.0" prefWidth="501.0" progress="0.0" />
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>
