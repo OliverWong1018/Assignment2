@@ -1,3 +1,4 @@
+package model;
 //Author is Jinze Wang
 //This class is for referee which extends from Participant.class.
 public class Referee extends Participant{

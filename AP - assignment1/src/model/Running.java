@@ -1,3 +1,4 @@
+package model;
 //Author is Wen Zhang
 //this class for running with override method from superclass Sports.class
 import java.util.ArrayList;

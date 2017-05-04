@@ -1,3 +1,4 @@
+package model;
 //Author is Wen Zhang
 //this class for swimming with override method from superclass Sports.class
 

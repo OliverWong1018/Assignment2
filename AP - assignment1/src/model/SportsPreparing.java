@@ -1,3 +1,4 @@
+package model;
 //Author name is Wen Zhang
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,3 +1,4 @@
+package model;
 //Author is Jinze Wang
 //This class is for Athlete which extends from Participant.class, with the type for identifying different sports.
 public class Athlete extends Participant{

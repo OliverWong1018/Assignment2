@@ -1,3 +1,4 @@
+package model;
 //Author is Jinze Wang
 //This class is for present the options for users with static methods.
 public class Menu {

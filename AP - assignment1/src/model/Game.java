@@ -1,7 +1,10 @@
+package model;
 //Author name is Jinze Wang
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import javafx.fxml.FXML;
 
 //The class is driver class where user interaction occurs,  utilizing other classes to manage the games.
 public class Game {
@@ -69,6 +72,7 @@ public class Game {
 	}
 
 //Select a game to run
+
 	public void selectGame() {
 		String choice1;
 		do {
