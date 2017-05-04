@@ -17,7 +17,12 @@ public class MainController {
 	private void goResult() throws IOException{
 		main.displayResult();
 	}
-   
+	
+	@FXML
+	private void gameOver() throws IOException{
+		main.closeWindow();
+	}
+	
 	@FXML
    private void GameSwimming(){
 		

@@ -50,7 +50,10 @@
       </AnchorPane>
    </left>
    <bottom>
-      <AnchorPane prefHeight="64.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="64.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="29.0" layoutY="19.0" mnemonicParsing="false" onAction="#gameOver" text="Exit" />
+         </children></AnchorPane>
    </bottom>
    <top>
       <AnchorPane prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER" />

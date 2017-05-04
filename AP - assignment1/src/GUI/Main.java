@@ -47,6 +47,10 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setTitle("All Results");
 	}
+	
+	public static void closeWindow() throws IOException {
+		primaryStage.hide();
+	}
 
 	public static void main(String[] args) {
 		launch(args);
