@@ -23,9 +23,5 @@ public class MainController {
 		main.closeWindow();
 	}
 	
-	@FXML
-   private void GameSwimming(){
-		
-		
-	}
+	
 }
