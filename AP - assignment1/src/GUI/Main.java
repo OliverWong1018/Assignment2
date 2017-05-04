@@ -37,7 +37,7 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setTitle("Ozlympic");
 	}
-	
+
 	public static void displayResult() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/AllResults.fxml"));
