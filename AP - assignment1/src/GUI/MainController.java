@@ -12,5 +12,14 @@ public class MainController {
 	private void goMainPage() throws IOException {
 		main.showMainPageScene();
 	}
-
+	
+	@FXML
+	private void goResult() throws IOException{
+		main.displayResult();
+	}
+   
+	@FXML
+   private void GameSwimming(){
+		
+	}
 }

@@ -17,7 +17,6 @@ public class Main extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Welcome");
 		showWelcomeView();
-
 	}
 
 	private void showWelcomeView() throws IOException {
@@ -32,6 +31,16 @@ public class Main extends Application {
 	public static void showMainPageScene() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/MainPage.fxml"));
+		mainLayout = loader.load();
+		Scene scene = new Scene(mainLayout);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.setTitle("Ozlympic");
+	}
+	
+	public static void displayResult() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/GUI/AllResults.fxml"));
 		mainLayout = loader.load();
 		Scene scene = new Scene(mainLayout);
 		primaryStage.setScene(scene);
