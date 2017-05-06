@@ -17,9 +17,9 @@
       </AnchorPane>
    </bottom>
    <center>
-      <ImageView fitHeight="318.0" fitWidth="316.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="298.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../../../../Downloads/FJSZFERHTHKFF2W.jpg" />
+            <Image url="@../fxml/image/FJSZFERHTHKFF2W.jpg" />
          </image>
       </ImageView>
    </center>
