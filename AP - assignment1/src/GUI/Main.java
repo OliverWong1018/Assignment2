@@ -14,6 +14,7 @@ public class Main extends Application {
 	private static Stage primaryStage;
 	private static BorderPane mainLayoutB;
 	private static AnchorPane mainLayoutA;
+	private static Stage selectgameStage = new Stage();
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
@@ -30,24 +31,23 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	public static void selectGamePage() throws IOException{
-		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/SelectGamePage.fxml"));
 		mainLayoutA = loader.load();
 		Scene scene = new Scene(mainLayoutA);
-		stage.setScene(scene);
-		stage.show();
-		stage.setTitle("Ozlympic Games");
+		selectgameStage.setScene(scene);
+		selectgameStage.show();
+		selectgameStage.setTitle("Select Games");
 	}
 	public static void showMainPageScene() throws IOException {
-		Stage stage = new Stage();
+		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/MainPage.fxml"));
 		mainLayoutB = loader.load();
 		Scene scene = new Scene(mainLayoutB);
-		stage.setScene(scene);
-		stage.show();
-		stage.setTitle("Ozlympic");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.setTitle("Ozlympic");
 	}
 
 	public static void displayResult() throws IOException {
@@ -76,9 +76,9 @@ public class Main extends Application {
 		mainLayoutA = loader.load();
 		
 		Scene scene = new Scene(mainLayoutA);
-		stage.setScene(scene);
-		stage.show();
-		stage.setTitle("Game Constraction");
+		selectgameStage.setScene(scene);
+		selectgameStage.show();
+	
 		
 	}
 
