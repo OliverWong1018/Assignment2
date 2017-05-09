@@ -26,11 +26,11 @@ public class DatabaseConn {
 		return connection;
 		
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 
 		Connection connection = getConn();
 		// making a connection
-		
+		/*
 		try {
 			connection.prepareStatement("drop table candidate if exists;").execute();
 			connection.prepareStatement("create table candidate (candidateid varchar(5), name varchar(20), type varchar(15),age integer,state varchar(5),PRIMARY KEY(candidateid));").execute();
@@ -76,7 +76,25 @@ public class DatabaseConn {
 		// end of stub code for in/out stub
 
 	}
+*/
+	public static ResultSet getAllCandidates() {
 
+		Connection conn = getConn();
+		ResultSet rs = null;
+		String sq = "select * from candidate";
+		PreparedStatement pstmt;
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sq);
+			rs = pstmt.executeQuery();
+			
+		
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 	public static void displayAll(String s) {
 
 		Connection conn = getConn();
@@ -90,7 +108,7 @@ public class DatabaseConn {
 			System.out.println("============================");
 			while (rs.next()) {
 				for (int f = 1; f <= col; f++) {
-					System.out.print(rs.getString(f) + "\t");
+					System.out.print(rs.getString(f) + "  ");
 				}
 				System.out.println("");
 			}

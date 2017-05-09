@@ -14,6 +14,10 @@ public class Table {
 
 	}
 
+	public Table() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getRType1() {
 		return rType1.get();
 	}

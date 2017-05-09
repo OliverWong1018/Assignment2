@@ -10,7 +10,7 @@ public class SelectGamePageController {
 	@FXML
 	public void goBack() throws IOException{
 		Main.showMainPageScene();
-		
+	
 	}
 	@FXML
 	public void constructGame() throws IOException{
