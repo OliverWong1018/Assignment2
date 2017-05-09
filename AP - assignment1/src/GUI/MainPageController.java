@@ -82,7 +82,6 @@ public class MainPageController {
 			@Override
 			protected void succeeded() {
 				updateProgress(1, 1);
-
 				super.succeeded();
 				btn.setText("Restart");
 				btn.setDisable(false);
