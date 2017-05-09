@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="385.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TableController">
+<AnchorPane prefHeight="385.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TableController">
    <children>
       <TableView fx:id="candidatesTable" layoutX="14.0" layoutY="41.0" prefHeight="200.0" prefWidth="284.0">
         <columns>
@@ -23,7 +23,7 @@
           <TableColumn fx:id="iAthleteType2" prefWidth="133.0" text="Type" />
         </columns>
       </TableView>
-      <Button layoutX="38.0" layoutY="253.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Add Athletes" />
+      <Button layoutX="38.0" layoutY="253.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="102.0" text="Add Athletes" />
       <Button layoutX="172.0" layoutY="253.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Add Referees" />
       <Button layoutX="404.0" layoutY="253.0" mnemonicParsing="false" onAction="#delectAction" prefHeight="27.0" prefWidth="102.0" text="Delete" />
       <Button layoutX="253.0" layoutY="331.0" mnemonicParsing="false" text="Confirm">

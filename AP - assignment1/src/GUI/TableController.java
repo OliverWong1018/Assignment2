@@ -3,6 +3,7 @@ package GUI;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import io.DatabaseConn;
@@ -53,19 +54,19 @@ public class TableController implements Initializable {
 	// index for ParticipantsTable
 	private IntegerProperty index2 = new SimpleIntegerProperty();
 	final ObservableList<Table> data = FXCollections.observableArrayList();
-	
+	final ObservableList<Table2> data2 = FXCollections.observableArrayList();
 	/*final ObservableList<Table> data = FXCollections.observableArrayList(new Table("Athlete", "Wayne", "Swimming"),
 			new Table("Athlete", "Oliver", "Cycling"), new Table("Athlete", "Tim", "Running"),
 			new Table("Referee", "Danny", "None"), new Table("Athlete", "Wayne", "Swimming"),
 			new Table("Athlete", "Oliver", "Cycling"), new Table("Athlete", "Tim", "Running"),
 			new Table("Referee", "Danny", "None"));
-*/
+
 	final ObservableList<Table2> data2 = FXCollections.observableArrayList(new Table2("Athlete", "Wayne", "Swimming"),
 			new Table2("Athlete", "Oliver", "Cycling"), new Table2("Athlete", "Tim", "Running"),
 			new Table2("Referee", "Danny", "None"), new Table2("Athlete", "Wayne", "Swimming"),
 			new Table2("Athlete", "Oliver", "Cycling"), new Table2("Athlete", "Tim", "Running"),
 			new Table2("Referee", "Danny", "None"));
-
+*/
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// left table
@@ -92,7 +93,7 @@ public class TableController implements Initializable {
 		iName2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rName2"));
 		iAthleteType2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rAthleteType2"));
 		
-		participantsTable.setItems(data2);
+		
 
 		// get the index when clicking on left table row
 		candidatesTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
@@ -123,5 +124,17 @@ public class TableController implements Initializable {
 			data2.remove(i);
 		}
 		participantsTable.getSelectionModel().clearSelection();
+	}
+	public void addAction(ActionEvent event){
+		int i = index1.get();
+		if (i > -1){
+			data2.add(new Table2("","",""));
+			int f = data2.size()-1;
+				data2.get(f).setRType2(data.get(i).getRType1());
+				data2.get(f).setRName2(data.get(i).getRName1());
+				data2.get(f).setRAthleteType2(data.get(i).getRAthleteType1());
+				participantsTable.setItems(data2);
+		}
+		candidatesTable.getSelectionModel().clearSelection();
 	}
 }
