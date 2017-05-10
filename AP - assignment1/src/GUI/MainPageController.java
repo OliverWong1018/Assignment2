@@ -40,11 +40,13 @@ public class MainPageController implements Initializable {
 	@FXML
 	TableColumn<Table3, String> iRank3;
 	@FXML
+	TableColumn<Table3, String> iID3;
+	@FXML
 	TableColumn<Table3, String> iName3;
 	@FXML
 	TableColumn<Table3, String> iTime3;
 	@FXML
-	TableColumn<Table3, String> iPoints3;
+	TableColumn<Table3, String> iType3;
 
 	@FXML
 	private void goResult() throws IOException {
@@ -126,8 +128,10 @@ public class MainPageController implements Initializable {
 		svc.submit(task);
 	}
 
-	final ObservableList<Table3> data3 = FXCollections.observableArrayList(new Table3("1", "Wayne", "5.1", "5"),
-			new Table3("2", "Oliver", "5.45", "4"), new Table3("3", "Tim", "6.05", "3"));
+	final ObservableList<Table3> data3 = FXCollections.observableArrayList(
+			new Table3("1", "A01", "Wayne", "Swimmer","5.49"),
+			new Table3("2", "A02", "Oliver", "Swimmer","6.05"), 
+			new Table3("3", "A03", "Tim", "Swimmer","7.05"));
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -139,7 +143,9 @@ public class MainPageController implements Initializable {
 		iRank3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rRank3"));
 		iName3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rName3"));
 		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
-		iPoints3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rPoints3"));
+		iID3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rID3"));
+		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
+		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
 
 		currentResultsTable.setItems(data3);
 	}

@@ -8,36 +8,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainPageController">
    <right>
       <AnchorPane prefHeight="364.0" prefWidth="355.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="currentResultsTable" layoutX="8.0" layoutY="29.0" prefHeight="338.0" prefWidth="320.0">
+            <TableView fx:id="currentResultsTable" layoutX="-67.0" layoutY="29.0" prefHeight="338.0" prefWidth="396.0">
               <columns>
                 <TableColumn fx:id="iRank3" prefWidth="75.0" text="Rank" />
-                <TableColumn fx:id="iName3" prefWidth="82.0" text="Name" />
+                <TableColumn fx:id="iID3" prefWidth="82.0" text="ID" />
+                  <TableColumn fx:id="iName3" prefWidth="76.0" text="Name" />
+                  <TableColumn fx:id="iType3" prefWidth="86.0" text="Type" />
                   <TableColumn fx:id="iTime3" prefWidth="76.0" text="Time" />
-                  <TableColumn fx:id="iPoints3" prefWidth="86.0" text="Points" />
               </columns>
             </TableView>
          </children></AnchorPane>
    </right>
    <left>
-      <AnchorPane prefHeight="359.0" prefWidth="286.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="359.0" prefWidth="275.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="40.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectAGame" prefHeight="37.0" prefWidth="187.0" text="Select A Game" />
-            <Button fx:id="btn" layoutX="40.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="37.0" prefWidth="187.0" text="Let's begin" />
-            <ProgressBar fx:id="pgb" layoutX="40.0" layoutY="179.0" prefHeight="20.0" prefWidth="187.0" progress="0.0" />
-            <Button layoutX="33.0" layoutY="234.0" mnemonicParsing="false" onAction="#goResult" prefHeight="37.0" prefWidth="187.0" text="All Results" />
-            <ProgressIndicator fx:id="pgi" layoutX="227.0" layoutY="177.0" prefHeight="45.0" prefWidth="38.0" progress="0.0" />
-            <Button layoutX="33.0" layoutY="283.0" mnemonicParsing="false" onAction="#goPoints" prefHeight="37.0" prefWidth="187.0" text="All Points" />
+            <Button layoutX="31.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectAGame" prefHeight="37.0" prefWidth="187.0" text="Select A Game" />
+            <Button fx:id="btn" layoutX="31.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="37.0" prefWidth="187.0" text="Let's begin" />
+            <ProgressBar fx:id="pgb" layoutX="31.0" layoutY="179.0" prefHeight="20.0" prefWidth="187.0" progress="0.0" />
+            <Button layoutX="31.0" layoutY="234.0" mnemonicParsing="false" onAction="#goResult" prefHeight="37.0" prefWidth="187.0" text="All Results" />
+            <ProgressIndicator fx:id="pgi" layoutX="218.0" layoutY="177.0" prefHeight="45.0" prefWidth="38.0" progress="0.0" />
+            <Button layoutX="31.0" layoutY="292.0" mnemonicParsing="false" onAction="#goPoints" prefHeight="37.0" prefWidth="187.0" text="All Points" />
          </children>
       </AnchorPane>
    </left>
    <bottom>
-      <AnchorPane prefHeight="64.0" prefWidth="621.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="64.0" prefWidth="682.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="38.0" layoutY="17.0" mnemonicParsing="false" onAction="#gameOver" prefHeight="31.0" prefWidth="89.0" text="Exit" />
+            <Button layoutX="32.0" layoutY="17.0" mnemonicParsing="false" onAction="#gameOver" prefHeight="31.0" prefWidth="89.0" text="Exit" />
          </children></AnchorPane>
    </bottom>
    <top>
