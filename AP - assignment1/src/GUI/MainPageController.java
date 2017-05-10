@@ -1,19 +1,27 @@
 package GUI;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Game;
 
-public class MainPageController {
+public class MainPageController implements Initializable {
 
 	@FXML
 	private Button btn;
@@ -26,6 +34,19 @@ public class MainPageController {
 
 	@FXML
 	private ProgressIndicator pgi;
+
+	@FXML
+	TableView<Table3> currentResultsTable;
+	@FXML
+	TableColumn<Table3, String> iRank3;
+	@FXML
+	TableColumn<Table3, String> iID3;
+	@FXML
+	TableColumn<Table3, String> iName3;
+	@FXML
+	TableColumn<Table3, String> iTime3;
+	@FXML
+	TableColumn<Table3, String> iType3;
 
 	@FXML
 	private void goResult() throws IOException {
@@ -41,12 +62,10 @@ public class MainPageController {
 	private void selectAGame() throws IOException {
 		Main.selectGamePage();
 	}
-
+	
 	@FXML
-	void initialize() {
-		assert btn != null : "fx:id=\"btn\" was not injected: check your FXML file 'Progress.fxml'.";
-		assert pgb != null : "fx:id=\"pgb\" was not injected: check your FXML file 'Progress.fxml'.";
-		assert pgi != null : "fx:id=\"pgi\" was not injected: check your FXML file 'Progress.fxml'.";
+	private void goPoints() throws IOException {
+		Main.displayPoints();
 	}
 
 	private ExecutorService svc = Executors.newSingleThreadExecutor();
@@ -107,5 +126,27 @@ public class MainPageController {
 		pgi.progressProperty().bind(task.progressProperty());
 
 		svc.submit(task);
+	}
+
+	final ObservableList<Table3> data3 = FXCollections.observableArrayList(
+			new Table3("1", "A01", "Wayne", "Swimmer","5.49"),
+			new Table3("2", "A02", "Oliver", "Swimmer","6.05"), 
+			new Table3("3", "A03", "Tim", "Swimmer","7.05"));
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		assert btn != null : "fx:id=\"btn\" was not injected: check your FXML file 'Progress.fxml'.";
+		assert pgb != null : "fx:id=\"pgb\" was not injected: check your FXML file 'Progress.fxml'.";
+		assert pgi != null : "fx:id=\"pgi\" was not injected: check your FXML file 'Progress.fxml'.";
+		// TODO Auto-generated method stub
+		iRank3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rRank3"));
+		iName3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rName3"));
+		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
+		iID3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rID3"));
+		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
+		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
+
+		currentResultsTable.setItems(data3);
 	}
 }
