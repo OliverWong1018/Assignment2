@@ -28,27 +28,32 @@ import model.Referee;
 import model.Sports;
 
 public class TableController implements Initializable {
-	
-	public String s = "bbb";
-	
-	
+
 	@FXML
 	TableView<Table> candidatesTable;
 	@FXML
-	TableColumn<Table, String> iType1;
+	TableColumn<Table, String> iID1;
 	@FXML
 	TableColumn<Table, String> iName1;
 	@FXML
-	TableColumn<Table, String> iAthleteType1;
+	TableColumn<Table, String> iAge1;
+	@FXML
+	TableColumn<Table, String> iState1;
+	@FXML
+	TableColumn<Table, String> iType1;
 
 	@FXML
 	TableView<Table2> participantsTable;
 	@FXML
-	TableColumn<Table2, String> iType2;
+	TableColumn<Table2, String> iID2;
 	@FXML
 	TableColumn<Table2, String> iName2;
 	@FXML
-	TableColumn<Table2, String> iAthleteType2;
+	TableColumn<Table2, String> iAge2;
+	@FXML
+	TableColumn<Table2, String> iState2;
+	@FXML
+	TableColumn<Table2, String> iType2;
 
 	Button addAthletes;
 	@FXML
@@ -62,95 +67,114 @@ public class TableController implements Initializable {
 	private IntegerProperty index1 = new SimpleIntegerProperty();
 	// index for ParticipantsTable
 	private IntegerProperty index2 = new SimpleIntegerProperty();
+	// data for candidatesTable
 	final ObservableList<Table> data = FXCollections.observableArrayList();
+	// data for ParticipantsTable
 	final ObservableList<Table2> data2 = FXCollections.observableArrayList();
 
-	
-	/*final ObservableList<Table> data = FXCollections.observableArrayList(new Table("Athlete", "Wayne", "Swimming"),
-			new Table("Athlete", "Oliver", "Cycling"), new Table("Athlete", "Tim", "Running"),
-			new Table("Referee", "Danny", "None"), new Table("Athlete", "Wayne", "Swimming"),
-			new Table("Athlete", "Oliver", "Cycling"), new Table("Athlete", "Tim", "Running"),
-			new Table("Referee", "Danny", "None"));
-
-	final ObservableList<Table2> data2 = FXCollections.observableArrayList(new Table2("Athlete", "Wayne", "Swimming"),
-			new Table2("Athlete", "Oliver", "Cycling"), new Table2("Athlete", "Tim", "Running"),
-			new Table2("Referee", "Danny", "None"), new Table2("Athlete", "Wayne", "Swimming"),
-			new Table2("Athlete", "Oliver", "Cycling"), new Table2("Athlete", "Tim", "Running"),
-			new Table2("Referee", "Danny", "None"));
-*/
+	/*
+	 * final ObservableList<Table> data = FXCollections.observableArrayList(new
+	 * Table("Athlete", "Wayne", "Swimming"), new Table("Athlete", "Oliver",
+	 * "Cycling"), new Table("Athlete", "Tim", "Running"), new Table("Referee",
+	 * "Danny", "None"), new Table("Athlete", "Wayne", "Swimming"), new
+	 * Table("Athlete", "Oliver", "Cycling"), new Table("Athlete", "Tim",
+	 * "Running"), new Table("Referee", "Danny", "None"));
+	 * 
+	 * final ObservableList<Table2> data2 =
+	 * FXCollections.observableArrayList(new Table2("Athlete", "Wayne",
+	 * "Swimming"), new Table2("Athlete", "Oliver", "Cycling"), new
+	 * Table2("Athlete", "Tim", "Running"), new Table2("Referee", "Danny",
+	 * "None"), new Table2("Athlete", "Wayne", "Swimming"), new
+	 * Table2("Athlete", "Oliver", "Cycling"), new Table2("Athlete", "Tim",
+	 * "Running"), new Table2("Referee", "Danny", "None"));
+	 */
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// left table
-		iType1.setCellValueFactory(new PropertyValueFactory<Table, String>("rType1"));
-		iName1.setCellValueFactory(new PropertyValueFactory<Table, String>("rName1"));
-		iAthleteType1.setCellValueFactory(new PropertyValueFactory<Table, String>("rAthleteType1"));
-		ResultSet rs = DatabaseConn.getAllCandidates();
-		try{			
-			while (rs.next()) {
-				data.add(new Table("","",""));
-				int f = data.size()-1;
-					data.get(f).setRType1(rs.getString(1));
-					data.get(f).setRName1(rs.getString(2));
-					data.get(f).setRAthleteType1(rs.getString(3));
-								
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		candidatesTable.setItems(data);
+	 public void initialize(URL location, ResourceBundle resources) {
+	  // left table
+	  iID1.setCellValueFactory(new PropertyValueFactory<Table, String>("rID1"));
+	  iName1.setCellValueFactory(new PropertyValueFactory<Table, String>("rName1"));
+	  iAge1.setCellValueFactory(new PropertyValueFactory<Table, String>("rAge1"));
+	  iState1.setCellValueFactory(new PropertyValueFactory<Table, String>("rState1"));
+	  iType1.setCellValueFactory(new PropertyValueFactory<Table, String>("rType1"));
+	  ResultSet rs = DatabaseConn.getAllCandidates();
+	  try{   
+	   while (rs.next()) {
+	    data.add(new Table("","","","",""));
+	    int f = data.size()-1;
+	     data.get(f).setRID1(rs.getString(1));
+	     data.get(f).setRName1(rs.getString(2));
+	     data.get(f).setRAge1(rs.getString(3));
+	     data.get(f).setRState1(rs.getString(4));
+	     data.get(f).setRType1(rs.getString(5));
+	        
+	   }
+	  }catch (SQLException e) {
+	   e.printStackTrace();
+	  }
+	  candidatesTable.setItems(data);
 
-		// right table
-		iType2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rType2"));
-		iName2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rName2"));
-		iAthleteType2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rAthleteType2"));
-		
-		
+	  // right table
+	  iID2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rID2"));
+	  iName2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rName2"));
+	  iAge2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rAge2"));
+	  iState2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rState2"));
+	  iType2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rType2"));
+	  
 
-		// get the index when clicking on left table row
-		candidatesTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+	  // get the index when clicking on left table row
+	  candidatesTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
 
-			@Override
-			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				index1.set(data.indexOf(newValue));
-				System.out.println("Index1 is:" + data.indexOf(newValue));
-			}
+	   @Override
+	   public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+	    index1.set(data.indexOf(newValue));
+	    //System.out.println("Index1 is:" + data.indexOf(newValue));
+	   }
 
-		});
+	  });
 
-		// get the index when clicking on right table row
-		participantsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+	  // get the index when clicking on right table row
+	  participantsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
 
-			@Override
-			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				index2.set(data2.indexOf(newValue));
-				System.out.println("Index2 is:" + data2.indexOf(newValue));
-			}
+	   @Override
+	   public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+	    index2.set(data2.indexOf(newValue));
+	    //System.out.println("Index2 is:" + data2.indexOf(newValue));
+	   }
 
-		});
+	  });
 
-	}
-	public void delectAction(ActionEvent event){
+	 }
+
+	public void delectAction(ActionEvent event) {
 		int i = index2.get();
-		if (i > -1){
+		if (i > -1) {
 			data2.remove(i);
 		}
 		participantsTable.getSelectionModel().clearSelection();
 	}
-	public void addAction(ActionEvent event){
+
+	public void addAction(ActionEvent event) {
 		int i = index1.get();
-		if (i > -1){
-			data2.add(new Table2("","",""));
-			int f = data2.size()-1;
-				data2.get(f).setRType2(data.get(i).getRType1());
-				data2.get(f).setRName2(data.get(i).getRName1());
-				data2.get(f).setRAthleteType2(data.get(i).getRAthleteType1());
-				participantsTable.setItems(data2);
+		if (i > -1) {
+			data2.add(new Table2("", "", "","",""));
+			int f = data2.size() - 1;
+			data2.get(f).setRID2(data.get(i).getRID1());
+			data2.get(f).setRName2(data.get(i).getRName1());
+			data2.get(f).setRAge2(data.get(i).getRAge1());
+			data2.get(f).setRState2(data.get(i).getRState1());
+			data2.get(f).setRType2(data.get(i).getRType1());
+			participantsTable.setItems(data2);
 		}
 		candidatesTable.getSelectionModel().clearSelection();
 	}
-	public void confirmAction(){	
-		Main.s ="table";
-		Stage stage = (Stage)confirm.getScene().getWindow();
-	    stage.close();
+
+	public void confirmAction() {
+
+		for (int i = 0; i < data2.size(); i++) {
+
+		}
+
+		Stage stage = (Stage) confirm.getScene().getWindow();
+		stage.close();
 	}
 }
