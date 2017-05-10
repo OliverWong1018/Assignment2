@@ -34,7 +34,7 @@ import model.Swimming;
 public class TableController implements Initializable {
 	private Sports sport = null;
 	private Referee referee = null;
-	private ArrayList<CompeteResult> compResults = null;
+	private ArrayList<CompeteResult> compResults = new ArrayList<CompeteResult>();
 	@FXML
 	TableView<Table> candidatesTable;
 	@FXML
