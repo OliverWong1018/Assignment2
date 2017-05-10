@@ -26,9 +26,60 @@ public class DatabaseConn {
 		return connection;
 		
 	}
+	public static ResultSet getAllCandidates() {
+
+		Connection conn = getConn();
+		ResultSet rs = null;
+		String sq = "select * from candidate";
+		PreparedStatement pstmt;
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sq);
+			rs = pstmt.executeQuery();
+			
+		
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public static void displayAll(String s) {
+
+		Connection conn = getConn();
+
+		String sql2 = "select * from " + s;
+		PreparedStatement pstmt4;
+		try {
+			pstmt4 = (PreparedStatement) conn.prepareStatement(sql2);
+			ResultSet rs = pstmt4.executeQuery();
+			int col = rs.getMetaData().getColumnCount();
+			System.out.println("============================");
+			while (rs.next()) {
+				for (int f = 1; f <= col; f++) {
+					System.out.print(rs.getString(f) + "  ");
+				}
+				System.out.println("");
+			}
+			System.out.println("============================");
+			System.out.println("Retrieved Data from " + s + " table.");
+			pstmt4.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 
 		Connection connection = getConn();
+		try {
+			connection.prepareStatement("drop table candidate if exists;").execute();
+			connection.prepareStatement("create table candidate (candidateid varchar(5), name varchar(20), type varchar(15),age integer,state varchar(5),PRIMARY KEY(candidateid));").execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// making a connection
 		/*
 		try {
@@ -75,49 +126,7 @@ public class DatabaseConn {
 		displayAll("candidate");
 		// end of stub code for in/out stub
 		*/
-	}
-
-	public static ResultSet getAllCandidates() {
-
-		Connection conn = getConn();
-		ResultSet rs = null;
-		String sq = "select * from candidate";
-		PreparedStatement pstmt;
-		try {
-			pstmt = (PreparedStatement) conn.prepareStatement(sq);
-			rs = pstmt.executeQuery();
-			
 		
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return rs;
-	}
-	public static void displayAll(String s) {
-
-		Connection conn = getConn();
-
-		String sql2 = "select * from " + s;
-		PreparedStatement pstmt4;
-		try {
-			pstmt4 = (PreparedStatement) conn.prepareStatement(sql2);
-			ResultSet rs = pstmt4.executeQuery();
-			int col = rs.getMetaData().getColumnCount();
-			System.out.println("============================");
-			while (rs.next()) {
-				for (int f = 1; f <= col; f++) {
-					System.out.print(rs.getString(f) + "  ");
-				}
-				System.out.println("");
-			}
-			System.out.println("============================");
-			System.out.println("Retrieved Data from " + s + " table.");
-			pstmt4.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }

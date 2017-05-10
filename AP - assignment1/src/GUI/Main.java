@@ -17,6 +17,7 @@ public class Main extends Application {
 	private static AnchorPane mainLayoutA;
 	private static Stage selectgameStage = new Stage();
 	public static String currentGameType=null;
+	public static Sports sport = null;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
