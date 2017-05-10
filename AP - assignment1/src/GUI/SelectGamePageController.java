@@ -13,12 +13,12 @@ public class SelectGamePageController {
 	}
 	@FXML
 	public void runningGame() throws IOException {
-		Main.
+		Main.currentGameType = "r";
 		Main.showConstructGamePageScene();
 	}
 	@FXML
 	public void cyclingGame() throws IOException {
-
+		Main.currentGameType = "c";
 		Main.showConstructGamePageScene();
 	}
 }

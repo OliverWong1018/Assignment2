@@ -25,7 +25,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Athlete;
 import model.CompeteResult;
+import model.Cycling;
 import model.Referee;
+import model.Running;
 import model.Sports;
 import model.Swimming;
 
@@ -182,8 +184,14 @@ public class TableController implements Initializable {
 		for (int i = 0; i < data2.size(); i++) {
 			compResults.add(new CompeteResult(new Athlete(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(), data2.get(i).getRState2(),data2.get(i).getRType2())));	
 		}
-		if(){
+		if(Main.currentGameType.equals("s")){
 		sport = new Swimming(null, referee, compResults);
+		}
+		if(Main.currentGameType.equals("r")){
+			sport = new Running(null, referee, compResults);
+		}
+		if(Main.currentGameType.equals("s")){
+			sport = new Cycling(null, referee, compResults);
 		}
 		Stage stage = (Stage) confirm.getScene().getWindow();
 		stage.close();
