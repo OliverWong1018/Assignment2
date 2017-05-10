@@ -12,7 +12,7 @@ public class Table4 {
 	
 	
 
-	public Table4(String rID4, String rName4, String rType4, String rRank4, String rGameID4) {
+	public Table4( String rGameID4, String rType4, String rID4, String rName4, String rRank4) {
 		this.rID4=(new SimpleStringProperty(rID4));
 		this.rName4 = new SimpleStringProperty(rName4);
 		this.rType4 = new SimpleStringProperty(rType4);

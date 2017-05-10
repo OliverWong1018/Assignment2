@@ -5,15 +5,20 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
-public class Table5Controller implements Initializable {
-
+public class PointsController implements Initializable{
+	
+	@FXML
+	public Button closeButton;
+	
 	@FXML
 	TableView<Table5> allPointsTable;
 	@FXML
@@ -29,10 +34,12 @@ public class Table5Controller implements Initializable {
 	@FXML
 	TableColumn<Table5, String> iPoints5;
 	
-
 	@FXML
-	public Button goBack;
-
+	private void goBack(ActionEvent event){
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+	    stage.close();
+	}
+	
 	final ObservableList<Table5> data5 = FXCollections.observableArrayList(
 			new Table5("R01", "Wayne", "20", "Vic","Referee","None"),
 			new Table5("A01", "Oliver", "23", "Nsw","Swimmer","5"), 
@@ -50,5 +57,5 @@ public class Table5Controller implements Initializable {
 		
 		allPointsTable.setItems(data5);
 	}
-
+	
 }

@@ -64,6 +64,18 @@ public class Main extends Application {
 		
 	}
 	
+	public static void displayPoints() throws IOException {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/GUI/AllPoints.fxml"));
+		mainLayoutB = loader.load();
+		Scene scene = new Scene(mainLayoutB);
+		stage.setScene(scene);
+		stage.show();
+		stage.setTitle("All Points");
+		
+	}
+	
 	public static void closeWindow() throws IOException {
 		primaryStage.hide();
 	}
