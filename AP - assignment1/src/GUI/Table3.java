@@ -1,4 +1,4 @@
-/*package GUI;
+package GUI;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -8,8 +8,8 @@ public class Table3 {
 	private SimpleStringProperty rTime3;
 	private SimpleStringProperty rPoints3;
 
-	public Table3(String rRank3, String rName3, String rTime3, String rPonits3) {
-		this.rRank3=new SimpleStringProperty(rRank3);
+	public Table3(String rRank3, String rName3, String rTime3, String rPoints3) {
+		this.rRank3 =new SimpleStringProperty(rRank3);
 		this.rName3 = new SimpleStringProperty(rName3);
 		this.rTime3 = new SimpleStringProperty(rTime3);
 		this.rPoints3 = new SimpleStringProperty(rPoints3);
@@ -32,13 +32,19 @@ public class Table3 {
 		rName3.set(v);
 	}
 
-	public String getRAthleteType3() {
-		return rAthleteType3.get();
+	public String getRTime3() {
+		return rTime3.get();
 	}
 
-	public void setRAthleteType3(String v) {
-		rAthleteType3.set(v);
+	public void setRTime3(String v) {
+		rTime3.set(v);
 	}
 
+	public String getRPoints3() {
+		return rPoints3.get();
+	}
+
+	public void setRPoints3(String v) {
+		rPoints3.set(v);
+	}
 }
-*/
