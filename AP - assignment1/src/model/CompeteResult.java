@@ -6,7 +6,7 @@ public class CompeteResult {
 	private int time;
 	private Athlete athlete;
 	public CompeteResult(Athlete athlete){
-		
+		this.rank = 0;
 		this.time = 0;
 		this.athlete = athlete;
 	}

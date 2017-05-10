@@ -4,17 +4,21 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 
-
 public class SelectGamePageController {
-	
+
 	@FXML
-	public void goBack() throws IOException{
-		Main.showMainPageScene();
-	
+	public void swimmingGame() throws IOException {
+		Main.currentGameType = "s";
+		Main.showConstructGamePageScene();
 	}
 	@FXML
-	public void constructGame() throws IOException{
-		
+	public void runningGame() throws IOException {
+		Main.
+		Main.showConstructGamePageScene();
+	}
+	@FXML
+	public void cyclingGame() throws IOException {
+
 		Main.showConstructGamePageScene();
 	}
 }

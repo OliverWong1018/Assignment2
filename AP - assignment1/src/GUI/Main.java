@@ -16,7 +16,7 @@ public class Main extends Application {
 	private static BorderPane mainLayoutB;
 	private static AnchorPane mainLayoutA;
 	private static Stage selectgameStage = new Stage();
-	public static String s="Main";
+	public static String currentGameType=null;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
@@ -61,7 +61,7 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("All Results");
-		System.out.println(s);
+		
 	}
 	
 	public static void closeWindow() throws IOException {
@@ -80,7 +80,7 @@ public class Main extends Application {
 		Scene scene = new Scene(mainLayoutA);
 		selectgameStage.setScene(scene);
 		selectgameStage.show();
-		System.out.println(s);
+		
 		
 		
 	}

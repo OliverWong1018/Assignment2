@@ -7,18 +7,14 @@ public abstract class Sports {
 	private String sportsID;
 	private Referee referee;
 	private ArrayList<CompeteResult> competeResults;
-	private Athlete predictedWinner;
+	
 	
 	public Sports(String sportsID, Referee referee, ArrayList<CompeteResult> competeResults){
 		this.setSportsID(sportsID);
 		this.setReferee(referee);
 		this.setCompeteResults(competeResults);
 	}
-	public Sports(String id){
-		this.setSportsID(sportsID);
-		this.setReferee(null);
-		this.setCompeteResults(null);
-	}
+	
 	/*
 	 * get unique ID for each game.
 	 * @return
@@ -60,13 +56,7 @@ public abstract class Sports {
 		this.competeResults = competeResults;
 	}
 
-	public Athlete getPredictedWinner() {
-		return predictedWinner;
-	}
-
-	public void setPredictedWinner(Athlete predictedWinner) {
-		this.predictedWinner = predictedWinner;
-	}
+	
 	
 	
 }

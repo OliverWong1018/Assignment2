@@ -23,12 +23,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Athlete;
 import model.CompeteResult;
 import model.Referee;
 import model.Sports;
+import model.Swimming;
 
 public class TableController implements Initializable {
-
+	private Sports sport = null;
+	private Referee referee = null;
+	private ArrayList<CompeteResult> compResults = null;
 	@FXML
 	TableView<Table> candidatesTable;
 	@FXML
@@ -103,9 +107,9 @@ public class TableController implements Initializable {
 	    int f = data.size()-1;
 	     data.get(f).setRID1(rs.getString(1));
 	     data.get(f).setRName1(rs.getString(2));
-	     data.get(f).setRAge1(rs.getString(3));
-	     data.get(f).setRState1(rs.getString(4));
-	     data.get(f).setRType1(rs.getString(5));
+	     data.get(f).setRAge1(rs.getString(4));
+	     data.get(f).setRState1(rs.getString(5));
+	     data.get(f).setRType1(rs.getString(3));
 	        
 	   }
 	  }catch (SQLException e) {
@@ -169,11 +173,18 @@ public class TableController implements Initializable {
 	}
 
 	public void confirmAction() {
-
 		for (int i = 0; i < data2.size(); i++) {
-
+			if(data2.get(i).getRType2().equals("Referee")){
+				referee = new Referee(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(), data2.get(i).getRState2(),data2.get(i).getRType2());
+				data2.remove(i);
+			}
 		}
-
+		for (int i = 0; i < data2.size(); i++) {
+			compResults.add(new CompeteResult(new Athlete(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(), data2.get(i).getRState2(),data2.get(i).getRType2())));	
+		}
+		if(){
+		sport = new Swimming(null, referee, compResults);
+		}
 		Stage stage = (Stage) confirm.getScene().getWindow();
 		stage.close();
 	}

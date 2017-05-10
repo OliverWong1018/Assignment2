@@ -5,13 +5,13 @@ public abstract class Participant {
 
 	private String ID;
 	private String name;
-	private int age;
+	private String age;
 	private String state;
 
-	public Participant(String ID, String name, int age, String state){
+	public Participant(String ID, String name, String age2, String state){
 		this.ID = ID;
 		this.setName(name);
-		this.setAge(age);
+		this.setAge(age2);
 		this.setState(state);
 	}
 	
@@ -32,12 +32,12 @@ public abstract class Participant {
 		this.name = name;
 	}
 	//get participant age
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 	//set participant age
-	public void setAge(int age) {
-		this.age = age;
+	public void setAge(String age2) {
+		this.age = age2;
 	}
 	//get participant state
 	public String getState() {

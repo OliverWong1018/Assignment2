@@ -2,10 +2,10 @@ package model;
 //Author is Jinze Wang
 //This class is for referee which extends from Participant.class.
 public class Referee extends Participant{
-
-	protected Referee(String ID, String name, int age, String state) {
+	private String type;
+	public Referee(String ID, String name, String age, String state, String type) {
 		super(ID, name, age, state);
-		// TODO Auto-generated constructor stub
+		this.type = type;
 	}
 	
 }

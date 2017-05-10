@@ -20,7 +20,7 @@ public class Game {
 	}
 //Input all athletes data to ArrayList<Athlete> allAthletes to prepare to get scores. 
 	public void setAllAthletes() {
-		this.allAthletes.addAll(SportsPreparing.creatAllAthletes());
+		//this.allAthletes.addAll(SportsPreparing.creatAllAthletes());
 	}
 //To present Menu and to deal with different options from users.
 	public void begin() {
@@ -39,7 +39,7 @@ public class Game {
 			}
 			if (choice.equals("2") & flag & flag2) {
 
-				predictWinner();
+			
 			}
 			if (choice.equals("3") & flag & flag2) {
 				flag2 = false;
@@ -105,36 +105,7 @@ public class Game {
 	}
 
 // To allow user make a predicting for the winner for the current game.
-	public void predictWinner() {
-		int athleteAmount = allGames.get(allGames.size() - 1).getCompeteResults().size();
-		System.out.println("GameID: " + allGames.get(allGames.size() - 1).getSportsID());
-		System.out.println("Referee: " + allGames.get(allGames.size() - 1).getReferee().getID() + " | "
-				+ allGames.get(allGames.size() - 1).getReferee().getName());
-		ArrayList<String> amount = new ArrayList<String>();
-		for (int i = 1; i <= athleteAmount; i++) {
-			Athlete athlete = allGames.get(allGames.size() - 1).getCompeteResults().get(i - 1).getAthlete();
-			System.out.println(i + "." + "ID: " + athlete.getID() + " | " + "Name: " + athlete.getName() + " | "
-					+ "State: " + athlete.getState() + " | " + "Type: :" + athlete.getType());
-			Integer inter = new Integer(i);
-			amount.add(inter.toString());
-		}
-		String prediction;
-		int predictionNum = 0;
-		do {
-			System.out.println("Please make a prediction: ");
-			prediction = sc.next();
-			if (amount.contains(prediction)) {
-				Integer inte = new Integer(prediction);
-				predictionNum = inte.intValue();
-				allGames.get(allGames.size() - 1).setPredictedWinner(
-						allGames.get(allGames.size() - 1).getCompeteResults().get(predictionNum - 1).getAthlete());
-				begin();
-			} else {
-				System.out.println("Notice: Please choose valid option!!!");
-			}
-		} while (!amount.contains(prediction));
-
-	}
+	
 //To start the current game and award points to top 3 athletes according to their ranks. If the prediction is right, presenting a message to the user
 	public void startGame() {
 		ArrayList<CompeteResult> competeResults = SportsPreparing
@@ -151,25 +122,8 @@ public class Game {
 					+ competeResult.getAthlete().getID() + " | Name: " + competeResult.getAthlete().getName()
 					+ " | Type: " + competeResult.getAthlete().getType());
 		} while (iter.hasNext());
-		if (allGames.get(allGames.size() - 1).getPredictedWinner() == null) {
-			System.out.println("You haven't predict the winner!");
-		} else {
-			System.out.println("Your prediction winner is: ");
-			System.out.println("ID: " + allGames.get(allGames.size() - 1).getPredictedWinner().getID() + " | Name :"
-					+ allGames.get(allGames.size() - 1).getPredictedWinner().getName());
+		
 
-			ArrayList<String> rankOneAthletesIDs = new ArrayList<String>();
-
-			for (int i = 0; i < competeResults.size(); i++) {
-				if (competeResults.get(i).getRank() == 1) {
-					rankOneAthletesIDs.add(competeResults.get(i).getAthlete().getID());
-				}
-			}
-
-			if (rankOneAthletesIDs.contains(allGames.get(allGames.size() - 1).getPredictedWinner().getID())) {
-				System.out.println("Congratulations!!!");
-			}
-		}
 
 		String backward;
 		do {
