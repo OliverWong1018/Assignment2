@@ -9,12 +9,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Game;
+import model.Sports;
 
 public class Main extends Application {
 	private static Stage primaryStage;
 	private static BorderPane mainLayoutB;
 	private static AnchorPane mainLayoutA;
 	private static Stage selectgameStage = new Stage();
+	public static String s="Main";
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
@@ -59,6 +61,7 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 		stage.setTitle("All Results");
+		System.out.println(s);
 	}
 	
 	public static void closeWindow() throws IOException {
@@ -70,15 +73,15 @@ public class Main extends Application {
 	}
 
 	public static void showConstructGamePageScene() throws IOException {
-		Stage stage = new Stage();
+	
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/GameConstractionPage.fxml"));
 		mainLayoutA = loader.load();
-		
 		Scene scene = new Scene(mainLayoutA);
 		selectgameStage.setScene(scene);
 		selectgameStage.show();
-	
+		System.out.println(s);
+		
 		
 	}
 

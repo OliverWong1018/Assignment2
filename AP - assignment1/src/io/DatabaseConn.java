@@ -26,7 +26,7 @@ public class DatabaseConn {
 		return connection;
 		
 	}
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 
 		Connection connection = getConn();
 		// making a connection
@@ -74,9 +74,9 @@ public class DatabaseConn {
 		
 		displayAll("candidate");
 		// end of stub code for in/out stub
-
+		*/
 	}
-*/
+
 	public static ResultSet getAllCandidates() {
 
 		Connection conn = getConn();

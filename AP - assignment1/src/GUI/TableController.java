@@ -3,6 +3,7 @@ package GUI;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
@@ -16,13 +17,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import model.CompeteResult;
+import model.Referee;
+import model.Sports;
 
 public class TableController implements Initializable {
-
+	
+	public String s = "bbb";
+	
+	
 	@FXML
 	TableView<Table> candidatesTable;
 	@FXML
@@ -47,7 +56,7 @@ public class TableController implements Initializable {
 	@FXML
 	Button addDelete;
 	@FXML
-	Button confirm;
+	public Button confirm;
 
 	// index for candidatesTable
 	private IntegerProperty index1 = new SimpleIntegerProperty();
@@ -55,6 +64,8 @@ public class TableController implements Initializable {
 	private IntegerProperty index2 = new SimpleIntegerProperty();
 	final ObservableList<Table> data = FXCollections.observableArrayList();
 	final ObservableList<Table2> data2 = FXCollections.observableArrayList();
+
+	
 	/*final ObservableList<Table> data = FXCollections.observableArrayList(new Table("Athlete", "Wayne", "Swimming"),
 			new Table("Athlete", "Oliver", "Cycling"), new Table("Athlete", "Tim", "Running"),
 			new Table("Referee", "Danny", "None"), new Table("Athlete", "Wayne", "Swimming"),
@@ -136,5 +147,10 @@ public class TableController implements Initializable {
 				participantsTable.setItems(data2);
 		}
 		candidatesTable.getSelectionModel().clearSelection();
+	}
+	public void confirmAction(){	
+		Main.s ="table";
+		Stage stage = (Stage)confirm.getScene().getWindow();
+	    stage.close();
 	}
 }

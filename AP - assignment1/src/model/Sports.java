@@ -14,7 +14,11 @@ public abstract class Sports {
 		this.setReferee(referee);
 		this.setCompeteResults(competeResults);
 	}
-	
+	public Sports(String id){
+		this.setSportsID(sportsID);
+		this.setReferee(null);
+		this.setCompeteResults(null);
+	}
 	/*
 	 * get unique ID for each game.
 	 * @return
