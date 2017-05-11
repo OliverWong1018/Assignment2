@@ -36,10 +36,13 @@ public class MainPageController implements Initializable {
 	private ProgressBar pgb;
 
 	@FXML
-	private Label lbl;
+	private Label gameID;
 
 	@FXML
 	private ProgressIndicator pgi;
+	
+	@FXML
+	private Label referee;
 	
 	
 
@@ -85,6 +88,8 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	void btnOnAction(ActionEvent e) {
+		gameID.setText(Main.sport.getSportsID());
+		referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
 		gameResult = SportsPreparing.getCompeteResults(Main.sport);
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;
