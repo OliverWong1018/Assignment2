@@ -78,7 +78,7 @@ public class Main extends Application {
 	}
 	
 	public static void closeWindow() throws IOException {
-		primaryStage.hide();
+		primaryStage.close();
 	}
 
 	public static void main(String[] args) {
