@@ -33,6 +33,8 @@ import model.Swimming;
 
 public class TableController implements Initializable {
 	private Sports sport = null;
+	private String sportID = null;
+	private int gameTimes;
 	private Referee referee = null;
 	private ArrayList<CompeteResult> compResults = new ArrayList<CompeteResult>();
 	@FXML
@@ -184,14 +186,33 @@ public class TableController implements Initializable {
 		for (int i = 0; i < data2.size(); i++) {
 			compResults.add(new CompeteResult(new Athlete(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(), data2.get(i).getRState2(),data2.get(i).getRType2())));	
 		}
+		
 		if(Main.currentGameType.equals("s")){
-		    sport = new Swimming(null, referee, compResults);
+			gameTimes = DatabaseConn.getGameTimes("swimming");
+			if (gameTimes < 10) {
+				sportID = "S0" + gameTimes;
+			} else {
+				sportID = "S" + gameTimes;
+			}
+			sport = new Swimming(sportID, referee, compResults);
 		}
-		if(Main.currentGameType.equals("r")){
-			sport = new Running(null, referee, compResults);
+		if(Main.currentGameType.equals("running")){
+			gameTimes = DatabaseConn.getGameTimes("running");
+			if (gameTimes < 10) {
+				sportID = "R0" + gameTimes;
+			} else {
+				sportID = "R" + gameTimes;
+			}
+			sport = new Swimming(sportID, referee, compResults);
 		}
-		if(Main.currentGameType.equals("s")){
-			sport = new Cycling(null, referee, compResults);
+		if(Main.currentGameType.equals("cycling")){
+			gameTimes = DatabaseConn.getGameTimes("cycling");
+			if (gameTimes < 10) {
+				sportID = "C0" + gameTimes;
+			} else {
+				sportID = "C" + gameTimes;
+			}
+			sport = new Swimming(sportID, referee, compResults);
 		}
 		Main.sport = this.sport;
 		Stage stage = (Stage) confirm.getScene().getWindow();

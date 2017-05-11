@@ -2,6 +2,8 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,10 +21,12 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.CompeteResult;
 import model.Game;
+import model.SportsPreparing;
 
 public class MainPageController implements Initializable {
-
+	ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
 	@FXML
 	private Button btn;
 
@@ -76,9 +80,24 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	void btnOnAction(ActionEvent e) {
-
+		gameResult = SportsPreparing.getCompeteResults(Main.sport);
+		Iterator<CompeteResult> iter = gameResult.iterator();
+		CompeteResult competeResult;
+		do {
+			competeResult = iter.next();
+			data3.add(new Table3("","","","",""));
+		    int f = data3.size()-1;
+		     data3.get(f).setRank3(Integer.toString(competeResult.getRank()));
+		     data3.get(f).setRID3(competeResult.getAthlete().getID());
+		     data3.get(f).setRName3(competeResult.getAthlete().getName());
+		     data3.get(f).setRType3(competeResult.getAthlete().getType());
+		     data3.get(f).setRTime3(Integer.toString(competeResult.getTime()));
+		} while (iter.hasNext());
+		
+		currentResultsTable.setItems(data3);
+		
 		Task<Void> task = new Task<Void>() {
-
+			
 			@Override
 			public Void call() throws Exception {
 
@@ -127,12 +146,12 @@ public class MainPageController implements Initializable {
 
 		svc.submit(task);
 	}
-
-	final ObservableList<Table3> data3 = FXCollections.observableArrayList(
+	final ObservableList<Table3> data3 = FXCollections.observableArrayList();
+	/*final ObservableList<Table3> data3 = FXCollections.observableArrayList(
 			new Table3("1", "A01", "Wayne", "Swimmer","5.49"),
 			new Table3("2", "A02", "Oliver", "Swimmer","6.05"), 
 			new Table3("3", "A03", "Tim", "Swimmer","7.05"));
-
+*/
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -147,6 +166,6 @@ public class MainPageController implements Initializable {
 		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
 		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
 
-		currentResultsTable.setItems(data3);
+		
 	}
 }

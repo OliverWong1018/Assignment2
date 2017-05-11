@@ -109,7 +109,7 @@ public class Game {
 //To start the current game and award points to top 3 athletes according to their ranks. If the prediction is right, presenting a message to the user
 	public void startGame() {
 		ArrayList<CompeteResult> competeResults = SportsPreparing
-				.presentCompeteResults(allGames.get(allGames.size() - 1));
+				.getCompeteResults(allGames.get(allGames.size() - 1));
 
 		allAthletes = SportsPreparing.savePoints(allAthletes, competeResults);
 

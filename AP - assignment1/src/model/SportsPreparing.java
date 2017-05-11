@@ -98,7 +98,7 @@ public class SportsPreparing {
 			allGames.add(SportsPreparing.creatRunning(competeform));
 	}
    //To compute the time and rank for each athlete and store in memory.
-	public static ArrayList<CompeteResult> presentCompeteResults(Sports sport) {
+	public static ArrayList<CompeteResult> getCompeteResults(Sports sport) {
 		Iterator<CompeteResult> iter = sport.getCompeteResults().iterator();
 		do {
 			iter.next().setTime(sport.computeTime());
