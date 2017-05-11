@@ -20,7 +20,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.CompeteResult;
 import model.Game;
 import model.SportsPreparing;
@@ -38,6 +40,8 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	private ProgressIndicator pgi;
+	
+	
 
 	@FXML
 	TableView<Table3> currentResultsTable;
@@ -56,7 +60,8 @@ public class MainPageController implements Initializable {
 	private void goResult() throws IOException {
 		Main.displayResult();
 	}
-
+	
+	
 	@FXML
 	private void gameOver() throws IOException {
 		Main.closeWindow();
