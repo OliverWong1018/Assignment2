@@ -9,6 +9,8 @@ import java.sql.Statement;
 
 import org.hsqldb.Server;
 
+import GUI.Main;
+
 public class DatabaseConn {
 	
 	public static Connection getConn(){
@@ -26,6 +28,7 @@ public class DatabaseConn {
 		return connection;
 		
 	}
+	
 	public static ResultSet getAllCandidates() {
 
 		Connection conn = getConn();
@@ -44,30 +47,46 @@ public class DatabaseConn {
 		}
 		return rs;
 	}
-	public static void displayAll(String s) {
-
+	public static void updateGameTimes(String sportID) {
 		Connection conn = getConn();
-
-		String sql2 = "select * from " + s;
-		PreparedStatement pstmt4;
+		PreparedStatement pstmt;
+		String updateTimes = null;
+		if(sportID.startsWith("S")){
+			int times = getGameTimes("swimming")+1;
+			updateTimes = "Update gametimes set times = " + times + " where gameType = 'swimming';";
+		}
+		if(sportID.startsWith("R")){
+			int times = getGameTimes("running")+1;
+			updateTimes = "Update gametimes set times = " + times + " where gameType = 'running';";
+		}
+		if(sportID.startsWith("C")){
+			int times = getGameTimes("cycling")+1;
+			updateTimes = "Update gametimes set times = " + times + " where gameType = 'cycling';";
+		}
 		try {
-			pstmt4 = (PreparedStatement) conn.prepareStatement(sql2);
-			ResultSet rs = pstmt4.executeQuery();
-			int col = rs.getMetaData().getColumnCount();
-			System.out.println("============================");
-			while (rs.next()) {
-				for (int f = 1; f <= col; f++) {
-					System.out.print(rs.getString(f) + "  ");
-				}
-				System.out.println("");
-			}
-			System.out.println("============================");
-			System.out.println("Retrieved Data from " + s + " table.");
-			pstmt4.close();
-			conn.close();
+			pstmt = (PreparedStatement) conn.prepareStatement(updateTimes);
+			pstmt.executeUpdate();
+			pstmt.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+	}
+	public static void updateAthletePoints(String AthleteID, int points) {
+		Connection conn = getConn();
+		PreparedStatement pstmt;
+		String updatepoints = "Update athlete set points = " + "points +" + points + " where candidateid = '"+AthleteID+"';";
+		
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(updatepoints);
+			pstmt.executeUpdate();
+			pstmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public static int getGameTimes(String gameType) {

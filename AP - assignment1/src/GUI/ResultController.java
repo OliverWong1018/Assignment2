@@ -57,6 +57,7 @@ public class ResultController implements Initializable {
 		 * String>("rRank4")); allResultsTable.setItems(data4);
 		 */
 		allResult.setText("Hello word!");
+		
 	}
 
 }

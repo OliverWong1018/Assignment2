@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import io.AllResultsTXT;
+import io.DatabaseConn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -29,6 +31,9 @@ import model.SportsPreparing;
 
 public class MainPageController implements Initializable {
 	ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
+	String competeResultString = null;
+	String newResult =null;
+	String titles = null;
 	@FXML
 	private Button btn;
 
@@ -88,6 +93,8 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	void btnOnAction(ActionEvent e) {
+		//fill the table of current result
+		currentResultsTable.getItems().clear();
 		gameID.setText(Main.sport.getSportsID());
 		referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
 		gameResult = SportsPreparing.getCompeteResults(Main.sport);
@@ -103,9 +110,38 @@ public class MainPageController implements Initializable {
 		     data3.get(f).setRType3(competeResult.getAthlete().getType());
 		     data3.get(f).setRTime3(Integer.toString(competeResult.getTime()));
 		} while (iter.hasNext());
-		
 		currentResultsTable.setItems(data3);
+		data3.removeAll();
+		//Save game times to the database according to game type
+		DatabaseConn.updateGameTimes(Main.sport.getSportsID());
+		//Save the current game result to the TXT file
+		iter = gameResult.iterator();
+		do {
+			competeResult = iter.next();
+			
+			competeResultString=Integer.toString(competeResult.getRank())+competeResult.getAthlete().getID()+competeResult.getAthlete().getName()
+					+competeResult.getAthlete().getType()+Integer.toString(competeResult.getTime())+"/n";
+		     
+		} while (iter.hasNext());
 		
+		newResult = Main.sport.getSportsID()+"/n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
+				+"/n"+competeResultString;
+		AllResultsTXT.UpdateGamesResults(newResult);
+		//Save the points to relevant athletes
+		iter = gameResult.iterator();
+		do {
+			 competeResult = iter.next();
+		     if(competeResult.getRank()==1){      
+		     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 5);
+		     }
+		     if(competeResult.getRank()==2){      
+			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 2);
+			 }
+		     if(competeResult.getRank()==1){      
+			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
+			 }
+		} while (iter.hasNext());
+		//process bar
 		Task<Void> task = new Task<Void>() {
 			
 			@Override
