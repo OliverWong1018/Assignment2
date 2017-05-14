@@ -15,9 +15,11 @@ public class DatabaseConn {
 	
 	public static Connection getConn(){
 		Connection connection = null;
+		//"jdbc:hsqldb:file:DataBase/Ozlimpic;write_delay=false;MODE=MYSQL"
+		//jdbc:hsqldb:hsql://localhost/mydb
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
-			connection = DriverManager.getConnection("jdbc:hsqldb:file:DataBase/Ozlimpic;hsqldb.write_delay=false", "Wayne", "");
+			connection = DriverManager.getConnection("jdbc:hsqldb:file:DataBase/Ozlimpic;ifexists=true;write_delay=false;shutdown=true", "Wayne", "");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

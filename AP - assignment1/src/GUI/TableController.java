@@ -197,7 +197,7 @@ public class TableController implements Initializable {
 			}
 			sport = new Swimming(sportID, referee, compResults);
 		}
-		if(Main.currentGameType.equals("running")){
+		if(Main.currentGameType.equals("r")){
 			gameTimes = DatabaseConn.getGameTimes("running")+1;
 			if (gameTimes < 10) {
 				sportID = "R0" + gameTimes;
@@ -206,7 +206,7 @@ public class TableController implements Initializable {
 			}
 			sport = new Swimming(sportID, referee, compResults);
 		}
-		if(Main.currentGameType.equals("cycling")){
+		if(Main.currentGameType.equals("c")){
 			gameTimes = DatabaseConn.getGameTimes("cycling")+1;
 			if (gameTimes < 10) {
 				sportID = "C0" + gameTimes;

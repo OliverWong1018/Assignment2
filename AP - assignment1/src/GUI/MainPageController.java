@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import model.CompeteResult;
 import model.Game;
 import model.SportsPreparing;
+import model.Swimming;
 
 public class MainPageController implements Initializable {
 	ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
@@ -95,7 +96,35 @@ public class MainPageController implements Initializable {
 	void btnOnAction(ActionEvent e) {
 		//fill the table of current result
 		currentResultsTable.getItems().clear();
-		gameID.setText(Main.sport.getSportsID());
+		int gameTimes = 0;
+		String sportID = null; 
+		if(Main.currentGameType.equals("s")){
+			gameTimes = DatabaseConn.getGameTimes("swimming");
+			
+			if (gameTimes < 10) {
+				sportID = "S0" + gameTimes;
+			} else {
+				sportID = "S" + gameTimes;
+			}
+		}
+		if(Main.currentGameType.equals("r")){
+			gameTimes = DatabaseConn.getGameTimes("running");
+			if (gameTimes < 10) {
+				sportID = "R0" + gameTimes;
+			} else {
+				sportID = "R" + gameTimes;
+			}
+		
+		}
+		if(Main.currentGameType.equals("c")){
+			gameTimes = DatabaseConn.getGameTimes("cycling");
+			if (gameTimes < 10) {
+				sportID = "C0" + gameTimes;
+			} else {
+				sportID = "C" + gameTimes;
+			}
+		}
+		gameID.setText(sportID);
 		referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
 		gameResult = SportsPreparing.getCompeteResults(Main.sport);
 		Iterator<CompeteResult> iter = gameResult.iterator();
@@ -115,17 +144,17 @@ public class MainPageController implements Initializable {
 		//Save game times to the database according to game type
 		DatabaseConn.updateGameTimes(Main.sport.getSportsID());
 		//Save the current game result to the TXT file
+		competeResultString = "";
+		String titles = "Rank"+"  "+" ID  "+"  "+" Time "+"  "+"   Type   "+"  "+"  Name";
 		iter = gameResult.iterator();
-		do {
+		for(int i =0;i<3;i++){
 			competeResult = iter.next();
 			
-			competeResultString=Integer.toString(competeResult.getRank())+competeResult.getAthlete().getID()+competeResult.getAthlete().getName()
-					+competeResult.getAthlete().getType()+Integer.toString(competeResult.getTime())+"/n";
-		     
-		} while (iter.hasNext());
-		
-		newResult = Main.sport.getSportsID()+"/n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
-				+"/n"+competeResultString;
+			competeResultString+= (Integer.toString(competeResult.getRank())+"   "+"||"+competeResult.getAthlete().getID()+"  "+"||"+Integer.toString(competeResult.getTime())
+					+"   "+"||"+competeResult.getAthlete().getType()+"  "+"||"+competeResult.getAthlete().getName()+"\n");
+		}
+		newResult = sportID+"\n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
+				+"\n"+titles+"\n"+competeResultString+"\n";
 		AllResultsTXT.UpdateGamesResults(newResult);
 		//Save the points to relevant athletes
 		iter = gameResult.iterator();
@@ -137,7 +166,7 @@ public class MainPageController implements Initializable {
 		     if(competeResult.getRank()==2){      
 			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 2);
 			 }
-		     if(competeResult.getRank()==1){      
+		     if(competeResult.getRank()==3){      
 			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
 			 }
 		} while (iter.hasNext());
