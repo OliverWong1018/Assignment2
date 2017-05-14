@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-public class ResultController implements Initializable {
+public class ResultsPageController implements Initializable {
 	/*
 	 * @FXML TableView<Table4> allResultsTable;
 	 * 

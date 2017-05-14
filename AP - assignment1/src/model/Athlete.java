@@ -8,35 +8,12 @@ public class Athlete extends Participant{
 		super(ID, name, age, state);
 		this.type = type;
 	}
-	/*
-	 * get the game points
-	 * @return
-	 */
 	public int getPoints() {
 		return points;
 	}
-	/*
-	 * set the game points
-	 */
-	public void set5Points() {
-		this.points +=5;
-	}
-	public void set2Points() {
-		this.points +=2;
-	}
-	public void set1Points() {
-		this.points +=1;
-	}
-	/*
-	 * get the type of the participants
-	 * @return
-	 */
 	public String getType() {
 		return type;
 	}
-	/*
-	 * set the type of the participants
-	 */
 	public void setType(String type) {
 		this.type = type;
 	}

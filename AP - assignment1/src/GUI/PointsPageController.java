@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class PointsController implements Initializable{
+public class PointsPageController implements Initializable{
 	
 	@FXML
 	public Button closeButton;

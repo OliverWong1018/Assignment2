@@ -26,7 +26,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.CompeteResult;
-import model.Game;
 import model.SportsPreparing;
 import model.Swimming;
 
@@ -94,82 +93,7 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	void btnOnAction(ActionEvent e) {
-		//fill the table of current result
-		currentResultsTable.getItems().clear();
-		int gameTimes = 0;
-		String sportID = null; 
-		if(Main.currentGameType.equals("s")){
-			gameTimes = DatabaseConn.getGameTimes("swimming");
-			
-			if (gameTimes < 10) {
-				sportID = "S0" + gameTimes;
-			} else {
-				sportID = "S" + gameTimes;
-			}
-		}
-		if(Main.currentGameType.equals("r")){
-			gameTimes = DatabaseConn.getGameTimes("running");
-			if (gameTimes < 10) {
-				sportID = "R0" + gameTimes;
-			} else {
-				sportID = "R" + gameTimes;
-			}
 		
-		}
-		if(Main.currentGameType.equals("c")){
-			gameTimes = DatabaseConn.getGameTimes("cycling");
-			if (gameTimes < 10) {
-				sportID = "C0" + gameTimes;
-			} else {
-				sportID = "C" + gameTimes;
-			}
-		}
-		gameID.setText(sportID);
-		referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
-		gameResult = SportsPreparing.getCompeteResults(Main.sport);
-		Iterator<CompeteResult> iter = gameResult.iterator();
-		CompeteResult competeResult;
-		do {
-			competeResult = iter.next();
-			data3.add(new Table3("","","","",""));
-		    int f = data3.size()-1;
-		     data3.get(f).setRank3(Integer.toString(competeResult.getRank()));
-		     data3.get(f).setRID3(competeResult.getAthlete().getID());
-		     data3.get(f).setRName3(competeResult.getAthlete().getName());
-		     data3.get(f).setRType3(competeResult.getAthlete().getType());
-		     data3.get(f).setRTime3(Integer.toString(competeResult.getTime()));
-		} while (iter.hasNext());
-		currentResultsTable.setItems(data3);
-		data3.removeAll();
-		//Save game times to the database according to game type
-		DatabaseConn.updateGameTimes(Main.sport.getSportsID());
-		//Save the current game result to the TXT file
-		competeResultString = "";
-		String titles = "Rank"+"  "+" ID  "+"  "+" Time "+"  "+"   Type   "+"  "+"  Name";
-		iter = gameResult.iterator();
-		for(int i =0;i<3;i++){
-			competeResult = iter.next();
-			
-			competeResultString+= (Integer.toString(competeResult.getRank())+"   "+"||"+competeResult.getAthlete().getID()+"  "+"||"+Integer.toString(competeResult.getTime())
-					+"   "+"||"+competeResult.getAthlete().getType()+"  "+"||"+competeResult.getAthlete().getName()+"\n");
-		}
-		newResult = sportID+"\n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
-				+"\n"+titles+"\n"+competeResultString+"\n";
-		AllResultsTXT.UpdateGamesResults(newResult);
-		//Save the points to relevant athletes
-		iter = gameResult.iterator();
-		do {
-			 competeResult = iter.next();
-		     if(competeResult.getRank()==1){      
-		     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 5);
-		     }
-		     if(competeResult.getRank()==2){      
-			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 2);
-			 }
-		     if(competeResult.getRank()==3){      
-			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
-			 }
-		} while (iter.hasNext());
 		//process bar
 		Task<Void> task = new Task<Void>() {
 			
@@ -220,13 +144,86 @@ public class MainPageController implements Initializable {
 		pgi.progressProperty().bind(task.progressProperty());
 
 		svc.submit(task);
+		
+		//fill the table of current result
+				currentResultsTable.getItems().clear();
+				int gameTimes = 0;
+				String sportID = null; 
+				if(Main.currentGameType.equals("s")){
+					gameTimes = DatabaseConn.getGameTimes("swimming");
+					
+					if (gameTimes < 10) {
+						sportID = "S0" + gameTimes;
+					} else {
+						sportID = "S" + gameTimes;
+					}
+				}
+				if(Main.currentGameType.equals("r")){
+					gameTimes = DatabaseConn.getGameTimes("running");
+					if (gameTimes < 10) {
+						sportID = "R0" + gameTimes;
+					} else {
+						sportID = "R" + gameTimes;
+					}
+				
+				}
+				if(Main.currentGameType.equals("c")){
+					gameTimes = DatabaseConn.getGameTimes("cycling");
+					if (gameTimes < 10) {
+						sportID = "C0" + gameTimes;
+					} else {
+						sportID = "C" + gameTimes;
+					}
+				}
+				gameID.setText(sportID);
+				referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
+				gameResult = SportsPreparing.getCompeteResults(Main.sport);
+				Iterator<CompeteResult> iter = gameResult.iterator();
+				CompeteResult competeResult;
+				do {
+					competeResult = iter.next();
+					data3.add(new Table3("","","","",""));
+				    int f = data3.size()-1;
+				     data3.get(f).setRank3(Integer.toString(competeResult.getRank()));
+				     data3.get(f).setRID3(competeResult.getAthlete().getID());
+				     data3.get(f).setRName3(competeResult.getAthlete().getName());
+				     data3.get(f).setRType3(competeResult.getAthlete().getType());
+				     data3.get(f).setRTime3(Integer.toString(competeResult.getTime()));
+				} while (iter.hasNext());
+				currentResultsTable.setItems(data3);
+				data3.removeAll();
+				//Save game times to the database according to game type
+				DatabaseConn.updateGameTimes(Main.sport.getSportsID());
+				//Save the current game result to the TXT file
+				competeResultString = "";
+				String titles = "Rank"+"  "+" ID  "+"  "+" Time "+"  "+"   Type   "+"  "+"  Name";
+				iter = gameResult.iterator();
+				for(int i =0;i<3;i++){
+					competeResult = iter.next();
+					
+					competeResultString+= (Integer.toString(competeResult.getRank())+"   "+"||"+competeResult.getAthlete().getID()+"  "+"||"+Integer.toString(competeResult.getTime())
+							+"   "+"||"+competeResult.getAthlete().getType()+"  "+"||"+competeResult.getAthlete().getName()+"\n");
+				}
+				newResult = sportID+"\n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
+						+"\n"+titles+"\n"+competeResultString+"\n";
+				AllResultsTXT.UpdateGamesResults(newResult);
+				//Save the points to relevant athletes
+				iter = gameResult.iterator();
+				do {
+					 competeResult = iter.next();
+				     if(competeResult.getRank()==1){      
+				     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 5);
+				     }
+				     if(competeResult.getRank()==2){      
+					     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 2);
+					 }
+				     if(competeResult.getRank()==3){      
+					     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
+					 }
+				} while (iter.hasNext());
 	}
 	final ObservableList<Table3> data3 = FXCollections.observableArrayList();
-	/*final ObservableList<Table3> data3 = FXCollections.observableArrayList(
-			new Table3("1", "A01", "Wayne", "Swimmer","5.49"),
-			new Table3("2", "A02", "Oliver", "Swimmer","6.05"), 
-			new Table3("3", "A03", "Tim", "Swimmer","7.05"));
-*/
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

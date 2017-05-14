@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Game;
 import model.Sports;
 
 public class Main extends Application {
@@ -56,7 +55,7 @@ public class Main extends Application {
 	public static void displayResult() throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("/GUI/AllResults.fxml"));
+		loader.setLocation(Main.class.getResource("/GUI/ResultsPage.fxml"));
 		mainLayoutB = loader.load();
 		Scene scene = new Scene(mainLayoutB);
 		stage.setScene(scene);
@@ -68,7 +67,7 @@ public class Main extends Application {
 	public static void displayPoints() throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("/GUI/AllPoints.fxml"));
+		loader.setLocation(Main.class.getResource("/GUI/PointsPage.fxml"));
 		mainLayoutB = loader.load();
 		Scene scene = new Scene(mainLayoutB);
 		stage.setScene(scene);
@@ -88,7 +87,7 @@ public class Main extends Application {
 	public static void showConstructGamePageScene() throws IOException {
 	
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("/GUI/GameConstractionPage.fxml"));
+		loader.setLocation(Main.class.getResource("/GUI/GameBuildPage.fxml"));
 		mainLayoutA = loader.load();
 		Scene scene = new Scene(mainLayoutA);
 		selectgameStage.setScene(scene);
