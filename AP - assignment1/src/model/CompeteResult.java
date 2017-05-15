@@ -10,7 +10,11 @@ public class CompeteResult {
 		this.time = 0;
 		this.athlete = athlete;
 	}
-	
+	public CompeteResult(int rank, int time){
+		this.rank = rank;
+		this.time = time;
+		athlete = null;
+	}
 	public int getTime() {
 		return time;
 	}
