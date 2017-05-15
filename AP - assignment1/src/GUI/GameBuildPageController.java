@@ -38,6 +38,8 @@ public class GameBuildPageController implements Initializable {
 	private int gameTimes;
 	private Referee referee = null;
 	private ArrayList<CompeteResult> compResults = new ArrayList<CompeteResult>();
+	private int althNeededNum;
+	private int refNeededNum;
 	@FXML
 	TableView<Table> candidatesTable;
 	@FXML
@@ -81,6 +83,7 @@ public class GameBuildPageController implements Initializable {
 	final ObservableList<Table> data = FXCollections.observableArrayList();
 	// data for ParticipantsTable
 	final ObservableList<Table2> data2 = FXCollections.observableArrayList();
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -140,74 +143,147 @@ public class GameBuildPageController implements Initializable {
 	public void delectAction(ActionEvent event) {
 		int i = index2.get();
 		if (i > -1) {
+			data.add(new Table("", "", "", "", ""));
+			int f = data.size() - 1;
+			data.get(f).setRID1(data2.get(i).getRID2());
+			data.get(f).setRName1(data2.get(i).getRName2());
+			data.get(f).setRAge1(data2.get(i).getRAge2());
+			data.get(f).setRState1(data2.get(i).getRState2());
+			data.get(f).setRType1(data2.get(i).getRType2());
+			
 			data2.remove(i);
 		}
+		participantsTable.setItems(data2);
+		candidatesTable.setItems(data);
 		participantsTable.getSelectionModel().clearSelection();
+		setAlthNeededNum();
+		setRefNeededNum();
+		notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added");
 	}
-
-	public void addAction(ActionEvent event) {
-		int i = index1.get();
-		if (i > -1) {	
-			if(data.get(i).getRType1().startsWith(Main.currentGameType)||data.get(i).getRType1().equals("SuperAthlete")){
-				notice.setText("add successfully");
-				data2.add(new Table2("", "", "", "", ""));
-				int f = data2.size() - 1;
-				data2.get(f).setRID2(data.get(i).getRID1());
-				data2.get(f).setRName2(data.get(i).getRName1());
-				data2.get(f).setRAge2(data.get(i).getRAge1());
-				data2.get(f).setRState2(data.get(i).getRState1());
-				data2.get(f).setRType2(data.get(i).getRType1());
-				participantsTable.setItems(data2);
-			}else{
-				notice.setText("Please choose appropriate type for participants in the current game");
+	public void setAlthNeededNum(){
+		althNeededNum = 8;
+		for (int i = 0; i < data2.size(); i++) {
+			if (!data2.get(i).getRType2().equals("Referee")) {
+				althNeededNum -=1;
 			}
+		}				
+	}
+	public void setRefNeededNum(){
+		refNeededNum = 1;
+		for (int i = 0; i < data2.size(); i++) {
+			if (data2.get(i).getRType2().equals("Referee")) {
+				refNeededNum = 0;
+			}
+		}	
+	}
+	public void addAlthleteAction(ActionEvent event) {
+		setAlthNeededNum();
+		setRefNeededNum();
+		if(althNeededNum!=0){	
+			int i = index1.get();
+			notice.setText("");
+			if (i > -1) {	
+				if(data.get(i).getRType1().startsWith(Main.currentGameType)||data.get(i).getRType1().equals("SuperAthlete")){			
+					data2.add(new Table2("", "", "", "", ""));
+					int f = data2.size() - 1;
+					data2.get(f).setRID2(data.get(i).getRID1());
+					data2.get(f).setRName2(data.get(i).getRName1());
+					data2.get(f).setRAge2(data.get(i).getRAge1());
+					data2.get(f).setRState2(data.get(i).getRState1());
+					data2.get(f).setRType2(data.get(i).getRType1());
+					participantsTable.setItems(data2);
+					data.remove(i);
+					candidatesTable.setItems(data);
+					setAlthNeededNum();
+					setRefNeededNum();
+					notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added");	
+				}else{
+					notice.setText("Please don't choose referee type to add althletes in the current game");
+				}
+			}
+		}else if(althNeededNum==0&&refNeededNum!=0){
+			notice.setText("Althletes are full, please select one referee for this game ");
+		}else if(refNeededNum==0&&althNeededNum==0){
+			notice.setText("All participants are ready, please click confirm button ");
 		}
 		candidatesTable.getSelectionModel().clearSelection();
 	}
-
+	public void addRefereeAction(ActionEvent event) {
+		setAlthNeededNum();
+		setRefNeededNum();
+		if(refNeededNum!=0){
+			int i = index1.get();
+			notice.setText("");
+			if (i > -1) {	
+				if(data.get(i).getRType1().equals("Referee")){	
+					data2.add(new Table2("", "", "", "", ""));
+					int f = data2.size() - 1;
+					data2.get(f).setRID2(data.get(i).getRID1());
+					data2.get(f).setRName2(data.get(i).getRName1());
+					data2.get(f).setRAge2(data.get(i).getRAge1());
+					data2.get(f).setRState2(data.get(i).getRState1());
+					data2.get(f).setRType2(data.get(i).getRType1());
+					participantsTable.setItems(data2);
+					data.remove(i);
+					candidatesTable.setItems(data);
+					setAlthNeededNum();
+					setRefNeededNum();
+					notice.setText("Adding referee successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added");
+				}else{
+					notice.setText("Please don't choose althlete type to add referee in the current game");
+				}
+			}
+		}else if(refNeededNum==0&&althNeededNum!=0){
+			notice.setText("Referee is full, you can choose "+althNeededNum+" athlete for this game");
+		}else if(refNeededNum==0&&althNeededNum==0){
+			notice.setText("All participants are ready, please click confirm button ");
+		}
+		candidatesTable.getSelectionModel().clearSelection();
+	}
 	public void confirmAction() {
-		for (int i = 0; i < data2.size(); i++) {
-			if (data2.get(i).getRType2().equals("Referee")) {
-				referee = new Referee(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(),
-						data2.get(i).getRState2(), data2.get(i).getRType2());
-				data2.remove(i);
+		
+			for (int i = 0; i < data2.size(); i++) {
+				if (data2.get(i).getRType2().equals("Referee")) {
+					referee = new Referee(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(),
+							data2.get(i).getRState2(), data2.get(i).getRType2());
+					data2.remove(i);
+				}
 			}
-		}
-		for (int i = 0; i < data2.size(); i++) {
-			compResults.add(new CompeteResult(new Athlete(data2.get(i).getRID2(), data2.get(i).getRName2(),
-					data2.get(i).getRAge2(), data2.get(i).getRState2(), data2.get(i).getRType2())));
-		}
-
-		if (Main.currentGameType.equals("S")) {
-			gameTimes = DatabaseConn.getGameTimes("swimming") + 1;
-
-			if (gameTimes < 10) {
-				sportID = "S0" + gameTimes;
-			} else {
-				sportID = "S" + gameTimes;
+			for (int i = 0; i < data2.size(); i++) {
+				compResults.add(new CompeteResult(new Athlete(data2.get(i).getRID2(), data2.get(i).getRName2(),
+						data2.get(i).getRAge2(), data2.get(i).getRState2(), data2.get(i).getRType2())));
 			}
-			sport = new Swimming(sportID, referee, compResults);
-		}
-		if (Main.currentGameType.equals("R")) {
-			gameTimes = DatabaseConn.getGameTimes("running") + 1;
-			if (gameTimes < 10) {
-				sportID = "R0" + gameTimes;
-			} else {
-				sportID = "R" + gameTimes;
+	
+			if (Main.currentGameType.equals("S")) {
+				gameTimes = DatabaseConn.getGameTimes("swimming") + 1;
+	
+				if (gameTimes < 10) {
+					sportID = "S0" + gameTimes;
+				} else {
+					sportID = "S" + gameTimes;
+				}
+				sport = new Swimming(sportID, referee, compResults);
 			}
-			sport = new Swimming(sportID, referee, compResults);
-		}
-		if (Main.currentGameType.equals("C")) {
-			gameTimes = DatabaseConn.getGameTimes("cycling") + 1;
-			if (gameTimes < 10) {
-				sportID = "C0" + gameTimes;
-			} else {
-				sportID = "C" + gameTimes;
+			if (Main.currentGameType.equals("R")) {
+				gameTimes = DatabaseConn.getGameTimes("running") + 1;
+				if (gameTimes < 10) {
+					sportID = "R0" + gameTimes;
+				} else {
+					sportID = "R" + gameTimes;
+				}
+				sport = new Swimming(sportID, referee, compResults);
 			}
-			sport = new Swimming(sportID, referee, compResults);
-		}
-		Main.sport = this.sport;
-		Stage stage = (Stage) confirm.getScene().getWindow();
-		stage.close();
+			if (Main.currentGameType.equals("C")) {
+				gameTimes = DatabaseConn.getGameTimes("cycling") + 1;
+				if (gameTimes < 10) {
+					sportID = "C0" + gameTimes;
+				} else {
+					sportID = "C" + gameTimes;
+				}
+				sport = new Swimming(sportID, referee, compResults);
+			}
+			Main.sport = this.sport;
+			Stage stage = (Stage) confirm.getScene().getWindow();
+			stage.close();
 	}
 }
