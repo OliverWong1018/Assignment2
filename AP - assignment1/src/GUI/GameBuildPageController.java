@@ -159,7 +159,7 @@ public class GameBuildPageController implements Initializable {
 		participantsTable.getSelectionModel().clearSelection();
 		setAlthNeededNum();
 		setRefNeededNum();
-		notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
+		notice.setText("Delete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
 	}
 	public void setAlthNeededNum(){
 		althNeededNum = 8;
@@ -199,7 +199,12 @@ public class GameBuildPageController implements Initializable {
 					setRefNeededNum();
 					notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");	
 				}else{
-					notice.setText("Please don't choose referee type to add althletes in the current game");
+					if(Main.currentGameType.equals("S"))
+						notice.setText("Please choose Swimming or SuperAthlete type to add althletes in the current game");
+					if(Main.currentGameType.equals("R"))
+						notice.setText("Please choose Running or SuperAthlete type to add althletes in the current game");
+					if(Main.currentGameType.equals("C"))
+						notice.setText("Please choose Cycling or SuperAthlete type to add althletes in the current game");
 				}
 			}
 		}else if(althNeededNum==0&&refNeededNum!=0){
