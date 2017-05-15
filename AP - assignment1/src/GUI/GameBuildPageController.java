@@ -1,12 +1,9 @@
 package GUI;
-
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.ResourceBundle;
-
 import io.DatabaseConn;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -17,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -26,12 +22,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Athlete;
 import model.CompeteResult;
-import model.Cycling;
 import model.Referee;
-import model.Running;
 import model.Sports;
 import model.Swimming;
-
 public class GameBuildPageController implements Initializable {
 	private Sports sport = null;
 	private String sportID = null;
@@ -75,6 +68,8 @@ public class GameBuildPageController implements Initializable {
 	Button confirm;
 	@FXML
 	Label notice;
+	@FXML
+	Label currentGameType;
 	// index for candidatesTable
 	private IntegerProperty index1 = new SimpleIntegerProperty();
 	// index for ParticipantsTable
@@ -87,6 +82,13 @@ public class GameBuildPageController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// current game type
+		if(Main.currentGameType.equals("S"))
+			currentGameType.setText("Swimming Game");
+		if(Main.currentGameType.equals("C"))
+			currentGameType.setText("Cycling Game");
+		if(Main.currentGameType.equals("R"))
+			currentGameType.setText("Running Game");
 		// left table
 		iID1.setCellValueFactory(new PropertyValueFactory<Table, String>("rID1"));
 		iName1.setCellValueFactory(new PropertyValueFactory<Table, String>("rName1"));
@@ -103,7 +105,6 @@ public class GameBuildPageController implements Initializable {
 				data.get(f).setRAge1(rs.getString(4));
 				data.get(f).setRState1(rs.getString(5));
 				data.get(f).setRType1(rs.getString(3));
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -158,7 +159,7 @@ public class GameBuildPageController implements Initializable {
 		participantsTable.getSelectionModel().clearSelection();
 		setAlthNeededNum();
 		setRefNeededNum();
-		notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added");
+		notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
 	}
 	public void setAlthNeededNum(){
 		althNeededNum = 8;
@@ -196,7 +197,7 @@ public class GameBuildPageController implements Initializable {
 					candidatesTable.setItems(data);
 					setAlthNeededNum();
 					setRefNeededNum();
-					notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added");	
+					notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");	
 				}else{
 					notice.setText("Please don't choose referee type to add althletes in the current game");
 				}
@@ -228,7 +229,7 @@ public class GameBuildPageController implements Initializable {
 					candidatesTable.setItems(data);
 					setAlthNeededNum();
 					setRefNeededNum();
-					notice.setText("Adding referee successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added");
+					notice.setText("Adding referee successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
 				}else{
 					notice.setText("Please don't choose althlete type to add referee in the current game");
 				}
@@ -241,7 +242,18 @@ public class GameBuildPageController implements Initializable {
 		candidatesTable.getSelectionModel().clearSelection();
 	}
 	public void confirmAction() {
+		int althNum = 0;
+		int refNum = 0;
+		for (int i = 0; i < data2.size(); i++) {
+			if (!data2.get(i).getRType2().equals("Referee")) {
+				althNum +=1;
+			}
+			if (data2.get(i).getRType2().equals("Referee")) {
+				refNum +=1;
+			}
+		}
 		
+		if(refNum==1&&althNum>3&&althNum<9){
 			for (int i = 0; i < data2.size(); i++) {
 				if (data2.get(i).getRType2().equals("Referee")) {
 					referee = new Referee(data2.get(i).getRID2(), data2.get(i).getRName2(), data2.get(i).getRAge2(),
@@ -285,5 +297,15 @@ public class GameBuildPageController implements Initializable {
 			Main.sport = this.sport;
 			Stage stage = (Stage) confirm.getScene().getWindow();
 			stage.close();
+		
+		}else if(refNum==0&&althNum>3&&althNum<9){
+			notice.setText("Please select one referee for this game ");
+		}else if(refNum==1&&althNum<4){
+			int i = 4-althNum;
+			notice.setText("One game needs 4 althletes minimum, Please select "+i+" athletes at least for this game ");
+		}else if(refNum==0&&althNum<4){
+			int i = 4-althNum;
+			notice.setText("One game needs 4 althletes minimum and 1 referee, Please select "+i+" athletes at and 1 referee least for this game ");
+		}
 	}
 }

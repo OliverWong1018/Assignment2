@@ -149,7 +149,7 @@ public class MainPageController implements Initializable {
 				currentResultsTable.getItems().clear();
 				int gameTimes = 0;
 				String sportID = null; 
-				if(Main.currentGameType.equals("s")){
+				if(Main.currentGameType.equals("S")){
 					gameTimes = DatabaseConn.getGameTimes("swimming");
 					
 					if (gameTimes < 10) {
@@ -158,7 +158,7 @@ public class MainPageController implements Initializable {
 						sportID = "S" + gameTimes;
 					}
 				}
-				if(Main.currentGameType.equals("r")){
+				if(Main.currentGameType.equals("R")){
 					gameTimes = DatabaseConn.getGameTimes("running");
 					if (gameTimes < 10) {
 						sportID = "R0" + gameTimes;
@@ -167,7 +167,7 @@ public class MainPageController implements Initializable {
 					}
 				
 				}
-				if(Main.currentGameType.equals("c")){
+				if(Main.currentGameType.equals("C")){
 					gameTimes = DatabaseConn.getGameTimes("cycling");
 					if (gameTimes < 10) {
 						sportID = "C0" + gameTimes;
