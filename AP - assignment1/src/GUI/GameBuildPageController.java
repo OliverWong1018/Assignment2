@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -69,8 +70,9 @@ public class GameBuildPageController implements Initializable {
 	@FXML
 	Button addDelete;
 	@FXML
-	public Button confirm;
-
+	Button confirm;
+	@FXML
+	Label notice;
 	// index for candidatesTable
 	private IntegerProperty index1 = new SimpleIntegerProperty();
 	// index for ParticipantsTable
@@ -145,15 +147,20 @@ public class GameBuildPageController implements Initializable {
 
 	public void addAction(ActionEvent event) {
 		int i = index1.get();
-		if (i > -1) {
-			data2.add(new Table2("", "", "", "", ""));
-			int f = data2.size() - 1;
-			data2.get(f).setRID2(data.get(i).getRID1());
-			data2.get(f).setRName2(data.get(i).getRName1());
-			data2.get(f).setRAge2(data.get(i).getRAge1());
-			data2.get(f).setRState2(data.get(i).getRState1());
-			data2.get(f).setRType2(data.get(i).getRType1());
-			participantsTable.setItems(data2);
+		if (i > -1) {	
+			if(data.get(i).getRType1().startsWith(Main.currentGameType)||data.get(i).getRType1().equals("SuperAthlete")){
+				notice.setText("add successfully");
+				data2.add(new Table2("", "", "", "", ""));
+				int f = data2.size() - 1;
+				data2.get(f).setRID2(data.get(i).getRID1());
+				data2.get(f).setRName2(data.get(i).getRName1());
+				data2.get(f).setRAge2(data.get(i).getRAge1());
+				data2.get(f).setRState2(data.get(i).getRState1());
+				data2.get(f).setRType2(data.get(i).getRType1());
+				participantsTable.setItems(data2);
+			}else{
+				notice.setText("Please choose appropriate type for participants in the current game");
+			}
 		}
 		candidatesTable.getSelectionModel().clearSelection();
 	}
@@ -171,7 +178,7 @@ public class GameBuildPageController implements Initializable {
 					data2.get(i).getRAge2(), data2.get(i).getRState2(), data2.get(i).getRType2())));
 		}
 
-		if (Main.currentGameType.equals("s")) {
+		if (Main.currentGameType.equals("S")) {
 			gameTimes = DatabaseConn.getGameTimes("swimming") + 1;
 
 			if (gameTimes < 10) {
@@ -181,7 +188,7 @@ public class GameBuildPageController implements Initializable {
 			}
 			sport = new Swimming(sportID, referee, compResults);
 		}
-		if (Main.currentGameType.equals("r")) {
+		if (Main.currentGameType.equals("R")) {
 			gameTimes = DatabaseConn.getGameTimes("running") + 1;
 			if (gameTimes < 10) {
 				sportID = "R0" + gameTimes;
@@ -190,7 +197,7 @@ public class GameBuildPageController implements Initializable {
 			}
 			sport = new Swimming(sportID, referee, compResults);
 		}
-		if (Main.currentGameType.equals("c")) {
+		if (Main.currentGameType.equals("C")) {
 			gameTimes = DatabaseConn.getGameTimes("cycling") + 1;
 			if (gameTimes < 10) {
 				sportID = "C0" + gameTimes;

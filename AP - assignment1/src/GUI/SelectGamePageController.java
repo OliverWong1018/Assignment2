@@ -8,17 +8,17 @@ public class SelectGamePageController {
 
 	@FXML
 	public void swimmingGame() throws IOException {
-		Main.currentGameType = "s";
+		Main.currentGameType = "S";
 		Main.showConstructGamePageScene();
 	}
 	@FXML
 	public void runningGame() throws IOException {
-		Main.currentGameType = "r";
+		Main.currentGameType = "R";
 		Main.showConstructGamePageScene();
 	}
 	@FXML
 	public void cyclingGame() throws IOException {
-		Main.currentGameType = "c";
+		Main.currentGameType = "C";
 		Main.showConstructGamePageScene();
 	}
 }

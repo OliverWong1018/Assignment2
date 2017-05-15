@@ -5,11 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import org.hsqldb.Server;
-
-import GUI.Main;
 
 public class DatabaseConn {
 	
