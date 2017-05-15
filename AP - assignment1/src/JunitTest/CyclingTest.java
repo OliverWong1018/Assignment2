@@ -25,7 +25,7 @@ public class CyclingTest {
 	@Test
 	public void testComputeTime() {
 		c.computeTime();
-		assertTrue(c.computeTime() > 0 && c.computeTime() <= 800);
+		assertTrue(c.computeTime() > 500 && c.computeTime() <= 800);
 	}
 
 }

@@ -23,7 +23,7 @@ public class SwimmingTest {
 	@Test
 	public void testComputeTime() {
 		s.computeTime();
-		assertTrue(s.computeTime() > 0 && s.computeTime() <= 200);
+		assertTrue(s.computeTime() > 100 && s.computeTime() <= 200);
 	}
 
 }

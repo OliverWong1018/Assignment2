@@ -25,7 +25,7 @@ public class RunningTest {
 	@Test
 	public void testComputeTime() {
 		r.computeTime();
-		assertTrue(r.computeTime() > 0 && r.computeTime() <= 20);
+		assertTrue(r.computeTime() > 10 && r.computeTime() <= 20);
 	}
 
 }
