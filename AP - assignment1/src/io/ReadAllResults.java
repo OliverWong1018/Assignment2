@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ReadAllResults {
-	public static String allResults = "";
+	public static String allResults = null;
 	public static String getAllGamesResutls() {
-
+		allResults="";
 		try {
 			BufferedReader input = new BufferedReader(new FileReader("AllGamesResults.txt"));
 

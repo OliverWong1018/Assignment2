@@ -1,3 +1,4 @@
+//Author's name is Wen Zhang
 package io;
 
 import java.sql.Connection;
@@ -6,9 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+//this Class is for manage the database including update and the game data such as points, SportID and select candidates data.
 public class DatabaseConn {
-	
+	//get connection to database
 	public static Connection getConn(){
 		Connection connection = null;
 		//"jdbc:hsqldb:file:DataBase/Ozlimpic;write_delay=false;MODE=MYSQL"
