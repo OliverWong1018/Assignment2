@@ -108,8 +108,8 @@ public class DatabaseConn {
 		return times;
 	}
 	
-	public static void main(String[] args) {
-		Connection connection = getConn();
+	/*public static void main(String[] args) {
+		Connection connection = getConn();*/
 		/*
 		try {
 			connection.prepareStatement("drop table athlete if exists;").execute();
@@ -147,7 +147,7 @@ public class DatabaseConn {
 			e2.printStackTrace();
 		}
 		//DatabaseConn.getGameTimes("swimming");
-		/*
+		
 		
 		
 		try {
@@ -172,10 +172,11 @@ public class DatabaseConn {
 		
 		displayAll("candidate");
 		// end of stub code for in/out stub
+		 * }
 		*/
 		
 		
-	}
+	
 	public static ResultSet getPoints() {
 		Connection conn = getConn();
 		ResultSet rs = null;
