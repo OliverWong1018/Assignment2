@@ -34,6 +34,7 @@ CONTENTS
 1) Download Eclipse for J2EE developers
 2) Install JDK and JRE for Eclipse
 3) At the end of the installation you will need to reboot your computer.
+4) Main start-up class be named Ozlympic
 
 —————————————————————
 2.SYSTEM REQUIREMENTS
@@ -46,7 +47,7 @@ Minimum system requirements:
 ———————————
 3.OPERATION
 ———————————
-
+0)  Main start-up class be named Ozlympic in default package.
 1)  Click “Entry” to go to MainPage.
 2)  Click “Select a Game” button.
 3)  Choose which game you want to play.
@@ -60,6 +61,7 @@ Minimum system requirements:
     each game.
 11) Click “All Points” you can see the points of all athletes.
 12) “Exit” Button for closing this game. 
+13) game results are stored in "AllGamesResults.txt"
 
 ——————————————————————
 4.SUPPORT AND FEEDBACK
