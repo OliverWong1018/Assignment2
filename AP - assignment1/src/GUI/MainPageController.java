@@ -22,12 +22,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import model.CompeteResult;
 import model.SportsPreparing;
-import model.Swimming;
 
 public class MainPageController implements Initializable {
 	ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
@@ -63,6 +60,8 @@ public class MainPageController implements Initializable {
 	TableColumn<Table3, String> iTime3;
 	@FXML
 	TableColumn<Table3, String> iType3;
+	@FXML
+	TableColumn<Table3, String> iPoints3;
 
 	@FXML
 	private void goResult() throws IOException {
@@ -165,7 +164,6 @@ public class MainPageController implements Initializable {
 					} else {
 						sportID = "R" + gameTimes;
 					}
-				
 				}
 				if(Main.currentGameType.equals("C")){
 					gameTimes = DatabaseConn.getGameTimes("cycling");
@@ -180,15 +178,31 @@ public class MainPageController implements Initializable {
 				gameResult = SportsPreparing.getCompeteResults(Main.sport);
 				Iterator<CompeteResult> iter = gameResult.iterator();
 				CompeteResult competeResult;
+				int countRank = 1;
 				do {
 					competeResult = iter.next();
-					data3.add(new Table3("","","","",""));
+					data3.add(new Table3("","","","","",""));
 				    int f = data3.size()-1;
 				     data3.get(f).setRank3(Integer.toString(competeResult.getRank()));
 				     data3.get(f).setRID3(competeResult.getAthlete().getID());
 				     data3.get(f).setRName3(competeResult.getAthlete().getName());
 				     data3.get(f).setRType3(competeResult.getAthlete().getType());
-				     data3.get(f).setRTime3(Integer.toString(competeResult.getTime()));
+				     data3.get(f).setRTime3(Integer.toString(competeResult.getTime())+"s'");
+				     if(countRank==1){
+				    	 System.out.println("111");
+				    	 data3.get(f).setRpoints3("5");
+				     }
+				     if(countRank==2){
+				    	 data3.get(f).setRpoints3("2");
+				     }
+				     if(countRank==3){
+				    	 data3.get(f).setRpoints3("1");
+				     }
+				     if(countRank>3){
+				    	 data3.get(f).setRpoints3("0");
+				     }
+				     countRank++;
+				     
 				} while (iter.hasNext());
 				currentResultsTable.setItems(data3);
 				data3.removeAll();
@@ -236,7 +250,7 @@ public class MainPageController implements Initializable {
 		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
 		iID3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rID3"));
 		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
-		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
+		iPoints3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rPoints3"));
 
 		
 	}

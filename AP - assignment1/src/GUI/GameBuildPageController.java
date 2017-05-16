@@ -240,7 +240,7 @@ public class GameBuildPageController implements Initializable {
 				}
 			}
 		}else if(refNeededNum==0&&althNeededNum!=0){
-			notice.setText("Referee is full, you can choose "+althNeededNum+" athlete for this game");
+			notice.setText("Referee is full, you can choose extra "+althNeededNum+" athlete for this game");
 		}else if(refNeededNum==0&&althNeededNum==0){
 			notice.setText("All participants are ready, please click confirm button ");
 		}

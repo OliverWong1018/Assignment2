@@ -98,7 +98,6 @@ public class DatabaseConn {
 			if (rs.next()) {	
 					times = Integer.parseInt(rs.getString(1));	
 				}
-			System.out.println(times);
 			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
