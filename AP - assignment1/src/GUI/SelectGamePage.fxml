@@ -4,19 +4,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="458.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SelectGamePageController">
+<AnchorPane prefHeight="459.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SelectGamePageController">
    <children>
-      <Button layoutX="141.0" layoutY="45.0" mnemonicParsing="false" onAction="#swimmingGame" prefHeight="78.0" prefWidth="129.0" text="Swimming">
+      <Button layoutX="112.0" layoutY="44.0" mnemonicParsing="false" onAction="#swimmingGame" prefHeight="78.0" prefWidth="129.0" text="Swimming">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="141.0" layoutY="179.0" mnemonicParsing="false" onAction="#runningGame" prefHeight="78.0" prefWidth="129.0" text="Running">
+      <Button layoutX="112.0" layoutY="178.0" mnemonicParsing="false" onAction="#runningGame" prefHeight="78.0" prefWidth="129.0" text="Running">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="141.0" layoutY="313.0" mnemonicParsing="false" onAction="#cyclingGame" prefHeight="78.0" prefWidth="129.0" text="Cycling">
+      <Button layoutX="112.0" layoutY="312.0" mnemonicParsing="false" onAction="#cyclingGame" prefHeight="78.0" prefWidth="129.0" text="Cycling">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

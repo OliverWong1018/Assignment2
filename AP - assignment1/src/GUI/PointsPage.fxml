@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PointsPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PointsPageController">
    <center>
       <TableView fx:id="allPointsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
@@ -22,7 +22,7 @@
    <bottom>
       <AnchorPane prefHeight="51.0" prefWidth="472.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="closeButton" layoutX="207.0" layoutY="12.0" mnemonicParsing="false" onAction="#goBack" text="Button" />
+            <Button fx:id="closeButton" layoutX="207.0" layoutY="12.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
          </children>
       </AnchorPane>
    </bottom>
