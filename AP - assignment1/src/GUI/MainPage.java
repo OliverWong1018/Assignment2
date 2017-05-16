@@ -76,7 +76,7 @@ public class MainPage {
 			competeResultString+= (Integer.toString(competeResult.getRank())+"   "+"||"+competeResult.getAthlete().getID()+"  "+"||"+Integer.toString(competeResult.getTime())
 					+"   "+"||"+competeResult.getAthlete().getType()+"  "+"||"+competeResult.getAthlete().getName()+"\n");
 		}
-		newResult = sportID+"\n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
+		newResult = sportID+"     "+Main.currentGameTime+"\n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
 				+"\n"+titles+"\n"+competeResultString+"\n";
 		AllResultsTXT.UpdateGamesResults(newResult);
 	}

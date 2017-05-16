@@ -11,7 +11,6 @@ public class SportsPreparing {
 		do {
 			iter.next().setTime(sport.computeTime());
 		} while (iter.hasNext());
-
 		sport.getCompeteResults().sort(new SortByTime());
 
 		for (int i = 1; i <= sport.getCompeteResults().size(); i++) {

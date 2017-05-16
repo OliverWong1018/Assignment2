@@ -80,6 +80,9 @@ public class GameBuildPageController implements Initializable {
 	final ObservableList<Table> data = FXCollections.observableArrayList();
 	// data for ParticipantsTable
 	final ObservableList<Table2> data2 = FXCollections.observableArrayList();
+	private boolean indexInTab2=false;
+	private boolean indexInTab1=true;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -107,6 +110,7 @@ public class GameBuildPageController implements Initializable {
 				@Override
 				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
 					index1.set(data.indexOf(newValue));
+					//System.out.println("index1: "+index1.get());
 				}
 			}
 		);
@@ -117,110 +121,140 @@ public class GameBuildPageController implements Initializable {
 				@Override
 				public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
 					index2.set(data2.indexOf(newValue));
-
+					//System.out.println("index2: "+index2.get());
 				}
 			}
 		);
+		candidatesTable.getSelectionModel().clearSelection();
+	}
+	public void detectIndexInTab1(){
+		indexInTab2=false;
+		indexInTab1=true;
+	}
+	public void detectIndexInTab2(){
+		indexInTab2=true;
+		indexInTab1=false;
 	}
 	public void delectAction(ActionEvent event) {
-		int i = index2.get();
-		if (i > -1) {
-			data.add(new Table("", "", "", "", ""));
-			int f = data.size() - 1;
-			data.get(f).setRID1(data2.get(i).getRID2());
-			data.get(f).setRName1(data2.get(i).getRName2());
-			data.get(f).setRAge1(data2.get(i).getRAge2());
-			data.get(f).setRState1(data2.get(i).getRState2());
-			data.get(f).setRType1(data2.get(i).getRType2());
+//		System.out.println("index1 Integer: "+index1.get());
+//		System.out.println("index1: "+index1.get());
+//		System.out.println("index2 Integer: "+index2.get());
+//		System.out.println("index2: "+index2.get());
+//		System.out.println(indexInTab2);
+		if(indexInTab2==true&&data2.size()!=0&&index2.get()>-1){
+			int i = index2.get();
+			if (i > -1) {
+				data.add(new Table("", "", "", "", ""));
+				int f = data.size() - 1;
+				data.get(f).setRID1(data2.get(i).getRID2());
+				data.get(f).setRName1(data2.get(i).getRName2());
+				data.get(f).setRAge1(data2.get(i).getRAge2());
+				data.get(f).setRState1(data2.get(i).getRState2());
+				data.get(f).setRType1(data2.get(i).getRType2());
+			}
+			
+			data2.remove(i);
+			participantsTable.setItems(data2);
+			candidatesTable.setItems(data);
+			participantsTable.getSelectionModel().clearSelection();
+			althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
+			refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
+			notice2.setText("Delete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
+			notice1.setText("");
+		}else{
+			notice2.setText("You need to selet one target row in participant table to delete ");
+			notice1.setText("");
 		}
-		data2.remove(i);
-		participantsTable.setItems(data2);
-		candidatesTable.setItems(data);
-		participantsTable.getSelectionModel().clearSelection();
-		althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
-		refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
-		notice2.setText("Delete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
-		notice1.setText("");
 	}
 	
 	public void addAlthleteAction(ActionEvent event) {
-		althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
-		refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
-		if(althNeededNum!=0){	
-			int i = index1.get();
-			notice1.setText("");
-			if (i > -1) {	
-				if(data.get(i).getRType1().startsWith(Main.currentGameType)||data.get(i).getRType1().equals("SuperAthlete")){			
-					data2.add(new Table2("", "", "", "", ""));
-					int f = data2.size() - 1;
-					data2.get(f).setRID2(data.get(i).getRID1());
-					data2.get(f).setRName2(data.get(i).getRName1());
-					data2.get(f).setRAge2(data.get(i).getRAge1());
-					data2.get(f).setRState2(data.get(i).getRState1());
-					data2.get(f).setRType2(data.get(i).getRType1());
-					participantsTable.setItems(data2);
-					data.remove(i);
-					candidatesTable.setItems(data);
-					althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
-					refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
-					notice1.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
-					notice2.setText("");
-				}else{
-					if(Main.currentGameType.equals("S"))
-						notice1.setText("Please choose Swimming or SuperAthlete type to add althletes in the current game");
+		if(indexInTab1==true){	
+			althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
+			refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
+			if(althNeededNum!=0){	
+				int i = index1.get();
+				notice1.setText("");
+				if (i > -1) {	
+					if(data.get(i).getRType1().startsWith(Main.currentGameType)||data.get(i).getRType1().equals("SuperAthlete")){			
+						data2.add(new Table2("", "", "", "", ""));
+						int f = data2.size() - 1;
+						data2.get(f).setRID2(data.get(i).getRID1());
+						data2.get(f).setRName2(data.get(i).getRName1());
+						data2.get(f).setRAge2(data.get(i).getRAge1());
+						data2.get(f).setRState2(data.get(i).getRState1());
+						data2.get(f).setRType2(data.get(i).getRType1());
+						participantsTable.setItems(data2);
+						data.remove(i);
+						candidatesTable.setItems(data);
+						althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
+						refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
+						notice1.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
 						notice2.setText("");
-					if(Main.currentGameType.equals("R"))
-						notice1.setText("Please choose Running or SuperAthlete type to add althletes in the current game");
-						notice2.setText("");
-					if(Main.currentGameType.equals("C"))
-						notice1.setText("Please choose Cycling or SuperAthlete type to add althletes in the current game");
-						notice2.setText("");
+					}else{
+						if(Main.currentGameType.equals("S"))
+							notice1.setText("Please choose Swimming or SuperAthlete type to add althletes in the current game");
+							notice2.setText("");
+						if(Main.currentGameType.equals("R"))
+							notice1.setText("Please choose Running or SuperAthlete type to add althletes in the current game");
+							notice2.setText("");
+						if(Main.currentGameType.equals("C"))
+							notice1.setText("Please choose Cycling or SuperAthlete type to add althletes in the current game");
+							notice2.setText("");
+					}
 				}
+			}else if(althNeededNum==0&&refNeededNum!=0){
+				notice1.setText("Althletes are full, please select one referee for this game ");
+				notice2.setText("");
+			}else if(refNeededNum==0&&althNeededNum==0){
+				notice1.setText("All participants are ready, please click confirm button ");
+				notice2.setText("");
 			}
-		}else if(althNeededNum==0&&refNeededNum!=0){
-			notice1.setText("Althletes are full, please select one referee for this game ");
-			notice2.setText("");
-		}else if(refNeededNum==0&&althNeededNum==0){
-			notice1.setText("All participants are ready, please click confirm button ");
+			candidatesTable.getSelectionModel().clearSelection();
+		}else{
+			notice1.setText("You need to selet one target row in candidate table to add participants ");
 			notice2.setText("");
 		}
-		candidatesTable.getSelectionModel().clearSelection();
 	}
 	public void addRefereeAction(ActionEvent event) {
-		althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
-		refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
-		if(refNeededNum!=0){
-			int i = index1.get();
-			notice1.setText("");
-			if (i > -1) {	
-				if(data.get(i).getRType1().equals("Referee")){	
-					data2.add(new Table2("", "", "", "", ""));
-					int f = data2.size() - 1;
-					data2.get(f).setRID2(data.get(i).getRID1());
-					data2.get(f).setRName2(data.get(i).getRName1());
-					data2.get(f).setRAge2(data.get(i).getRAge1());
-					data2.get(f).setRState2(data.get(i).getRState1());
-					data2.get(f).setRType2(data.get(i).getRType1());
-					participantsTable.setItems(data2);
-					data.remove(i);
-					candidatesTable.setItems(data);
-					althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
-					refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
-					notice1.setText("Adding referee successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
-					notice2.setText("");
-				}else{
-					notice1.setText("Please don't choose althlete type to add referee in the current game");
-					notice2.setText("");
+		if(indexInTab1==true){
+			althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
+			refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
+			if(refNeededNum!=0){
+				int i = index1.get();
+				notice1.setText("");
+				if (i > -1) {	
+					if(data.get(i).getRType1().equals("Referee")){	
+						data2.add(new Table2("", "", "", "", ""));
+						int f = data2.size() - 1;
+						data2.get(f).setRID2(data.get(i).getRID1());
+						data2.get(f).setRName2(data.get(i).getRName1());
+						data2.get(f).setRAge2(data.get(i).getRAge1());
+						data2.get(f).setRState2(data.get(i).getRState1());
+						data2.get(f).setRType2(data.get(i).getRType1());
+						participantsTable.setItems(data2);
+						data.remove(i);
+						candidatesTable.setItems(data);
+						althNeededNum = GameBuildPage.getAlthNeededNum(althNeededNum, data2);
+						refNeededNum = GameBuildPage.getRefNeededNum(refNeededNum, data2);
+						notice1.setText("Adding referee successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
+						notice2.setText("");
+					}else{
+						notice1.setText("Please don't choose althlete type to add referee in the current game");
+						notice2.setText("");
+					}
 				}
+			}else if(refNeededNum==0&&althNeededNum!=0){
+				notice1.setText("Referee is full, you can choose extra "+althNeededNum+" athlete for this game");
+				notice2.setText("");
+			}else if(refNeededNum==0&&althNeededNum==0){
+				notice1.setText("All participants are ready, please click confirm button ");
+				notice2.setText("");
 			}
-		}else if(refNeededNum==0&&althNeededNum!=0){
-			notice1.setText("Referee is full, you can choose extra "+althNeededNum+" athlete for this game");
-			notice2.setText("");
-		}else if(refNeededNum==0&&althNeededNum==0){
-			notice1.setText("All participants are ready, please click confirm button ");
+			candidatesTable.getSelectionModel().clearSelection();
+		}else{
+			notice1.setText("You need to selet one target row in candidate table to add participants ");
 			notice2.setText("");
 		}
-		candidatesTable.getSelectionModel().clearSelection();
 	}
 	public void confirmAction() {
 		int althNum = 0;

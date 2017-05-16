@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="435.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GameBuildPageController">
    <children>
-      <TableView fx:id="candidatesTable" layoutX="14.0" layoutY="69.0" prefHeight="144.0" prefWidth="573.0">
+      <TableView fx:id="candidatesTable" layoutX="14.0" layoutY="69.0" onMouseClicked="#detectIndexInTab1" prefHeight="144.0" prefWidth="573.0">
         <columns>
           <TableColumn fx:id="iID1" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="iName1" prefWidth="117.0" text="Name" />
@@ -18,7 +18,7 @@
             <TableColumn fx:id="iType1" prefWidth="175.0" text="Type" />
         </columns>
       </TableView>
-      <TableView fx:id="participantsTable" layoutX="14.0" layoutY="253.0" prefHeight="144.0" prefWidth="573.0">
+      <TableView fx:id="participantsTable" layoutX="14.0" layoutY="253.0" onMouseClicked="#detectIndexInTab2" prefHeight="144.0" prefWidth="573.0">
         <columns>
             <TableColumn fx:id="iID2" prefWidth="79.0" text="ID" />
           <TableColumn fx:id="iName2" prefWidth="114.0" text="Name" />
