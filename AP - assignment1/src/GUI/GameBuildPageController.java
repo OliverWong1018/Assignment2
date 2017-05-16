@@ -79,16 +79,10 @@ public class GameBuildPageController implements Initializable {
 	// data for ParticipantsTable
 	final ObservableList<Table2> data2 = FXCollections.observableArrayList();
 	
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// current game type
-		if(Main.currentGameType.equals("S"))
-			currentGameType.setText("Swimming Game");
-		if(Main.currentGameType.equals("C"))
-			currentGameType.setText("Cycling Game");
-		if(Main.currentGameType.equals("R"))
-			currentGameType.setText("Running Game");
+		// set label of current game title
+		GameBuildPage.setGameTitle(Main.currentGameType, currentGameType);
 		// left table
 		iID1.setCellValueFactory(new PropertyValueFactory<Table, String>("rID1"));
 		iName1.setCellValueFactory(new PropertyValueFactory<Table, String>("rName1"));
@@ -96,28 +90,14 @@ public class GameBuildPageController implements Initializable {
 		iState1.setCellValueFactory(new PropertyValueFactory<Table, String>("rState1"));
 		iType1.setCellValueFactory(new PropertyValueFactory<Table, String>("rType1"));
 		ResultSet rs = DatabaseConn.getAllCandidates();
-		try {
-			while (rs.next()) {
-				data.add(new Table("", "", "", "", ""));
-				int f = data.size() - 1;
-				data.get(f).setRID1(rs.getString(1));
-				data.get(f).setRName1(rs.getString(2));
-				data.get(f).setRAge1(rs.getString(4));
-				data.get(f).setRState1(rs.getString(5));
-				data.get(f).setRType1(rs.getString(3));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		GameBuildPage.setLeftTableValue(data, rs);
 		candidatesTable.setItems(data);
-
 		// right table
 		iID2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rID2"));
 		iName2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rName2"));
 		iAge2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rAge2"));
 		iState2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rState2"));
 		iType2.setCellValueFactory(new PropertyValueFactory<Table2, String>("rType2"));
-
 		// get the index when clicking on left table row
 		candidatesTable.getSelectionModel().selectedItemProperty().addListener
 		(   
@@ -140,7 +120,6 @@ public class GameBuildPageController implements Initializable {
 			}
 		);
 	}
-
 	public void delectAction(ActionEvent event) {
 		int i = index2.get();
 		if (i > -1) {
@@ -151,35 +130,19 @@ public class GameBuildPageController implements Initializable {
 			data.get(f).setRAge1(data2.get(i).getRAge2());
 			data.get(f).setRState1(data2.get(i).getRState2());
 			data.get(f).setRType1(data2.get(i).getRType2());
-			
-			data2.remove(i);
 		}
+		data2.remove(i);
 		participantsTable.setItems(data2);
 		candidatesTable.setItems(data);
 		participantsTable.getSelectionModel().clearSelection();
-		setAlthNeededNum();
-		setRefNeededNum();
+		GameBuildPage.setAlthNeededNum(althNeededNum, data2);
+		GameBuildPage.setRefNeededNum(refNeededNum, data2);
 		notice.setText("Delete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
 	}
-	public void setAlthNeededNum(){
-		althNeededNum = 8;
-		for (int i = 0; i < data2.size(); i++) {
-			if (!data2.get(i).getRType2().equals("Referee")) {
-				althNeededNum -=1;
-			}
-		}				
-	}
-	public void setRefNeededNum(){
-		refNeededNum = 1;
-		for (int i = 0; i < data2.size(); i++) {
-			if (data2.get(i).getRType2().equals("Referee")) {
-				refNeededNum = 0;
-			}
-		}	
-	}
+	
 	public void addAlthleteAction(ActionEvent event) {
-		setAlthNeededNum();
-		setRefNeededNum();
+		GameBuildPage.setAlthNeededNum(althNeededNum, data2);
+		GameBuildPage.setRefNeededNum(refNeededNum, data2);
 		if(althNeededNum!=0){	
 			int i = index1.get();
 			notice.setText("");
@@ -195,8 +158,8 @@ public class GameBuildPageController implements Initializable {
 					participantsTable.setItems(data2);
 					data.remove(i);
 					candidatesTable.setItems(data);
-					setAlthNeededNum();
-					setRefNeededNum();
+					GameBuildPage.setAlthNeededNum(althNeededNum, data2);
+					GameBuildPage.setRefNeededNum(refNeededNum, data2);
 					notice.setText("Adding Althlete successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");	
 				}else{
 					if(Main.currentGameType.equals("S"))
@@ -215,8 +178,8 @@ public class GameBuildPageController implements Initializable {
 		candidatesTable.getSelectionModel().clearSelection();
 	}
 	public void addRefereeAction(ActionEvent event) {
-		setAlthNeededNum();
-		setRefNeededNum();
+		GameBuildPage.setAlthNeededNum(althNeededNum, data2);
+		GameBuildPage.setRefNeededNum(refNeededNum, data2);
 		if(refNeededNum!=0){
 			int i = index1.get();
 			notice.setText("");
@@ -232,8 +195,8 @@ public class GameBuildPageController implements Initializable {
 					participantsTable.setItems(data2);
 					data.remove(i);
 					candidatesTable.setItems(data);
-					setAlthNeededNum();
-					setRefNeededNum();
+					GameBuildPage.setAlthNeededNum(althNeededNum, data2);
+					GameBuildPage.setRefNeededNum(refNeededNum, data2);
 					notice.setText("Adding referee successfully, "+althNeededNum+" althlete and "+refNeededNum+" referee can be added maximum");
 				}else{
 					notice.setText("Please don't choose althlete type to add referee in the current game");

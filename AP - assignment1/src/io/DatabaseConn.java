@@ -65,6 +65,7 @@ public class DatabaseConn {
 			pstmt = (PreparedStatement) conn.prepareStatement(updateTimes);
 			pstmt.executeUpdate();
 			pstmt.close();
+			conn.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,6 +81,7 @@ public class DatabaseConn {
 			pstmt = (PreparedStatement) conn.prepareStatement(updatepoints);
 			pstmt.executeUpdate();
 			pstmt.close();
+			conn.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,9 +153,9 @@ public class DatabaseConn {
 		try {
 			connection.prepareStatement("drop table gametimes if exists;").execute();
 			connection.prepareStatement("create table gametimes (gametype varchar(10), times integer);").execute();
-			connection.prepareStatement("insert into gametimes (gametype, times) values ('swimming', 0);").execute();
-			connection.prepareStatement("insert into gametimes (gametype, times) values ('running', 0);").execute();
-			connection.prepareStatement("insert into gametimes (gametype, times) values ('cycling', 0);").execute();
+			connection.prepareStatement("insert into gametimes (gametype, times) values ('swimming', 1);").execute();
+			connection.prepareStatement("insert into gametimes (gametype, times) values ('running', 1);").execute();
+			connection.prepareStatement("insert into gametimes (gametype, times) values ('cycling', 1);").execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

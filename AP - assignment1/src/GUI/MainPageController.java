@@ -27,27 +27,20 @@ import model.CompeteResult;
 import model.SportsPreparing;
 
 public class MainPageController implements Initializable {
-	ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
-	String competeResultString = null;
-	String newResult =null;
+	public ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
+	String sportID = null;
+	final ObservableList<Table3> data3 = FXCollections.observableArrayList();
 	String titles = null;
 	@FXML
 	private Button btn;
-
 	@FXML
 	private ProgressBar pgb;
-
 	@FXML
 	private Label gameID;
-
 	@FXML
 	private ProgressIndicator pgi;
-	
 	@FXML
 	private Label referee;
-	
-	
-
 	@FXML
 	TableView<Table3> currentResultsTable;
 	@FXML
@@ -62,37 +55,42 @@ public class MainPageController implements Initializable {
 	TableColumn<Table3, String> iType3;
 	@FXML
 	TableColumn<Table3, String> iPoints3;
-
 	@FXML
 	private void goResult() throws IOException {
 		Main.displayResult();
 	}
-	
-	
 	@FXML
 	private void gameOver() throws IOException {
 		Main.closeWindow();
 	}
-
 	@FXML
 	private void selectAGame() throws IOException {
 		Main.selectGamePage();
 	}
-	
 	@FXML
 	private void goPoints() throws IOException {
 		Main.displayPoints();
 	}
-
 	private ExecutorService svc = Executors.newSingleThreadExecutor();
-
 	protected ExecutorService getService() {
 		return svc;
 	}
-
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		assert btn != null : "fx:id=\"btn\" was not injected: check your FXML file 'Progress.fxml'.";
+		assert pgb != null : "fx:id=\"pgb\" was not injected: check your FXML file 'Progress.fxml'.";
+		assert pgi != null : "fx:id=\"pgi\" was not injected: check your FXML file 'Progress.fxml'.";
+		// TODO Auto-generated method stub
+		iRank3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rRank3"));
+		iName3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rName3"));
+		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
+		iID3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rID3"));
+		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
+		iPoints3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rPoints3"));
+	}
 	@FXML
-	void btnOnAction(ActionEvent e) {
-		
+	public void btnOnAction(ActionEvent e) {
 		//process bar
 		Task<Void> task = new Task<Void>() {
 			
@@ -111,10 +109,8 @@ public class MainPageController implements Initializable {
 					Thread.sleep(sleepMSec);
 					updateProgress(i, loopCount);
 				}
-
 				return null;
 			}
-
 			@Override
 			protected void succeeded() {
 				updateProgress(1, 1);
@@ -122,14 +118,12 @@ public class MainPageController implements Initializable {
 				btn.setText("Restart");
 				btn.setDisable(false);
 			}
-
 			@Override
 			protected void cancelled() {
 				super.cancelled();
 				btn.setText("Restart");
 				btn.setDisable(false);
 			}
-
 			@Override
 			protected void failed() {
 				super.failed();
@@ -138,120 +132,26 @@ public class MainPageController implements Initializable {
 			}
 
 		};
-
 		pgb.progressProperty().bind(task.progressProperty());
 		pgi.progressProperty().bind(task.progressProperty());
-
 		svc.submit(task);
-		
-		//fill the table of current result
-				currentResultsTable.getItems().clear();
-				int gameTimes = 0;
-				String sportID = null; 
-				if(Main.currentGameType.equals("S")){
-					gameTimes = DatabaseConn.getGameTimes("swimming");
-					
-					if (gameTimes < 10) {
-						sportID = "S0" + gameTimes;
-					} else {
-						sportID = "S" + gameTimes;
-					}
-				}
-				if(Main.currentGameType.equals("R")){
-					gameTimes = DatabaseConn.getGameTimes("running");
-					if (gameTimes < 10) {
-						sportID = "R0" + gameTimes;
-					} else {
-						sportID = "R" + gameTimes;
-					}
-				}
-				if(Main.currentGameType.equals("C")){
-					gameTimes = DatabaseConn.getGameTimes("cycling");
-					if (gameTimes < 10) {
-						sportID = "C0" + gameTimes;
-					} else {
-						sportID = "C" + gameTimes;
-					}
-				}
-				gameID.setText(sportID);
-				referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
-				gameResult = SportsPreparing.getCompeteResults(Main.sport);
-				Iterator<CompeteResult> iter = gameResult.iterator();
-				CompeteResult competeResult;
-				int countRank = 1;
-				do {
-					competeResult = iter.next();
-					data3.add(new Table3("","","","","",""));
-				    int f = data3.size()-1;
-				     data3.get(f).setRank3(Integer.toString(competeResult.getRank()));
-				     data3.get(f).setRID3(competeResult.getAthlete().getID());
-				     data3.get(f).setRName3(competeResult.getAthlete().getName());
-				     data3.get(f).setRType3(competeResult.getAthlete().getType());
-				     data3.get(f).setRTime3(Integer.toString(competeResult.getTime())+"s'");
-				     if(countRank==1){
-				    	 System.out.println("111");
-				    	 data3.get(f).setRpoints3("5");
-				     }
-				     if(countRank==2){
-				    	 data3.get(f).setRpoints3("2");
-				     }
-				     if(countRank==3){
-				    	 data3.get(f).setRpoints3("1");
-				     }
-				     if(countRank>3){
-				    	 data3.get(f).setRpoints3("0");
-				     }
-				     countRank++;
-				     
-				} while (iter.hasNext());
-				currentResultsTable.setItems(data3);
-				data3.removeAll();
-				//Save game times to the database according to game type
-				DatabaseConn.updateGameTimes(Main.sport.getSportsID());
-				//Save the current game result to the TXT file
-				competeResultString = "";
-				String titles = "Rank"+"  "+" ID  "+"  "+" Time "+"  "+"   Type   "+"  "+"  Name";
-				iter = gameResult.iterator();
-				for(int i =0;i<3;i++){
-					competeResult = iter.next();
-					
-					competeResultString+= (Integer.toString(competeResult.getRank())+"   "+"||"+competeResult.getAthlete().getID()+"  "+"||"+Integer.toString(competeResult.getTime())
-							+"   "+"||"+competeResult.getAthlete().getType()+"  "+"||"+competeResult.getAthlete().getName()+"\n");
-				}
-				newResult = sportID+"\n"+Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName()
-						+"\n"+titles+"\n"+competeResultString+"\n";
-				AllResultsTXT.UpdateGamesResults(newResult);
-				//Save the points to relevant athletes
-				iter = gameResult.iterator();
-				do {
-					 competeResult = iter.next();
-				     if(competeResult.getRank()==1){      
-				     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 5);
-				     }
-				     if(competeResult.getRank()==2){      
-					     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 2);
-					 }
-				     if(competeResult.getRank()==3){      
-					     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
-					 }
-				} while (iter.hasNext());
+		//begin the current game and product result
+		gameResult = SportsPreparing.getCompeteResults(Main.sport);
+		//fill the title of current result table
+		currentResultsTable.getItems().clear();
+		sportID = MainPage.getSportID(Main.currentGameType);		
+		gameID.setText(sportID);
+		referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
+		//fill the Result table
+		MainPage.setData3Values(data3,gameResult);
+		currentResultsTable.setItems(data3);
+		data3.removeAll();	
+		//Save game times to the database according to game type
+		DatabaseConn.updateGameTimes(Main.sport.getSportsID());
+		//Save the current game result to the TXT file
+		MainPage.saveCurrResultToTXT(sportID, gameResult);
+		//Save the points to relevant athletes
+		MainPage.savePointsToDB(gameResult);
 	}
-	final ObservableList<Table3> data3 = FXCollections.observableArrayList();
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		assert btn != null : "fx:id=\"btn\" was not injected: check your FXML file 'Progress.fxml'.";
-		assert pgb != null : "fx:id=\"pgb\" was not injected: check your FXML file 'Progress.fxml'.";
-		assert pgi != null : "fx:id=\"pgi\" was not injected: check your FXML file 'Progress.fxml'.";
-		// TODO Auto-generated method stub
-		iRank3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rRank3"));
-		iName3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rName3"));
-		iTime3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rTime3"));
-		iID3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rID3"));
-		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
-		iPoints3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rPoints3"));
-
-		
-	}
 }
