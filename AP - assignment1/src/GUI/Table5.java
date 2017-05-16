@@ -1,3 +1,5 @@
+//Author is WEN ZHANG
+// This table is  about display all points table.
 package GUI;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -9,16 +11,14 @@ public class Table5 {
 	private SimpleStringProperty rState5;
 	private SimpleStringProperty rType5;
 	private SimpleStringProperty rPoints5;
-	
 
 	public Table5(String rID5, String rName5, String rAge5, String rState5, String rType5, String rPoints5) {
-		this.rID5=(new SimpleStringProperty(rID5));
+		this.rID5 = (new SimpleStringProperty(rID5));
 		this.rName5 = new SimpleStringProperty(rName5);
 		this.rAge5 = new SimpleStringProperty(rAge5);
 		this.rState5 = new SimpleStringProperty(rState5);
 		this.rType5 = new SimpleStringProperty(rType5);
 		this.rPoints5 = new SimpleStringProperty(rPoints5);
-
 
 	}
 
@@ -45,7 +45,7 @@ public class Table5 {
 	public void setRAge5(String v) {
 		rAge5.set(v);
 	}
-	
+
 	public String getRState5() {
 		return rState5.get();
 	}
@@ -53,7 +53,7 @@ public class Table5 {
 	public void setRState5(String v) {
 		rState5.set(v);
 	}
-	
+
 	public String getRType5() {
 		return rType5.get();
 	}

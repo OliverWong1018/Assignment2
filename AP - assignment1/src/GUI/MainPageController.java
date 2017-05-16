@@ -56,15 +56,17 @@ public class MainPageController implements Initializable {
 	TableColumn<Table3, String> iType3;
 	@FXML
 	TableColumn<Table3, String> iPoints3;
+
 	@FXML
 	private void goResult() throws IOException {
 		Main.displayResult();
 	}
+
 	@FXML
 	private void gameOver() throws IOException {
 		Main.closeWindow();
 	}
-	
+
 	@FXML
 	private void selectAGame() throws IOException {
 		Main.selectGamePage();
@@ -72,14 +74,19 @@ public class MainPageController implements Initializable {
 		this.btn.setText("Let's beign");
 		this.notice.setText("");
 	}
+
 	@FXML
 	private void goPoints() throws IOException {
 		Main.displayPoints();
 	}
+
 	private ExecutorService svc = Executors.newSingleThreadExecutor();
+
 	protected ExecutorService getService() {
 		return svc;
 	}
+
+	// insert data to current result table.
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -94,18 +101,20 @@ public class MainPageController implements Initializable {
 		iType3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rType3"));
 		iPoints3.setCellValueFactory(new PropertyValueFactory<Table3, String>("rPoints3"));
 	}
+
+	// play game button.
 	@FXML
 	public void btnOnAction(ActionEvent e) {
-		if(Main.sport!=null){
-			//process bar
-			Task<Void> task = new Task<Void>() {		
+		if (Main.sport != null) {
+			// process bar
+			Task<Void> task = new Task<Void>() {
 				@Override
 				public Void call() throws Exception {
 					int time = 1; // sec
 					int loopCount = 1000;
 					btn.setDisable(true);
 					int sleepMSec = time * 1000 / loopCount;
-	
+
 					for (int i = 0; i < loopCount; i++) {
 						if (isCancelled()) {
 							break;
@@ -115,6 +124,7 @@ public class MainPageController implements Initializable {
 					}
 					return null;
 				}
+
 				@Override
 				protected void succeeded() {
 					updateProgress(1, 1);
@@ -126,26 +136,26 @@ public class MainPageController implements Initializable {
 			pgb.progressProperty().bind(task.progressProperty());
 			pgi.progressProperty().bind(task.progressProperty());
 			svc.submit(task);
-			//begin the current game and product result
+			// begin the current game and product result
 			gameResult = SportsProcessing.getCompeteResults(Main.sport);
-			//set game compete time
-			Main.currentGameTime = MainPage.getSystemTime();	
-			//fill the title of current result table
+			// set game compete time
+			Main.currentGameTime = MainPage.getSystemTime();
+			// fill the title of current result table
 			currentResultsTable.getItems().clear();
-			sportID = MainPage.getSportID(Main.currentGameType);		
+			sportID = MainPage.getSportID(Main.currentGameType);
 			gameID.setText(sportID);
-			referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
-			//fill the Result table
-			MainPage.setData3Values(data3,gameResult);
+			referee.setText(Main.sport.getReferee().getID() + "_" + Main.sport.getReferee().getName());
+			// fill the Result table
+			MainPage.setData3Values(data3, gameResult);
 			currentResultsTable.setItems(data3);
-			data3.removeAll();	
-			//Save game times to the database according to game type
+			data3.removeAll();
+			// Save game times to the database according to game type
 			DatabaseConn.updateGameTimes(Main.sport.getSportsID());
-			//Save the current game result to the TXT file
+			// Save the current game result to the TXT file
 			MainPage.saveCurrResultToTXT(sportID, gameResult);
-			//Save the points to relevant athletes
+			// Save the points to relevant athletes
 			MainPage.savePointsToDB(gameResult);
-		}else{
+		} else {
 			notice.setText("Please select a game before beignning");
 		}
 	}

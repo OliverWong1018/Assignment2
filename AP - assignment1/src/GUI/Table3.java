@@ -1,3 +1,5 @@
+//Author is JINZE WANG
+//This table3 is display all results table.
 package GUI;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -11,7 +13,7 @@ public class Table3 {
 	private SimpleStringProperty rPoints3;
 
 	public Table3(String rRank3, String rID3, String rName3, String rType3, String rTime3, String rPoints3) {
-		this.rRank3 =new SimpleStringProperty(rRank3);
+		this.rRank3 = new SimpleStringProperty(rRank3);
 		this.rName3 = new SimpleStringProperty(rName3);
 		this.rTime3 = new SimpleStringProperty(rTime3);
 		this.rID3 = new SimpleStringProperty(rID3);
@@ -51,7 +53,7 @@ public class Table3 {
 	public void setRID3(String v) {
 		rID3.set(v);
 	}
-	
+
 	public String getRType3() {
 		return rType3.get();
 	}
@@ -62,8 +64,9 @@ public class Table3 {
 
 	public void setRpoints3(String v) {
 		rPoints3.set(v);
-		
+
 	}
+
 	public String getRPoints3() {
 		return rPoints3.get();
 	}

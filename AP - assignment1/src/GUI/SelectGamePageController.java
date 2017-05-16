@@ -1,3 +1,5 @@
+//Author is WEN ZHANG
+// This class is a controller for selecting game.
 package GUI;
 
 import java.io.IOException;
@@ -11,11 +13,13 @@ public class SelectGamePageController {
 		Main.currentGameType = "S";
 		Main.showConstructGamePageScene();
 	}
+
 	@FXML
 	public void runningGame() throws IOException {
 		Main.currentGameType = "R";
 		Main.showConstructGamePageScene();
 	}
+
 	@FXML
 	public void cyclingGame() throws IOException {
 		Main.currentGameType = "C";

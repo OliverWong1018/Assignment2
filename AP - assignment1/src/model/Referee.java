@@ -1,5 +1,5 @@
 package model;
-//Author is Jinze Wang
+//Author is WEN ZHANG
 //This class is for referee which extends from Participant.class.
 public class Referee extends Participant{
 	private String type;

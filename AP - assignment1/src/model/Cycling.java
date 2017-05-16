@@ -1,5 +1,5 @@
 package model;
-//Author is Wen Zhang
+//Author is JINZE WANG
 //this class for cycling with override method from superclass Sports.class.
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,3 +1,5 @@
+//Author is WEN ZHANG
+//this controller is for displaying Points
 package GUI;
 
 import java.net.URL;
@@ -17,11 +19,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class PointsPageController implements Initializable{
-	
+public class PointsPageController implements Initializable {
+
 	@FXML
 	public Button closeButton;
-	
+
 	@FXML
 	TableView<Table5> allPointsTable;
 	@FXML
@@ -36,19 +38,22 @@ public class PointsPageController implements Initializable{
 	TableColumn<Table5, String> iType5;
 	@FXML
 	TableColumn<Table5, String> iPoints5;
-	
+
 	@FXML
-	private void goBack(ActionEvent event){
+	private void goBack(ActionEvent event) {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
-	    stage.close();
+		stage.close();
 	}
+
 	final ObservableList<Table5> data5 = FXCollections.observableArrayList();
+
 	/*
-	final ObservableList<Table5> data5 = FXCollections.observableArrayList(
-			new Table5("R01", "Wayne", "20", "Vic","Referee","None"),
-			new Table5("A01", "Oliver", "23", "Nsw","Swimmer","5"), 
-			new Table5("A02", "Tim", "30", "Tas","Runner","3"));
-	*/
+	 * final ObservableList<Table5> data5 = FXCollections.observableArrayList(
+	 * new Table5("R01", "Wayne", "20", "Vic","Referee","None"), new
+	 * Table5("A01", "Oliver", "23", "Nsw","Swimmer","5"), new Table5("A02",
+	 * "Tim", "30", "Tas","Runner","3"));
+	 */
+	// insert data to pointsPage
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -58,23 +63,23 @@ public class PointsPageController implements Initializable{
 		iState5.setCellValueFactory(new PropertyValueFactory<Table5, String>("rState5"));
 		iType5.setCellValueFactory(new PropertyValueFactory<Table5, String>("rType5"));
 		iPoints5.setCellValueFactory(new PropertyValueFactory<Table5, String>("rPoints5"));
-		
-		 ResultSet rs = DatabaseConn.getPoints();
-		  try{   
-		   while (rs.next()) {
-		    data5.add(new Table5("","","","","", ""));
-		    int f = data5.size()-1;
-		     data5.get(f).setRID5(rs.getString(1));
-		     data5.get(f).setRName5(rs.getString(2));
-		     data5.get(f).setRAge5(rs.getString(4));
-		     data5.get(f).setRState5(rs.getString(5));
-		     data5.get(f).setRType5(rs.getString(3));
-		     data5.get(f).setRPoints5(rs.getString(6));
-		   }
-		  }catch (SQLException e) {
-		   e.printStackTrace();
-		  }
+
+		ResultSet rs = DatabaseConn.getPoints();
+		try {
+			while (rs.next()) {
+				data5.add(new Table5("", "", "", "", "", ""));
+				int f = data5.size() - 1;
+				data5.get(f).setRID5(rs.getString(1));
+				data5.get(f).setRName5(rs.getString(2));
+				data5.get(f).setRAge5(rs.getString(4));
+				data5.get(f).setRState5(rs.getString(5));
+				data5.get(f).setRType5(rs.getString(3));
+				data5.get(f).setRPoints5(rs.getString(6));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		allPointsTable.setItems(data5);
 	}
-	
+
 }
