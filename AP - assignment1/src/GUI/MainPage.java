@@ -1,6 +1,8 @@
 package GUI;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import io.AllResultsTXT;
@@ -94,5 +96,10 @@ public class MainPage {
 			     DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
 			 }
 		} while (iter.hasNext());
+	}
+	public static String getSystemTime(){
+		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+		Date date=new Date();
+		return dateFormater.format(date);
 	}
 }

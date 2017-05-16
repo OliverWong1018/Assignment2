@@ -2,7 +2,9 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -32,15 +34,15 @@ public class MainPageController implements Initializable {
 	final ObservableList<Table3> data3 = FXCollections.observableArrayList();
 	String titles = null;
 	@FXML
-	private Button btn;
+	public Button btn;
 	@FXML
-	private ProgressBar pgb;
+	public ProgressBar pgb;
 	@FXML
-	private Label gameID;
+	public Label gameID;
 	@FXML
-	private ProgressIndicator pgi;
+	public ProgressIndicator pgi;
 	@FXML
-	private Label referee;
+	public Label referee;
 	@FXML
 	TableView<Table3> currentResultsTable;
 	@FXML
@@ -66,6 +68,8 @@ public class MainPageController implements Initializable {
 	@FXML
 	private void selectAGame() throws IOException {
 		Main.selectGamePage();
+		this.currentResultsTable.getItems().clear();
+		this.btn.setText("Let's beign");
 	}
 	@FXML
 	private void goPoints() throws IOException {
@@ -92,11 +96,9 @@ public class MainPageController implements Initializable {
 	@FXML
 	public void btnOnAction(ActionEvent e) {
 		//process bar
-		Task<Void> task = new Task<Void>() {
-			
+		Task<Void> task = new Task<Void>() {		
 			@Override
 			public Void call() throws Exception {
-
 				int time = 1; // sec
 				int loopCount = 1000;
 				btn.setDisable(true);
@@ -118,25 +120,14 @@ public class MainPageController implements Initializable {
 				btn.setText("Restart");
 				btn.setDisable(false);
 			}
-			@Override
-			protected void cancelled() {
-				super.cancelled();
-				btn.setText("Restart");
-				btn.setDisable(false);
-			}
-			@Override
-			protected void failed() {
-				super.failed();
-				btn.setText("Restart");
-				btn.setDisable(false);
-			}
-
 		};
 		pgb.progressProperty().bind(task.progressProperty());
 		pgi.progressProperty().bind(task.progressProperty());
 		svc.submit(task);
 		//begin the current game and product result
 		gameResult = SportsPreparing.getCompeteResults(Main.sport);
+		//set game compete time
+		Main.currentGameTime = MainPage.getSystemTime();	
 		//fill the title of current result table
 		currentResultsTable.getItems().clear();
 		sportID = MainPage.getSportID(Main.currentGameType);		
@@ -153,5 +144,4 @@ public class MainPageController implements Initializable {
 		//Save the points to relevant athletes
 		MainPage.savePointsToDB(gameResult);
 	}
-	
 }

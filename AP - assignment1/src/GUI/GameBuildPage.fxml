@@ -34,11 +34,12 @@
       <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="383.0" text="Notice: One game only contain 1 referees and 4-8 athlests!" textFill="#e00b98" />
       <Label layoutX="14.0" layoutY="52.0" prefHeight="17.0" prefWidth="178.0" text="All Candidates Table" />
       <Label layoutX="14.0" layoutY="236.0" prefHeight="17.0" prefWidth="178.0" text="All Participants Table" />
-      <Label fx:id="notice" layoutX="4.0" layoutY="218.0" prefHeight="15.0" prefWidth="710.0" textFill="#ee0b0b" />
+      <Label fx:id="notice1" layoutX="4.0" layoutY="218.0" prefHeight="15.0" prefWidth="710.0" textFill="#ee0b0b" />
       <Label fx:id="currentGameType" layoutX="373.0" layoutY="25.0" prefHeight="43.0" prefWidth="284.0" textFill="#0cda4a">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
+      <Label fx:id="notice2" layoutX="7.0" layoutY="406.0" prefHeight="15.0" prefWidth="710.0" textFill="#ee0b0b" />
    </children>
 </AnchorPane>

@@ -33,20 +33,22 @@ public class GameBuildPage {
 			e.printStackTrace();
 		}
 	}
-	public static void setAlthNeededNum(int althNeededNum,ObservableList<Table2> data2){
+	public static int getAlthNeededNum(int althNeededNum,ObservableList<Table2> data2){
 		althNeededNum = 8;
 		for (int i = 0; i < data2.size(); i++) {
 			if (!data2.get(i).getRType2().equals("Referee")) {
 				althNeededNum -=1;
 			}
-		}				
+		}
+		return althNeededNum;
 	}
-	public static void setRefNeededNum(int refNeededNum,ObservableList<Table2> data2){
+	public static int getRefNeededNum(int refNeededNum,ObservableList<Table2> data2){
 		refNeededNum = 1;
 		for (int i = 0; i < data2.size(); i++) {
 			if (data2.get(i).getRType2().equals("Referee")) {
 				refNeededNum = 0;
 			}
-		}	
+		}
+		return refNeededNum;
 	}
 }
