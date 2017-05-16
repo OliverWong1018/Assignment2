@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainPageController">
    <right>
-      <AnchorPane prefHeight="397.0" prefWidth="425.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="404.0" prefWidth="425.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="currentResultsTable" layoutX="-8.0" layoutY="17.0" prefHeight="358.0" prefWidth="396.0">
+            <TableView fx:id="currentResultsTable" layoutX="-6.0" layoutY="17.0" prefHeight="358.0" prefWidth="396.0">
               <columns>
                 <TableColumn fx:id="iRank3" prefWidth="52.0" text="Rank" />
                 <TableColumn fx:id="iID3" prefWidth="51.0" text="ID" />
@@ -23,7 +23,7 @@
                   <TableColumn fx:id="iPoints3" prefWidth="75.0" text="Points" />
               </columns>
             </TableView>
-            <Label layoutX="-8.0" prefHeight="17.0" prefWidth="60.0" text="Game ID: " />
+            <Label layoutX="-6.0" prefHeight="17.0" prefWidth="60.0" text="Game ID: " />
             <Label layoutX="164.0" text="Referee:" />
             <Label fx:id="gameID" layoutX="52.0" />
             <Label fx:id="referee" layoutX="225.0" prefHeight="17.0" prefWidth="162.0" />
@@ -38,7 +38,7 @@
             <Button layoutX="31.0" layoutY="234.0" mnemonicParsing="false" onAction="#goResult" prefHeight="37.0" prefWidth="187.0" text="All Results" />
             <ProgressIndicator fx:id="pgi" layoutX="218.0" layoutY="177.0" prefHeight="45.0" prefWidth="38.0" progress="0.0" />
             <Button layoutX="31.0" layoutY="292.0" mnemonicParsing="false" onAction="#goPoints" prefHeight="37.0" prefWidth="187.0" text="All Points" />
-            <Button layoutX="31.0" layoutY="344.0" mnemonicParsing="false" onAction="#gameOver" prefHeight="31.0" prefWidth="89.0" text="Exit" />
+            <Button layoutX="31.0" layoutY="347.0" mnemonicParsing="false" onAction="#gameOver" prefHeight="31.0" prefWidth="89.0" text="Exit" />
          </children>
       </AnchorPane>
    </left>
