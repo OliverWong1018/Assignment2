@@ -1,3 +1,4 @@
+//Author is JINZE WANG
 package JunitTest;
 
 import static org.junit.Assert.assertTrue;
