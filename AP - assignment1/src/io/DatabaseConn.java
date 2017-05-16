@@ -27,7 +27,7 @@ public class DatabaseConn {
 		return connection;
 		
 	}
-	
+	//get all candidates including athletes and referees from database
 	public static ResultSet getAllCandidates() {
 
 		Connection conn = getConn();
@@ -46,6 +46,7 @@ public class DatabaseConn {
 		}
 		return rs;
 	}
+	//updated the sportID depending on type of different game
 	public static void updateGameTimes(String sportID) {
 		Connection conn = getConn();
 		PreparedStatement pstmt;
@@ -73,6 +74,7 @@ public class DatabaseConn {
 		}
 
 	}
+	//update the points for all athletes
 	public static void updateAthletePoints(String AthleteID, int points) {
 		Connection conn = getConn();
 		PreparedStatement pstmt;
@@ -89,7 +91,7 @@ public class DatabaseConn {
 		}
 
 	}
-	
+	//get the SportID by different game type
 	public static int getGameTimes(String gameType) {
 		int times = 0;
 		Connection conn = getConn();
@@ -177,7 +179,7 @@ public class DatabaseConn {
 		*/
 		
 		
-	
+	// get all points of athletes from database
 	public static ResultSet getPoints() {
 		Connection conn = getConn();
 		ResultSet rs = null;
