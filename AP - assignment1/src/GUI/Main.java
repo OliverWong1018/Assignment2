@@ -71,9 +71,6 @@ public class Main extends Application {
 	public static void closeWindow() throws IOException {
 		primaryStage.close();
 	}
-	public static void main(String[] args) {
-		launch(args);
-	}
 	public static void showConstructGamePageScene() throws IOException {
 	
 		FXMLLoader loader = new FXMLLoader();
