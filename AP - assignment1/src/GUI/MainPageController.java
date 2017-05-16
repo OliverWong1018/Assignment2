@@ -2,15 +2,11 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import io.AllResultsTXT;
 import io.DatabaseConn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

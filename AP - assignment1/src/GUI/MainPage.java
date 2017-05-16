@@ -9,7 +9,6 @@ import io.AllResultsTXT;
 import io.DatabaseConn;
 import javafx.collections.ObservableList;
 import model.CompeteResult;
-import model.SportsPreparing;
 
 public class MainPage {
 	public static String competeResultString = null;
@@ -98,8 +97,7 @@ public class MainPage {
 		} while (iter.hasNext());
 	}
 	public static String getSystemTime(){
-		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
-		Date date=new Date();
-		return dateFormater.format(date);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return df.format(new Date());
 	}
 }
