@@ -14,7 +14,7 @@ import model.CompeteResult;
 public class MainPage {
 	public static String competeResultString = null;
 	public static String newResult = null;
-
+	public static int AmountGetPoint =0;
 	public static String getSportID(String currentGameType) {
 		int gameTimes = 0;
 		String sportID = null;
@@ -40,7 +40,6 @@ public class MainPage {
 			ArrayList<CompeteResult> gameResult) {
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;
-		int countRank = 1;
 		do {
 			competeResult = iter.next();
 			data3.add(new Table3("", "", "", "", "", ""));
@@ -50,38 +49,43 @@ public class MainPage {
 			data3.get(f).setRName3(competeResult.getAthlete().getName());
 			data3.get(f).setRType3(competeResult.getAthlete().getType());
 			data3.get(f).setRTime3(Integer.toString(competeResult.getTime()) + "s'");
-			if (countRank == 1) {
+			if (competeResult.getRank() == 1) {
 
 				data3.get(f).setRpoints3("5");
 			}
-			if (countRank == 2) {
+			if (competeResult.getRank() == 2) {
 				data3.get(f).setRpoints3("2");
 			}
-			if (countRank == 3) {
+			if (competeResult.getRank() == 3) {
 				data3.get(f).setRpoints3("1");
 			}
-			if (countRank > 3) {
+			if (competeResult.getRank() > 3) {
 				data3.get(f).setRpoints3("0");
 			}
-			countRank++;
+			
 		} while (iter.hasNext());
 		return data3;
 	}
-
+	
 	// Save current results to files.
 	public static void saveCurrResultToTXT(String sportID, ArrayList<CompeteResult> gameResult) {
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;
-		iter = gameResult.iterator();
+		//iter = gameResult.iterator();
 		competeResultString = "";
-		String titles = "Rank" + "  " + " ID  " + "  " + " Time " + "  " + "   Type   " + "  " + "  Name";
-
-		for (int i = 0; i < 3; i++) {
+		String titles = "Rank" + "  " + " ID  " + "  " + " Time " + "  " + " Points   " + "  " + "  Name";
+		int points = 0;
+		for (int i = 0; i < AmountGetPoint; i++) {
 			competeResult = iter.next();
-
+			if(competeResult.getRank()==1)
+				points=5;
+			if(competeResult.getRank()==2)
+				points=2;
+			if(competeResult.getRank()==3)
+				points=1;
 			competeResultString += (Integer.toString(competeResult.getRank()) + "   " + "||"
 					+ competeResult.getAthlete().getID() + "  " + "||" + Integer.toString(competeResult.getTime())
-					+ "   " + "||" + competeResult.getAthlete().getType() + "  " + "||"
+					+ "   " + "||   " + points + "  " + "   ||    "
 					+ competeResult.getAthlete().getName() + "\n");
 		}
 		newResult = sportID + "     " + Main.currentGameTime + "\n" + Main.sport.getReferee().getID() + "_"
@@ -91,6 +95,7 @@ public class MainPage {
 
 	// save points into database
 	public static void savePointsToDB(ArrayList<CompeteResult> gameResult) {
+		AmountGetPoint=0;
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;
 		iter = gameResult.iterator();
@@ -98,12 +103,15 @@ public class MainPage {
 			competeResult = iter.next();
 			if (competeResult.getRank() == 1) {
 				DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 5);
+				AmountGetPoint++;
 			}
 			if (competeResult.getRank() == 2) {
 				DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 2);
+				AmountGetPoint++;
 			}
 			if (competeResult.getRank() == 3) {
 				DatabaseConn.updateAthletePoints(competeResult.getAthlete().getID(), 1);
+				AmountGetPoint++;
 			}
 		} while (iter.hasNext());
 	}

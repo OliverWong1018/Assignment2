@@ -1,0 +1,15 @@
+R01     2017-05-17 09:39:10
+R05_Yuliang
+Rank   ID     Time    Points       Name
+1   ||A09  ||14   ||   5     ||    Byer
+2   ||A08  ||16   ||   2     ||    Totti
+3   ||A11  ||17   ||   1     ||    Dylan
+3   ||A12  ||17   ||   1     ||    Jack
+
+R02     2017-05-17 09:39:15
+R05_Yuliang
+Rank   ID     Time    Points       Name
+1   ||A08  ||12   ||   5     ||    Totti
+2   ||A11  ||13   ||   2     ||    Dylan
+3   ||A10  ||14   ||   1     ||    Rolan
+

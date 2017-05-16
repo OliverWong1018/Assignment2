@@ -23,7 +23,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Athlete;
 import model.CompeteResult;
+import model.Cycling;
 import model.Referee;
+import model.Running;
 import model.Sports;
 import model.Swimming;
 
@@ -307,7 +309,7 @@ public class GameBuildPageController implements Initializable {
 				} else {
 					sportID = "R" + gameTimes;
 				}
-				sport = new Swimming(sportID, referee, compResults);
+				sport = new Running(sportID, referee, compResults);
 			}
 			if (Main.currentGameType.equals("C")) {
 				gameTimes = DatabaseConn.getGameTimes("cycling") + 1;
@@ -316,7 +318,7 @@ public class GameBuildPageController implements Initializable {
 				} else {
 					sportID = "C" + gameTimes;
 				}
-				sport = new Swimming(sportID, referee, compResults);
+				sport = new Cycling(sportID, referee, compResults);
 			}
 			Main.sport = this.sport;
 			Stage stage = (Stage) confirm.getScene().getWindow();

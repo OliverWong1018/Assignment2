@@ -151,10 +151,11 @@ public class MainPageController implements Initializable {
 			data3.removeAll();
 			// Save game times to the database according to game type
 			DatabaseConn.updateGameTimes(Main.sport.getSportsID());
-			// Save the current game result to the TXT file
-			MainPage.saveCurrResultToTXT(sportID, gameResult);
 			// Save the points to relevant athletes
 			MainPage.savePointsToDB(gameResult);
+			// Save the current game result to the TXT file
+			MainPage.saveCurrResultToTXT(sportID, gameResult);
+			
 		} else {
 			notice.setText("Please select a game before beignning");
 		}

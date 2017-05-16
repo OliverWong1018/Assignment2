@@ -111,9 +111,39 @@ public class DatabaseConn {
 		return times;
 	}
 	
+	// get all points of athletes from database
+	public static ResultSet getPoints() {
+		Connection conn = getConn();
+		ResultSet rs = null;
+		String sq = "select * from athlete";
+		PreparedStatement pstmt;
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sq);
+			rs = pstmt.executeQuery();
+			
+		
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;	
+	}
+}
+	
 	/*public static void main(String[] args) {
-		Connection connection = getConn();*/
-		/*
+		Connection connection = getConn();
+		try {
+			connection.prepareStatement("drop table gametimes if exists;").execute();
+			connection.prepareStatement("create table gametimes (gametype varchar(10), times integer);").execute();
+			connection.prepareStatement("insert into gametimes (gametype, times) values ('swimming', 1);").execute();
+			connection.prepareStatement("insert into gametimes (gametype, times) values ('running', 1);").execute();
+			connection.prepareStatement("insert into gametimes (gametype, times) values ('cycling', 1);").execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		try {
 			connection.prepareStatement("drop table athlete if exists;").execute();
 			connection.prepareStatement("create table athlete (candidateid varchar(5), name varchar(20), type varchar(15),age integer,state varchar(5),points integer,PRIMARY KEY(candidateid));").execute();
@@ -145,24 +175,19 @@ public class DatabaseConn {
 			
 			// // query from the db
 			connection.commit();
-
+			connection.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
+	}
+}		
+		/*
+		
 		//DatabaseConn.getGameTimes("swimming");
 		
 		
 		
-		try {
-			connection.prepareStatement("drop table gametimes if exists;").execute();
-			connection.prepareStatement("create table gametimes (gametype varchar(10), times integer);").execute();
-			connection.prepareStatement("insert into gametimes (gametype, times) values ('swimming', 1);").execute();
-			connection.prepareStatement("insert into gametimes (gametype, times) values ('running', 1);").execute();
-			connection.prepareStatement("insert into gametimes (gametype, times) values ('cycling', 1);").execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		// making a connection
 		connection.prepareStatement("insert into candidate (candidateid, name, type, age, state) values ('R01', 'Bush','Referee',29,'QLD');").execute();
@@ -175,28 +200,5 @@ public class DatabaseConn {
 		
 		displayAll("candidate");
 		// end of stub code for in/out stub
-		 * }
-		*/
-		
-		
-	// get all points of athletes from database
-	public static ResultSet getPoints() {
-		Connection conn = getConn();
-		ResultSet rs = null;
-		String sq = "select * from athlete";
-		PreparedStatement pstmt;
-		try {
-			pstmt = (PreparedStatement) conn.prepareStatement(sq);
-			rs = pstmt.executeQuery();
-			
-		
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return rs;
-		
-	}
+		 }*/
 	
-}

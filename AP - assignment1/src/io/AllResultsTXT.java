@@ -38,7 +38,6 @@ public class AllResultsTXT {
 		}
 	}
 	/*public static void main(String[] args){
-		clearAll();
-		
+		clearAll();	
 	}*/
 }
