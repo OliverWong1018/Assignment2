@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainPageController">
    <right>
       <AnchorPane prefHeight="404.0" prefWidth="425.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,12 +33,13 @@
       <AnchorPane prefHeight="359.0" prefWidth="275.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="31.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectAGame" prefHeight="37.0" prefWidth="187.0" text="Select A Game" />
-            <Button fx:id="btn" layoutX="31.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="37.0" prefWidth="187.0" text="Let's begin" />
+            <Button fx:id="btn" layoutX="31.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="37.0" prefWidth="187.0" text="Let's begin" />
             <ProgressBar fx:id="pgb" layoutX="31.0" layoutY="179.0" prefHeight="20.0" prefWidth="187.0" progress="0.0" />
             <Button layoutX="31.0" layoutY="234.0" mnemonicParsing="false" onAction="#goResult" prefHeight="37.0" prefWidth="187.0" text="All Results" />
             <ProgressIndicator fx:id="pgi" layoutX="218.0" layoutY="177.0" prefHeight="45.0" prefWidth="38.0" progress="0.0" />
             <Button layoutX="31.0" layoutY="292.0" mnemonicParsing="false" onAction="#goPoints" prefHeight="37.0" prefWidth="187.0" text="All Points" />
             <Button layoutX="31.0" layoutY="347.0" mnemonicParsing="false" onAction="#gameOver" prefHeight="31.0" prefWidth="89.0" text="Exit" />
+            <Label fx:id="notice" layoutX="10.0" layoutY="145.0" prefHeight="23.0" prefWidth="255.0" textFill="#da2424" />
          </children>
       </AnchorPane>
    </left>

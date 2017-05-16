@@ -36,6 +36,8 @@ public class MainPageController implements Initializable {
 	@FXML
 	public Label gameID;
 	@FXML
+	public Label notice;
+	@FXML
 	public ProgressIndicator pgi;
 	@FXML
 	public Label referee;
@@ -66,6 +68,7 @@ public class MainPageController implements Initializable {
 		Main.selectGamePage();
 		this.currentResultsTable.getItems().clear();
 		this.btn.setText("Let's beign");
+		this.notice.setText("");
 	}
 	@FXML
 	private void goPoints() throws IOException {
@@ -91,53 +94,57 @@ public class MainPageController implements Initializable {
 	}
 	@FXML
 	public void btnOnAction(ActionEvent e) {
-		//process bar
-		Task<Void> task = new Task<Void>() {		
-			@Override
-			public Void call() throws Exception {
-				int time = 1; // sec
-				int loopCount = 1000;
-				btn.setDisable(true);
-				int sleepMSec = time * 1000 / loopCount;
-
-				for (int i = 0; i < loopCount; i++) {
-					if (isCancelled()) {
-						break;
+		if(Main.sport!=null){
+			//process bar
+			Task<Void> task = new Task<Void>() {		
+				@Override
+				public Void call() throws Exception {
+					int time = 1; // sec
+					int loopCount = 1000;
+					btn.setDisable(true);
+					int sleepMSec = time * 1000 / loopCount;
+	
+					for (int i = 0; i < loopCount; i++) {
+						if (isCancelled()) {
+							break;
+						}
+						Thread.sleep(sleepMSec);
+						updateProgress(i, loopCount);
 					}
-					Thread.sleep(sleepMSec);
-					updateProgress(i, loopCount);
+					return null;
 				}
-				return null;
-			}
-			@Override
-			protected void succeeded() {
-				updateProgress(1, 1);
-				super.succeeded();
-				btn.setText("Restart");
-				btn.setDisable(false);
-			}
-		};
-		pgb.progressProperty().bind(task.progressProperty());
-		pgi.progressProperty().bind(task.progressProperty());
-		svc.submit(task);
-		//begin the current game and product result
-		gameResult = SportsPreparing.getCompeteResults(Main.sport);
-		//set game compete time
-		Main.currentGameTime = MainPage.getSystemTime();	
-		//fill the title of current result table
-		currentResultsTable.getItems().clear();
-		sportID = MainPage.getSportID(Main.currentGameType);		
-		gameID.setText(sportID);
-		referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
-		//fill the Result table
-		MainPage.setData3Values(data3,gameResult);
-		currentResultsTable.setItems(data3);
-		data3.removeAll();	
-		//Save game times to the database according to game type
-		DatabaseConn.updateGameTimes(Main.sport.getSportsID());
-		//Save the current game result to the TXT file
-		MainPage.saveCurrResultToTXT(sportID, gameResult);
-		//Save the points to relevant athletes
-		MainPage.savePointsToDB(gameResult);
+				@Override
+				protected void succeeded() {
+					updateProgress(1, 1);
+					super.succeeded();
+					btn.setText("Restart");
+					btn.setDisable(false);
+				}
+			};
+			pgb.progressProperty().bind(task.progressProperty());
+			pgi.progressProperty().bind(task.progressProperty());
+			svc.submit(task);
+			//begin the current game and product result
+			gameResult = SportsPreparing.getCompeteResults(Main.sport);
+			//set game compete time
+			Main.currentGameTime = MainPage.getSystemTime();	
+			//fill the title of current result table
+			currentResultsTable.getItems().clear();
+			sportID = MainPage.getSportID(Main.currentGameType);		
+			gameID.setText(sportID);
+			referee.setText(Main.sport.getReferee().getID()+"_"+Main.sport.getReferee().getName());
+			//fill the Result table
+			MainPage.setData3Values(data3,gameResult);
+			currentResultsTable.setItems(data3);
+			data3.removeAll();	
+			//Save game times to the database according to game type
+			DatabaseConn.updateGameTimes(Main.sport.getSportsID());
+			//Save the current game result to the TXT file
+			MainPage.saveCurrResultToTXT(sportID, gameResult);
+			//Save the points to relevant athletes
+			MainPage.savePointsToDB(gameResult);
+		}else{
+			notice.setText("Please select a game before beignning");
+		}
 	}
 }
