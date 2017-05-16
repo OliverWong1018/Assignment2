@@ -1,3 +1,4 @@
+// Author is JINZE WANG
 package GUI;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ public class MainPage {
 		}
 		return sportID;
 	}
+	// insert data to current result Table
 	public static ObservableList<Table3> setData3Values(ObservableList<Table3> data3,ArrayList<CompeteResult> gameResult){
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;
@@ -62,6 +64,7 @@ public class MainPage {
 		} while (iter.hasNext());
 		return data3;
 	}
+	// Save current results to files.
 	public static void saveCurrResultToTXT(String sportID,ArrayList<CompeteResult> gameResult){
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;
@@ -79,6 +82,7 @@ public class MainPage {
 				+"\n"+titles+"\n"+competeResultString+"\n";
 		AllResultsTXT.UpdateGamesResults(newResult);
 	}
+	//save points into database
 	public static void savePointsToDB(ArrayList<CompeteResult> gameResult){
 		Iterator<CompeteResult> iter = gameResult.iterator();
 		CompeteResult competeResult;

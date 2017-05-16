@@ -1,3 +1,5 @@
+//Author is WENZHANG
+//Class for control MainPage action
 package GUI;
 
 import java.io.IOException;
@@ -62,6 +64,7 @@ public class MainPageController implements Initializable {
 	private void gameOver() throws IOException {
 		Main.closeWindow();
 	}
+	
 	@FXML
 	private void selectAGame() throws IOException {
 		Main.selectGamePage();

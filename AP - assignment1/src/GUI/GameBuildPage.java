@@ -1,3 +1,4 @@
+//Author is Wen Zhang
 package GUI;
 
 import java.sql.ResultSet;
@@ -7,18 +8,21 @@ import io.DatabaseConn;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 
+// Class for building game
 public class GameBuildPage {
 
+	// set a game title in GameBuildPage
 	public static void setGameTitle(String currentGameType, Label currentGameType2) {
-		if(Main.currentGameType.equals("S"))
+		if (Main.currentGameType.equals("S"))
 			currentGameType2.setText("Swimming Game");
-		if(Main.currentGameType.equals("C"))
+		if (Main.currentGameType.equals("C"))
 			currentGameType2.setText("Cycling Game");
-		if(Main.currentGameType.equals("R"))
-			currentGameType2.setText("Running Game");	
+		if (Main.currentGameType.equals("R"))
+			currentGameType2.setText("Running Game");
 	}
 
-	public static void setLeftTableValue(ObservableList<Table> data,ResultSet rs) {		
+	// insert data in Candidate Table
+	public static void setLeftTableValue(ObservableList<Table> data, ResultSet rs) {
 		try {
 			while (rs.next()) {
 				data.add(new Table("", "", "", "", ""));
@@ -33,16 +37,18 @@ public class GameBuildPage {
 			e.printStackTrace();
 		}
 	}
-	public static int getAlthNeededNum(int althNeededNum,ObservableList<Table2> data2){
+
+	public static int getAlthNeededNum(int althNeededNum, ObservableList<Table2> data2) {
 		althNeededNum = 8;
 		for (int i = 0; i < data2.size(); i++) {
 			if (!data2.get(i).getRType2().equals("Referee")) {
-				althNeededNum -=1;
+				althNeededNum -= 1;
 			}
 		}
 		return althNeededNum;
 	}
-	public static int getRefNeededNum(int refNeededNum,ObservableList<Table2> data2){
+
+	public static int getRefNeededNum(int refNeededNum, ObservableList<Table2> data2) {
 		refNeededNum = 1;
 		for (int i = 0; i < data2.size(); i++) {
 			if (data2.get(i).getRType2().equals("Referee")) {

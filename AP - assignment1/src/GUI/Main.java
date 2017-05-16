@@ -1,3 +1,4 @@
+//Author is WEN ZHANG
 package GUI;
 import java.io.IOException;
 import javafx.application.Application;
@@ -7,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Sports;
+//Main class for creating stage.
 public class Main extends Application {
 	private static Stage primaryStage;
 	private static BorderPane mainLayoutB;
@@ -21,6 +23,7 @@ public class Main extends Application {
 		this.primaryStage.setTitle("Welcome");
 		showWelcomeView();
 	}
+	// show welcome page;
 	private void showWelcomeView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/Welcome.fxml"));
@@ -29,6 +32,7 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+	//show select game Page
 	public static void selectGamePage() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/GUI/SelectGamePage.fxml"));
@@ -38,6 +42,7 @@ public class Main extends Application {
 		selectgameStage.show();
 		selectgameStage.setTitle("Select Games");
 	}
+	//show main page
 	public static void showMainPageScene() throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader();
@@ -48,6 +53,7 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setTitle("Ozlympic");
 	}
+	//show result page
 	public static void displayResult() throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -58,6 +64,7 @@ public class Main extends Application {
 		stage.show();
 		stage.setTitle("All Results");	
 	}
+	//show points page
 	public static void displayPoints() throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -68,9 +75,11 @@ public class Main extends Application {
 		stage.show();
 		stage.setTitle("All Points");
 	}
+	//close window button
 	public static void closeWindow() throws IOException {
 		primaryStage.close();
 	}
+	//show select player page
 	public static void showConstructGamePageScene() throws IOException {
 	
 		FXMLLoader loader = new FXMLLoader();
