@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import io.DatabaseConn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CompeteResult;
-import model.SportsPreparing;
+import model.SportsProcessing;
 
 public class MainPageController implements Initializable {
 	public ArrayList<CompeteResult> gameResult = new ArrayList<CompeteResult>();
@@ -125,7 +124,7 @@ public class MainPageController implements Initializable {
 			pgi.progressProperty().bind(task.progressProperty());
 			svc.submit(task);
 			//begin the current game and product result
-			gameResult = SportsPreparing.getCompeteResults(Main.sport);
+			gameResult = SportsProcessing.getCompeteResults(Main.sport);
 			//set game compete time
 			Main.currentGameTime = MainPage.getSystemTime();	
 			//fill the title of current result table

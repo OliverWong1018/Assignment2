@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Iterator;
 // This class is focus on supplying original data(Athletes and referee), and offer static method involving computing data for Game.class
-public class SportsPreparing {
+public class SportsProcessing {
 	
    //To compute the time and rank for each athlete and store in memory.
 	public static ArrayList<CompeteResult> getCompeteResults(Sports sport) {
